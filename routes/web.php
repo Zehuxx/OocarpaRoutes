@@ -11,9 +11,9 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('layouts.app');
-//});
+Route::get('/', function () {
+    return view('user.home');
+});
 
 Route::get('add','CarController@create');
 Route::post('add','CarController@store');

@@ -7,12 +7,12 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{ config('app.name', 'Laravel') }}</title>
-  <!-- Bootstrap css -->
+  <!-- Bootstrap css --> 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <!-- Estilos barra lateral y contenedor de mapa -->
   <link rel="stylesheet" type="text/css" href="{{ asset('css/estilos_barra.css')}}">
   <!-- Iconos -->
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" /> 
   <!-- Leafleat css -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
   integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
@@ -33,9 +33,12 @@
     </button>
     <a class="navbar-brand" href="#">
         <img src="{{ asset('img/Xmaphn.png')}}" width="100" height="50" class="d-inline-block align-top" alt="">
+        
+            
     </a>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
+
             <!-- This menu is hidden in bigger devices with d-sm-none. 
            The sidebar isn't proper for smaller screens imo, so this dropdown menu can keep all the useful sidebar itens exclusively for smaller screens  -->
             <li class="nav-item dropdown d-sm-block d-md-none">
@@ -43,16 +46,25 @@
                   Menu
                 </a>
                 <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
-                    <a class="dropdown-item" href="#">Dashboard</a>
-                    <a class="dropdown-item" href="#">Profile</a>
-                    <a class="dropdown-item" href="#">Tasks</a>
-                    <a class="dropdown-item" href="#">Etc ...</a>
+                    @yield('Menu')
                 </div>
             </li>
             <!-- Smaller devices menu END -->
 
         </ul>
     </div>
+    <div class="profile">
+      <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <img src="{{ asset('img/3BCARS.png')}}"  id="circle">
+        <span class="color_nombre">Juan soler</span>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+        <a class="dropdown-item" href="#">Mi perfil</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Cerrar Sesión</a>
+      </div>
+    </div>
+
 </nav>
 <!-- NavBar END -->
 
@@ -64,26 +76,15 @@
         <!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
         <!-- Bootstrap List Group -->
         <ul class="list-group sticky-top sticky-offset">
-        	<a class="bg-dark list-group-item list-group-item-action">
-            	<div class="d-flex w-100 justify-content-start align-items-center">
-  					<input id="search" type="text" placeholder="Buscar..." aria-label="Search">
-            	</div>
-            </a>
-            <a href="#" class="bg-dark list-group-item list-group-item-action">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-calendar fa-fw mr-3"></span>
-                    <span class="menu-collapsed">Calendar</span>
-                </div>
-            </a>
-            
-            
+        	@yield('Items_sidebar')        
         </ul>
         <!-- List Group END-->
+        @yield('banner')
     </div>
     <!-- sidebar-container END -->
 
 <div class="col py-3">
- <div id="mapid"></div> 
+  @yield('Marco')
 </div>
 
 </div>
@@ -109,7 +110,7 @@ var myLines = [{
     ]
 }];
 // [latitud,logintud],[vertical, horizontal]
-//var marker = L.marker([14.10548, -87.2039]).addTo(mymap);
+//var marker = L.marker([14.10000038147, -87.216697692871]).addTo(mymap);
 // var marker = L.marker([14.10452, -87.20397]).addTo(mymap);
 // var marker = L.marker([14.10448, -87.2042]).addTo(mymap);
 //var marker = L.marker([14.10452, -87.20466]).addTo(mymap);
