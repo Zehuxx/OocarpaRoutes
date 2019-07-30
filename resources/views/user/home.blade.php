@@ -1,43 +1,13 @@
-@extends('layouts.app')
-@section('Menu')
-	<a class="dropdown-item" href="#">Crear rutas</a>
-	<a class="dropdown-item" href="#">Rutas creadas</a>
-	<a class="dropdown-item" href="#">Configuraciones</a>
-	<a class="dropdown-item" href="#">Mi perfil</a>
-    <a class="dropdown-item" href="#">Cerrar Sesión</a>
-    
-@endsection
-
-@section('Items_sidebar')
-	<a class="bg-dark list-group-item list-group-item-action">
-        <div class="d-flex w-100 justify-content-start align-items-center">
-  			<input id="search" type="text" placeholder="Buscar..." aria-label="Search">
-        </div>
-    </a>
-    <a href="#" class="bg-dark list-group-item list-group-item-action">
-        <div class="d-flex w-100 justify-content-start align-items-center break-word">
-            <span class="fa fa-calendar fa-fw mr-3"></span>
-            <span class="menu-collapsed">Crear rutas</span>
-        </div>
-    </a>
-    <a href="#" class="bg-dark list-group-item list-group-item-action">
-        <div class="d-flex w-100 justify-content-start align-items-center break-word">
-            <span class="fa fa-calendar fa-fw mr-3"></span>
-            <span class="menu-collapsed">Rutas creadas</span>
-        </div>
-    </a>
-    <a href="#" class="bg-dark list-group-item list-group-item-action ">
-        <div class="d-flex w-100 justify-content-start  align-items-center break-word">
-            <span class="fa fa-calendar fa-fw mr-3"></span>
-            <span class="menu-collapsed ">Configuraciones</span>
-        </div>
-    </a>
-@endsection 
-
-@section('banner')
-<img src="{{asset('img/fornite.png')}}" style="width: 100%">
+@extends('layouts.app_user')
+@section('librarymap')
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+    integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+    crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('js/conf.js')}}">
 @endsection
 
 @section('Marco')
-	<div id="mapid"></div> 
+    <div id="mapid"></div> 
 @endsection

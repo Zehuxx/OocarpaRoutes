@@ -13,7 +13,15 @@
 
 Route::get('/', function () {
     return view('user.home');
-});
+})->name('user home');
+
+Route::get('/user/config', function () {
+	return view('user.config');
+})->name('user config');
+
+Route::get('/user/routes', function () {
+	return view('user.routes');
+})->name('user routes');
 
 Route::get('add','CarController@create');
 Route::post('add','CarController@store');
