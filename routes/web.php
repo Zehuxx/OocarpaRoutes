@@ -12,14 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('layouts/admin');
-});
+    return view('welcome');
+})->name('home');
 
-Route::get('/app', function () {
-    return view('layouts/app');
-});
-
-
-Route::view('/admin', 'admin/home');
-Route::view('/basic', 'basic');
-Route::view('/welcome', 'welcome');
+Route::view('/admin', 'admin/home')->name('admin home');

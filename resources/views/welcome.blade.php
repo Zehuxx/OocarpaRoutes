@@ -5,7 +5,13 @@
 @section('navbar')
     <ul class="nav navbar-nav ml-auto"> {{-- no borra: d-md-down-none--}}
         <li class="nav-item px-3">
-            <a class="nav-link" href="#">login</a>
+        <a class="nav-link" href="{{ route('admin home') }}">Administrador</a>
+        </li>
+        <li class="nav-item px-3">
+            <a class="nav-link" href="#">Compañia</a>
+        </li>
+        <li class="nav-item px-3">
+            <a class="nav-link" href="#">Usuarios</a>
         </li>
     </ul>
 @endsection

@@ -8,13 +8,14 @@
 @endsection
 
 @section('cards')
-    <div class="card">
+    <div class="card card-accent-primary">
+        <div class="card-header">Card with accent
+                <h4 class="card-title mb-0">Titulo de La tarjeta</h4>
+                <div class="small text-muted">November 2017</div>
+        </div>
+        
         <div class="card-body">
             <div class="row">
-                <div class="col-sm-5">
-                    <h4 class="card-title mb-0">Traffic</h4>
-                    <div class="small text-muted">November 2017</div>
-                </div>
             <!-- /.col-->
                 <div class="col-sm-7 d-none d-md-block">
                     <button class="btn btn-primary float-right" type="button">
@@ -31,9 +32,6 @@
                             <input id="option3" type="radio" name="options" autocomplete="off"> Year
                         </label>
                     </div>
-                </div>
-                <div class="chart-wrapper" style="height:300px;margin-top:40px;">
-                    <canvas class="chart" id="main-chart" height="300"></canvas>
                 </div>
             </div>
         </div>
