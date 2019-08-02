@@ -19,13 +19,13 @@
         <!-- Icons-->
         <link rel="icon" type="image/ico" href="./img/favicon.ico" sizes="any" />
         
-        <link href="{{ asset('css/fw/coreui-icons.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/fw/flag-icon.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/fw/font-awesome.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/fw/simple-line-icons.css') }}" rel="stylesheet">
+        <link href="css/fw/coreui-icons.min.css" rel="stylesheet">
+        {{-- <link href="css/fw/flag-icon.min.css" rel="stylesheet"> --}}
+        <link href="css/fw/font-awesome.min.css" rel="stylesheet">
+        <link href="css/fw/simple-line-icons.css" rel="stylesheet">
         <!-- Main styles for this application-->
-        <link href="{{ asset('css/fw/style.css')}}" rel="stylesheet">
-        <link href="vendors/pace-progress/css/pace.min.css" rel="stylesheet">
+        <link href="css/fw/style.css" rel="stylesheet">
+        <link href="css/pace.min.css" rel="stylesheet">
         <!-- Global site tag (gtag.js) - Google Analytics-->
         {{-- <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script> --}}
         <script>
