@@ -16,3 +16,4 @@ Route::get('/', function () {
 })->name('home');
 
 Route::view('/admin', 'admin/home')->name('admin home');
+Route::view('/user', 'user/home')->name('user home');
