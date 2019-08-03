@@ -7,25 +7,29 @@
 * Licensed under MIT (https://coreui.io/license)
 -->
 
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{{ config('app.name', 'Laravel') }}</title>
         <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
         <meta name="author" content="Łukasz Holeczek">
         <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-        <title>CoreUI Free Bootstrap Admin Template</title>
         <!-- Icons-->
-        <link rel="icon" type="image/ico" href="./img/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/ico" href="{{ asset('./img/favicon.ico')}}" sizes="any" />
         
-        <link href="css/fw/coreui-icons.min.css" rel="stylesheet">
-        {{-- <link href="css/fw/flag-icon.min.css" rel="stylesheet"> --}}
-        <link href="css/fw/font-awesome.min.css" rel="stylesheet">
-        <link href="css/fw/simple-line-icons.css" rel="stylesheet">
+        <link href="{{ asset('css/fw/coreui-icons.min.css')}}" rel="stylesheet">
+        {{-- <link href="css/fw/flag-icon.min.css')}}" rel="stylesheet"> --}}
+        <link href="{{ asset('css/fw/font-awesome.min.css')}}" rel="stylesheet">
+        <link href="{{ asset('css/fw/simple-line-icons.css')}}" rel="stylesheet">
         <!-- Main styles for this application-->
-        <link href="css/fw/style.css" rel="stylesheet">
-        <link href="css/pace.min.css" rel="stylesheet">
+        <link href="{{ asset('css/fw/style.css')}}" rel="stylesheet">
+        <link href="{{ asset('css/pace.min.css')}}" rel="stylesheet">
+        @yield('css_js_mapa')
         <!-- Global site tag (gtag.js) - Google Analytics-->
         {{-- <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script> --}}
         <script>
@@ -58,16 +62,7 @@
             @yield('body')
         </div>
 
-        <footer class="app-footer">
-            <div>
-                <a href="https://coreui.io">CoreUI</a>
-                <span>&copy; 2018 creativeLabs.</span>
-            </div>
-            <div class="ml-auto">
-                <span>Powered by</span>
-                <a href="https://coreui.io">CoreUI</a>
-            </div>
-        </footer>
+        
     <!-- CoreUI and necessary plugins-->
         <script src="{{ asset('js/fw/jquery.min.js')}}"></script>
         <script src="{{ asset('js/fw/popper.min.js')}}"></script>
@@ -79,5 +74,7 @@
         <script src="{{ asset('js/fw/Chart.min.js')}}"></script>
         <script src="{{ asset('js/fw/custom-tooltips.min.js')}}"></script>
         <script src="{{ asset('js/main.js')}}"></script>
+        @yield('js_mapa')
+
     </body>
 </html>

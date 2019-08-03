@@ -21,5 +21,6 @@
 @section('route')
 @endsection
 
-@section('cards')
+@section('div_principal')
+
 @endsection
