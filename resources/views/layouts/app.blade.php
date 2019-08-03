@@ -49,7 +49,6 @@
     </head>
     {{-- <body class="app header-fixed"> --}}
     <body class="app header-fixed @yield('body class')">
-
         <header class="app-header navbar">
             {{-- logo de la empresa --}}
             <a class="navbar-brand" href="#">

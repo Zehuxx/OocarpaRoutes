@@ -73,8 +73,15 @@
         </ol>
 
         <!-- contenedores centrales -->
+        <div class="container-fluid">
+            <div class="animated fadeIn">
+                <!-- /.card-->
+                @yield('cards') {{-- Seccion para mostrar el contenido --}}
+            </div>
         
             <!-- /.mapa-->
+           
+        </div>
             @yield('div_principal') {{-- Seccion para mostrar el contenido --}}
         </div>
         <!-- contenedores centrales -->
