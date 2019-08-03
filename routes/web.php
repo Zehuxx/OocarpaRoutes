@@ -17,3 +17,12 @@ Route::get('/', function () {
 
 Route::view('/admin', 'admin/home')->name('admin home');
 Route::view('/user', 'user/home')->name('user home');
+
+
+
+Route::get('add','CarController@create');
+Route::post('add','CarController@store');
+Route::get('car','CarController@index');
+Route::get('edit/{id}','CarController@edit');
+Route::post('edit/{id}','CarController@update');
+Route::delete('{id}','CarController@destroy');
