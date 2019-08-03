@@ -19,13 +19,15 @@
         <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
         <meta name="author" content="Łukasz Holeczek">
         <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+
+        <title>OocarpaRoutes</title>
         <!-- Icons-->
-        <link rel="icon" type="image/ico" href="{{ asset('./img/favicon.ico')}}" sizes="any" />
-        
-        <link href="{{ asset('css/fw/coreui-icons.min.css')}}" rel="stylesheet">
-        {{-- <link href="css/fw/flag-icon.min.css')}}" rel="stylesheet"> --}}
-        <link href="{{ asset('css/fw/font-awesome.min.css')}}" rel="stylesheet">
-        <link href="{{ asset('css/fw/simple-line-icons.css')}}" rel="stylesheet">
+        <link rel="icon" type="image/ico" href="./img/imagen.png" sizes="any" />
+
+        <link href="css/fw/coreui-icons.min.css" rel="stylesheet">
+        {{-- <link href="css/fw/flag-icon.min.css" rel="stylesheet"> --}}
+        <link href="css/fw/font-awesome.min.css" rel="stylesheet">
+        <link href="css/fw/simple-line-icons.css" rel="stylesheet">
         <!-- Main styles for this application-->
         <link href="{{ asset('css/fw/style.css')}}" rel="stylesheet">
         <link href="{{ asset('css/pace.min.css')}}" rel="stylesheet">
@@ -47,7 +49,7 @@
     </head>
     {{-- <body class="app header-fixed"> --}}
     <body class="app header-fixed @yield('body class')">
-    
+
         <header class="app-header navbar">
             {{-- logo de la empresa --}}
             <a class="navbar-brand" href="#">
@@ -71,10 +73,9 @@
         <script src="{{ asset('js/fw/perfect-scrollbar.min.js')}}"></script>
         <script src="{{ asset('js/fw/coreui.min.js')}}"></script>
         <!-- Plugins and scripts required by this view-->
-        <script src="{{ asset('js/fw/Chart.min.js')}}"></script>
+        <!--<script src="{{ asset('js/fw/Chart.min.js')}}"></script>-->
         <script src="{{ asset('js/fw/custom-tooltips.min.js')}}"></script>
-        <script src="{{ asset('js/main.js')}}"></script>
+        <!--<script src="{{ asset('js/main.js')}}"></script>-->
         @yield('js_mapa')
-
     </body>
 </html>
