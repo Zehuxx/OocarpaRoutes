@@ -16,7 +16,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::view('/admin', 'admin/home')->name('admin home');
-Route::view('/plans', 'admin/plans')->name('admin plans');
+Route::view('/admin/plans', 'admin/plans')->name('admin plans');
 
 Route::view('/user', 'user/home')->name('user home');
 

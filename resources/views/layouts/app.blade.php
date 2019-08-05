@@ -23,10 +23,10 @@
         <!-- Icons-->
         <link rel="icon" type="image/ico" href="./img/imagen.png" sizes="any" />
 
-        <link href="css/fw/coreui-icons.min.css" rel="stylesheet">
+        <link href="{{ asset('css/fw/coreui-icons.min.css')}}" rel="stylesheet">
         {{-- <link href="css/fw/flag-icon.min.css" rel="stylesheet"> --}}
-        <link href="css/fw/font-awesome.min.css" rel="stylesheet">
-        <link href="css/fw/simple-line-icons.css" rel="stylesheet">
+        <link href="{{ asset('css/fw/font-awesome.min.css')}}" rel="stylesheet">
+        <link href="{{ asset('css/fw/simple-line-icons.css')}}" rel="stylesheet">
         <!-- Main styles for this application-->
         <link href="{{ asset('css/fw/style.css')}}" rel="stylesheet">
         <link href="{{ asset('css/pace.min.css')}}" rel="stylesheet">
@@ -51,8 +51,8 @@
         <header class="app-header navbar">
             {{-- logo de la empresa --}}
             <a class="navbar-brand" href="{{route('home')}}">
-                <img class="navbar-brand-full" src="img/brand/logo.svg" width="89" height="25" alt="CoreUI Logo">
-                <img class="navbar-brand-minimized" src="img/brand/sygnet.svg" width="30" height="30" alt="CoreUI Logo">
+                <img class="navbar-brand-full" src="{{asset('img/brand/logo.svg')}}" width="89" height="25" alt="CoreUI Logo">
+                <img class="navbar-brand-minimized" src="{{asset('img/brand/sygnet.svg')}}" width="30" height="30" alt="CoreUI Logo">
             </a>
 
             @yield('navbar')
