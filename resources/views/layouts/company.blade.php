@@ -3,15 +3,15 @@
 @section('sidebar elements')
     <li class="nav-title">Bienvenido</li>
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{route('company home')}}">
             <i class="nav-icon fa fa-info-circle"></i> Información</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{route('company location')}}">
             <i class="nav-icon fa fa-map-marker"></i> Ubicación</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{route('company plan')}}">
             <i class="nav-icon fa fa-money"></i> Plan</a>
     </li>
     <!--<li class="nav-item">
