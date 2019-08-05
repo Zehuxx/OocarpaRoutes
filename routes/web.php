@@ -19,7 +19,7 @@ Route::view('/admin', 'admin/home')->name('admin home');
 Route::view('/user', 'user/home')->name('user home');
 Route::view('/company', 'company/home')->name('company home');
 Route::view('/plan', 'company/planes')->name('company plan');
-Route::view('/ubication', 'company/ubication')->name('company ubication');
+Route::view('/location', 'company/location')->name('company location');
 
 
 

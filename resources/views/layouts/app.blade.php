@@ -17,7 +17,6 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>{{ config('app.name', 'Laravel') }}</title>
         <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
-        <meta name="author" content="Łukasz Holeczek">
         <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
 
         <title>OocarpaRoutes</title>
@@ -63,7 +62,7 @@
             @yield('body')
         </div>
 
-        
+
     <!-- CoreUI and necessary plugins-->
         <script src="{{ asset('js/fw/jquery.min.js')}}"></script>
         <script src="{{ asset('js/fw/popper.min.js')}}"></script>
@@ -76,5 +75,6 @@
         <script src="{{ asset('js/fw/custom-tooltips.min.js')}}"></script>
         <!--<script src="{{ asset('js/main.js')}}"></script>-->
         @yield('js_mapa')
+        @yield('scripts')
     </body>
 </html>
