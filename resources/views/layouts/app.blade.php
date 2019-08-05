@@ -72,9 +72,9 @@
         <script src="{{ asset('js/fw/perfect-scrollbar.min.js')}}"></script>
         <script src="{{ asset('js/fw/coreui.min.js')}}"></script>
         <!-- Plugins and scripts required by this view-->
-        <!--<script src="{{ asset('js/fw/Chart.min.js')}}"></script>-->
+        <script src="{{ asset('js/fw/Chart.min.js')}}"></script>
         <script src="{{ asset('js/fw/custom-tooltips.min.js')}}"></script>
-        <!--<script src="{{ asset('js/main.js')}}"></script>-->
+        <script src="{{ asset('js/main.js')}}"></script>
         @yield('js_mapa')
     </body>
 </html>

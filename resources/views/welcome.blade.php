@@ -8,7 +8,7 @@
         <a class="nav-link" href="{{ route('admin home') }}">Administrador</a>
         </li>
         <li class="nav-item px-3">
-            <a class="nav-link" href="{{ route('admin home') }}">Compañia</a>
+            <a class="nav-link" href="{{ route('company home') }}">Compañia</a>
         </li>
         <li class="nav-item px-3">
             <a class="nav-link" href="{{ route('user home') }}">Usuarios</a>
