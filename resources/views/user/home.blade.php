@@ -15,5 +15,8 @@
 
 @section('js_mapa')
 <!-- Mapa -->
-    <script src="{{ asset('js/user/mapa.js') }}"></script>
+    <script src="{{ asset('js/leaflet.contextmenu.js') }}"></script>
+    <script> var base_url = "{{asset('img')}}"; </script> <!-- variable para iconos del mapa juan* -->
+    <script src="{{asset('js/leaflet-number-icon.js')}}"></script>
+    <script src="{{asset('js/user/mapa.js') }}"></script>
 @endsection

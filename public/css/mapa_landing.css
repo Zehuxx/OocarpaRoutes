@@ -1,0 +1,7 @@
+#mapid{
+height: calc(100vh - 55px);
+}
+
+.footer-fixed div.app-body{
+margin-bottom: 0px;
+}

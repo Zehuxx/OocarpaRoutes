@@ -5,11 +5,11 @@
     <li class="breadcrumb-item active">
         <a href="#">location</a>
     </li>
-    <li class="ml-auto">
+    <!--<li class="ml-auto">
         <button type="button" class="btn btn-primary ml-auto" data-toggle="modal" data-target="#editar">
             Editar
         </button>
-    </li>
+    </li>-->
 @endsection
 
 @section('div_principal')
@@ -35,6 +35,7 @@
             <a role="menuitem" tabindex="-1" href="#" onClick="desplegar();">Eliminar</a>
         </li>-->
     </ul>
+    </div>
 @endsection
 
 
@@ -51,7 +52,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
-            </div>
+            </div> 
             <div class="modal-body">
                 <span>Nombre</span>
                 <input type="text" name="nombre" id="nombre" class="form-control">
@@ -72,14 +73,18 @@
         </div>
     </div>
     <!--FIN Modal-->
-
+ 
 @section('js_mapa')
     <!-- Mapa -->
+    <script src="{{ asset('js/leaflet.contextmenu.js') }}"></script>
+    <script> var base_url = "{{asset('img')}}"; </script> <!-- variable para iconos del mapa juan* -->
+    <script src="{{asset('js/leaflet-number-icon.js')}}"></script>
     <script src="{{ asset('js/company/mapa.js') }}"></script>
 @endsection
 
 <!---------Seccion que habilita el uso de location.js------->
 @section('scripts')
-    <!-- Mapa -->
-    <script src="{{ asset('js/company/location.js') }}"></script>
+    <!-- Mapa 
+
+    <script src="{{ asset('js/company/location.js') }}"></script>-->
 @endsection

@@ -3,7 +3,7 @@
 @extends('layouts.users')
 
 @section('sidebar elements')
-    <li class="nav-title">Welcome!</li>
+    <li class="nav-title">Bienvenido</li>
     <li class="nav-item">
         <a class="nav-link" href="">
             <i class="nav-icon icon-map"></i> Home</a>
