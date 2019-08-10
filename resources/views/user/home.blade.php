@@ -4,7 +4,7 @@
     <li class="breadcrumb-item">User</li>
     <li class="breadcrumb-item active">
         <a href="#">Home</a>
-    </li>
+    </li> 
 @endsection
 
 @section('div_principal')
