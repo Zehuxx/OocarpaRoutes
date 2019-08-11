@@ -17,21 +17,21 @@ if ($('#mapid').length) {
         attribution: info['attribution'], 
         id: 'mapbox.streets', 
         maxZoom: 18,
-        accessToken: info['attribution'] 
+        accessToken: info['access_token'] 
       }),
       CallesSatelite  = L.tileLayer('https://api.tiles.mapbox.com/v4/mapbox.streets-satellite/{z}/{x}/{y}.png?access_token='+info['access_token'], 
       {
         id: 'mapbox.streets-satellite', 
         attribution:info['attribution'],
         maxZoom: 18,
-        accessToken: info['attribution'] 
+        accessToken: info['access_token'] 
       });
     Lapiz = L.tileLayer('https://api.tiles.mapbox.com/v4/mapbox.pencil/{z}/{x}/{y}.png?access_token='+info['access_token'],
     {
         attribution: info['attribution'],
         id: 'mapbox.pencil',
         maxZoom: 18,
-        accessToken: info['attribution']
+        accessToken: info['access_token']
       });
 
     var mymap = L.map('mapid',{
@@ -125,39 +125,32 @@ if ($('#mapid').length) {
         //alert("haz click sobre el mapa y crea los marcadores de referencia");
         mymap.on('click', onMapClick);
       }
-      
+      // se encarga de la geolocalizacion del usuario
       $('#locate-position').on('click', function(){
-        if (geo==false ) {
-          userlocation();
-          geo=true;
-          $('#locate-position').css('color','blue');
-        }else{
-          geo=false;
-          $('#locate-position').css('color','');
-          marker.remove();
-            circle.remove();
-            mymap.setView([14.089628, -87.199173],13);
-          
-        }
+          userlocation();   
       });
 
       function userlocation(){
         mymap.locate(
           {setView: true, // equivalente a un focus en html (enfoca el punto de ubicacion del usuario)
-           watch: true}) // hace seguimiento en caso de que el usuario se mueva
+            watch: true}) // hace seguimiento en caso de que el usuario se mueva
             .on('locationfound', function(e){
                 marker.setLatLng([e.latitude, e.longitude]).addTo(mymap);
-          circle.setLatLng([e.latitude, e.longitude], e.accuracy/2, {
-              weight: 1,
-              color: 'blue',
-              fillColor: '#cacaca',
-              fillOpacity: 0.2
+                circle.setLatLng([e.latitude, e.longitude], e.accuracy/2, {
+                weight: 1,
+                color: 'blue',
+                fillColor: '#cacaca',
+                fillOpacity: 0.2
             }).addTo(mymap);
-            mymap.stopLocate(); //deja de lacalizar el usuario
+              $('#locate-position').css('color','blue');
+              mymap.stopLocate(); //deja de lacalizar el usuario
             })
-           .on('locationerror', function(e){
-                console.log(e);
-                alert("Acceso a localización denegada.");
+            .on('locationerror', function(e){
+              marker.remove();
+              circle.remove(); 
+              $('#locate-position').css('color','');
+              console.log(e);
+              alert("Acceso a localización denegada.");
             });
       }
   
