@@ -9,11 +9,12 @@ margin-bottom: 0px;
 #locate-position{
       color: black;
       position:absolute;
-      top:140px;
+      top:85px;
       left:10px;
       border:2px solid hsla(0, 3%, 27%, 0.58);
       outline:0;
       z-index: 999;
       background-color: #fff;
       border-radius: 4px;
+      padding: 3px 7px 3px 7px;
     }

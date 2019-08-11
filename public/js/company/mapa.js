@@ -4,7 +4,6 @@ if ($('#mapid').length) {
 
   $(document).ready(function (){
         $("#locate-position").show();
-        $("#editar").show();
   });
   // Derechos de autor, token de acceso a mapas de Mapbox
   info={

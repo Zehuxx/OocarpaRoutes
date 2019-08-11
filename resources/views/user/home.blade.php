@@ -8,8 +8,10 @@
 @endsection
 
 @section('div_principal')
-<div id="mapid"></div>
-<button id="locate-position" class="colordefault" style="display: none"><i class="eye fas fa-globe-americas fa-lg"></i></button>
+<div id="mapid">
+	<button id="locate-position" class="colordefault" style="display: none"><i class="eye fas fa-globe-americas fa-lg"></i></button>
+</div>
+
 @endsection
 
 
