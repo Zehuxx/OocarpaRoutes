@@ -12,6 +12,20 @@
   
   <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+  <link rel="stylesheet" href="{{asset('fontawesome-free-5.7.1-web/css/all.css')}}" >
+  <link href="{{asset('fontawesome-free-5.7.1-web/js/all.js')}}" >
+  <style type="text/css">
+    #locate-position{
+  position:absolute;
+  top:140px;
+  left:10px;
+  border:2px solid hsla(0, 3%, 27%, 0.58);
+  outline:0;
+  z-index: 1000;
+  background-color: #fff;
+  border-radius: 4px;
+}
+  </style>
 @endsection
 
 @section('navbar')
@@ -31,6 +45,8 @@
 @section('body')
     <div class="main">
         <div id="mapid"></div>
+
+        <button id="locate-position" style="display: none"><i class="eye fas fa-globe-americas fa-lg"></i></button>
     </div>
 @endsection
 @section('js_mapa')
@@ -39,4 +55,5 @@
     <script> var base_url = "{{asset('img')}}"; </script> <!-- variable para iconos del mapa juan* -->
     <script src="{{asset('js/leaflet-number-icon.js')}}"></script>
     <script src="{{asset('js/landing/mapa.js') }}"></script>
+
 @endsection

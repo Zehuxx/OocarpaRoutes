@@ -1,14 +1,50 @@
 if ($('#mapid').length) {
+  //variables a usar no borrar --juan--
+  var geo=false;
+
+  $(document).ready(function (){
+        $("#locate-position").show();
+  });
+  // Derechos de autor, token de acceso a mapas de Mapbox
+  info={
+    'access_token':'pk.eyJ1IjoiemVodXh4IiwiYSI6ImNqd3UxZXhjZzAxeXY0YW1odnI2MW1weHQifQ.ujnaRa5lFM-Bh0laXJu3sQ',
+    'attribution':'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
+  };
+
+  // Mapas disponibles
+    var Calles = L.tileLayer('https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token='+info['access_token'], 
+      {
+        attribution: info['attribution'], 
+        id: 'mapbox.streets', 
+        maxZoom: 18,
+        accessToken: info['attribution'] 
+      }),
+      CallesSatelite  = L.tileLayer('https://api.tiles.mapbox.com/v4/mapbox.streets-satellite/{z}/{x}/{y}.png?access_token='+info['access_token'], 
+      {
+        id: 'mapbox.streets-satellite', 
+        attribution:info['attribution'],
+        maxZoom: 18,
+        accessToken: info['attribution'] 
+      });
+    Lapiz = L.tileLayer('https://api.tiles.mapbox.com/v4/mapbox.pencil/{z}/{x}/{y}.png?access_token='+info['access_token'],
+    {
+        attribution: info['attribution'],
+        id: 'mapbox.pencil',
+        maxZoom: 18,
+        accessToken: info['attribution']
+      });
+
     var mymap = L.map('mapid',{
           center: [14.10555, -87.204483],
           zoom: 15,
+          layers: [Lapiz,CallesSatelite,Calles],
           contextmenu: true,
           contextmenuWidth: 140,
           contextmenuItems: [{
               text: 'Crear ruta',
               callback: addRoute
           },{
-              text: 'Show coordinates',
+              text: 'Show coordinates', 
               callback: showCoordinates
           }, {
               text: 'Center map here',
@@ -23,8 +59,14 @@ if ($('#mapid').length) {
               callback: zoomOut
       }]
     });
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', { foo: 'bar', attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>' }).addTo(mymap);
-
+    // Mapeo clave valor de mapas y su nombre id
+  var baseMaps = {
+    'Lapiz':Lapiz,
+    'CallesSatelite':CallesSatelite,
+    'Calles': Calles
+  };
+  // Opciones de capas en el mapa
+  L.control.layers(baseMaps).addTo(mymap);
     var temp = [];
     // Marca utilizada al iniciar una nueva ruta
     var marker1;
@@ -84,4 +126,39 @@ if ($('#mapid').length) {
         mymap.on('click', onMapClick);
       }
       
+      $('#locate-position').on('click', function(){
+        if (geo==false ) {
+          userlocation();
+          geo=true;
+          $('#locate-position').css('color','blue');
+        }else{
+          geo=false;
+          $('#locate-position').css('color','');
+          marker.remove();
+            circle.remove();
+            mymap.setView([14.089628, -87.199173],13);
+          
+        }
+      });
+
+      function userlocation(){
+        mymap.locate(
+          {setView: true, // equivalente a un focus en html (enfoca el punto de ubicacion del usuario)
+           watch: true}) // hace seguimiento en caso de que el usuario se mueva
+            .on('locationfound', function(e){
+                marker.setLatLng([e.latitude, e.longitude]).addTo(mymap);
+          circle.setLatLng([e.latitude, e.longitude], e.accuracy/2, {
+              weight: 1,
+              color: 'blue',
+              fillColor: '#cacaca',
+              fillOpacity: 0.2
+            }).addTo(mymap);
+            mymap.stopLocate(); //deja de lacalizar el usuario
+            })
+           .on('locationerror', function(e){
+                console.log(e);
+                alert("Acceso a localización denegada.");
+            });
+      }
+  
 
