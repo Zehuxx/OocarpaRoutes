@@ -127,11 +127,12 @@ if ($('#mapid').length) {
       }
       // se encarga de la geolocalizacion del usuario
       $('#locate-position').on('click', function(){
-          userlocation();   
+          userlocation();
+
       });
 
       function userlocation(){
-        if ($('#locate-position').css('color')!='blue') {
+        if ($('#locate-position').hasClass('colordefault')) {
           mymap.locate(
           {setView: true, // equivalente a un focus en html (enfoca el punto de ubicacion del usuario)
             watch: true}) // hace seguimiento en caso de que el usuario se mueva
@@ -143,10 +144,12 @@ if ($('#mapid').length) {
                 fillColor: '#cacaca',
                 fillOpacity: 0.2
             }).addTo(mymap);
+              $('#locate-position').removeClass('colordefault')
               $('#locate-position').css('color','blue');
               mymap.stopLocate(); //deja de localizar el usuario
             })
             .on('locationerror', function(e){
+              $('#locate-position').addClass('colordefault')
               marker.remove();
               circle.remove(); 
               $('#locate-position').css('color','');
@@ -154,6 +157,7 @@ if ($('#mapid').length) {
               alert("Acceso a localización denegada.");
             });
         }else{
+              $('#locate-position').addClass('colordefault')
               marker.remove();
               circle.remove(); 
               $('#locate-position').css('color','');

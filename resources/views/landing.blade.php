@@ -16,15 +16,16 @@
   <link href="{{asset('fontawesome-free-5.7.1-web/js/all.js')}}" >
   <style type="text/css">
     #locate-position{
-  position:absolute;
-  top:140px;
-  left:10px;
-  border:2px solid hsla(0, 3%, 27%, 0.58);
-  outline:0;
-  z-index: 1000;
-  background-color: #fff;
-  border-radius: 4px;
-}
+      color: black;
+      position:absolute;
+      top:140px;
+      left:10px;
+      border:2px solid hsla(0, 3%, 27%, 0.58);
+      outline:0;
+      z-index: 1000;
+      background-color: #fff;
+      border-radius: 4px;
+    }
   </style>
 @endsection
 
@@ -46,7 +47,7 @@
     <div class="main">
         <div id="mapid"></div>
 
-        <button id="locate-position" style="display: none"><i class="eye fas fa-globe-americas fa-lg"></i></button>
+        <button id="locate-position" class="colordefault" style="display: none"><i class="eye fas fa-globe-americas fa-lg"></i></button>
     </div>
 @endsection
 @section('js_mapa')
