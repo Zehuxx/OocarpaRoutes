@@ -153,7 +153,6 @@ if ($('#mapid').length) {
               marker.remove();
               circle.remove(); 
               $('#locate-position').css('color','');
-              console.log(e);
               alert("Acceso a localización denegada.");
             });
         }else{

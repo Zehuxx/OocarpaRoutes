@@ -14,19 +14,6 @@
   <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
   <link rel="stylesheet" href="{{asset('fontawesome-free-5.7.1-web/css/all.css')}}" >
   <link href="{{asset('fontawesome-free-5.7.1-web/js/all.js')}}" >
-  <style type="text/css">
-    #locate-position{
-      color: black;
-      position:absolute;
-      top:140px;
-      left:10px;
-      border:2px solid hsla(0, 3%, 27%, 0.58);
-      outline:0;
-      z-index: 1000;
-      background-color: #fff;
-      border-radius: 4px;
-    }
-  </style>
 @endsection
 
 @section('navbar')

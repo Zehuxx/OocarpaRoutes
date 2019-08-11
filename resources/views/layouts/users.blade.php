@@ -1,17 +1,5 @@
 @extends('layouts.app')
-@section('css_js_mapa')
 
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css"/>
-  <link rel="stylesheet" type="text/css" href="{{asset('css/mapa.css')}}">
-  <!-- Leaflet Routing -->
-  <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
-  <link rel="stylesheet" href="{{asset('css/leaflet.contextmenu.css')}}"/>
-  <link rel="stylesheet" href="{{asset('css/leaflet-number-icon.css')}}" />
-  
-  <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
-  <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
-
-@endsection
 @section('body class', 'sidebar-fixed  sidebar-lg-show breadcrumb-fixed')
 
 @section('navbar')
