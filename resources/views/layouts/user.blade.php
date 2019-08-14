@@ -6,7 +6,7 @@
     <li class="nav-title">Bienvenido</li>
     <li class="nav-item">
         <a class="nav-link" href="">
-            <i class="nav-icon icon-map"></i> Home</a>
+            <i class="nav-icon icon-home"></i> Home</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="index.html">
