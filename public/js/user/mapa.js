@@ -1,16 +1,21 @@
 if ($('#mapid').length) {
   //variables a usar no borrar --juan--
-  var geo=false;
+  var route= null;
 
   $(document).ready(function (){
         $("#locate-position").show();
+        //$("#route-save").show();
+
+        $("#route-save").on("click",function(){
+          $("#guardar").modal("show");
+        });
   });
   // Derechos de autor, token de acceso a mapas de Mapbox
   info={
     'access_token':'pk.eyJ1IjoiemVodXh4IiwiYSI6ImNqd3UxZXhjZzAxeXY0YW1odnI2MW1weHQifQ.ujnaRa5lFM-Bh0laXJu3sQ',
     'attribution':'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
   };
-
+ 
   // Mapas disponibles
     var Calles = L.tileLayer('https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token='+info['access_token'], 
       {
@@ -44,11 +49,15 @@ if ($('#mapid').length) {
               text: 'Crear ruta',
               callback: addRoute
           },{
+              text: 'Dibujar ruta',
+              callback: DibujarRuta
+          },
+          {
               text: 'Show coordinates', 
               callback: showCoordinates
           }, {
-              text: 'Center map here',
-              callback: centerMap
+              text: 'Get waypoints',
+              callback: getpoints
           }, '-', {
               text: 'Zoom in',
               icon: base_url + '/map_imgs/zoom-in.png',
@@ -99,6 +108,7 @@ if ($('#mapid').length) {
                     }
                     //show:false
                 }).addTo(mymap);
+                $("#route-save").show();
             }
         }
     }
@@ -164,6 +174,47 @@ if ($('#mapid').length) {
         }
         
       }
-  
+  function getpoints(){
+    if (route!=null) {
+      var routeArray = new Array();
+      var points=[];
+        routeArray = route.getWaypoints();
+        for (var i = 0; i < routeArray.length; i++) {
+          item=[routeArray[i].latLng.lat,routeArray[i].latLng.lng];
+          points.push(item);
+        }
+        return points;
+    }
+    return null;
+  }
 
+ 
 
+    function DibujarRuta() {
+      var icon = new L.NumberedDivIcon({ number: 1, color: 'red' });
+      points=getpoints();
+      if (points) {
+        mymap.removeControl(route);
+        route = L.Routing.control({
+          waypoints: points,
+          createMarker: function(i, wp, nWps) {
+              if (i === 0) {
+                  //alert(wp.latLng);
+                  var icon = new L.NumberedDivIcon({ number: "A", color: 'red' });
+                  return L.marker(wp.latLng, { icon: icon, draggable: false });
+              }
+              if (i === nWps - 1) {
+                  var icon = new L.NumberedDivIcon({ number: "B", color: 'red' });
+                  return L.marker(wp.latLng, { icon: icon, draggable: false });
+              }
+          },
+          fitSelectedRoutes: 'smart',
+          addWaypoints:false,
+          lineOptions: {
+              styles: [{ color: 'red', weight: 6 }]
+          }
+          //show:false
+      }).addTo(mymap);
+      }
+      
+    }
