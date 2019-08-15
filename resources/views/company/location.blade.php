@@ -23,9 +23,9 @@
 {{--@section('menu-contextual')
 
 @endsection--}}
-
+@section('modal')
  <!-- Modal -->
- <div class="modal fade" style="display: none" id="editar" tabindex="-1" role="dialog" aria-labelledby="ModalEditar" aria-hidden="true">
+ <div class="modal fade"  id="editar" tabindex="-1" role="dialog" aria-labelledby="ModalEditar" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
             <div class="modal-header">
@@ -54,7 +54,8 @@
         </div>
     </div>
     <!--FIN Modal-->
- 
+@endsection
+
 @section('js_mapa')
     <!-- Mapa -->
     <script src="{{ asset('js/leaflet.contextmenu.js') }}"></script>

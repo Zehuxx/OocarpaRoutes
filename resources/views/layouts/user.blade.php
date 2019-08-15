@@ -21,15 +21,20 @@
 @section('sidebar elements')
     <li class="nav-title">Bienvenido</li>
     <li class="nav-item">
+<<<<<<< HEAD
         <a class="nav-link" href="">
             <i class="nav-icon icon-home"></i> Home</a>
+=======
+        <a class="nav-link" href="{{route('user home')}}">
+            <i class="nav-icon icon-map"></i> Home</a>
+>>>>>>> 02b40e05588c30a7e081e42c367e555f0a22600f
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{route('user routes')}}">
             <i class="nav-icon icon-map"></i> Rutas</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="typography.html">
+        <a class="nav-link" href="{{route('user options')}}">
             <i class="nav-icon icon-menu"></i> Opciones</a>
     </li>
 @endsection

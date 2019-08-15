@@ -62,7 +62,7 @@
             @yield('body')
         </div>
 
-
+        @yield('modal')
     <!-- CoreUI and necessary plugins-->
         <script src="{{ asset('js/fw/jquery.min.js')}}"></script>
         <script src="{{ asset('js/fw/popper.min.js')}}"></script>

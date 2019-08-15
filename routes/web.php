@@ -19,6 +19,8 @@ Route::view('/admin', 'admin/home')->name('admin home');
 Route::view('/admin/plans', 'admin/plans')->name('admin plans');
 
 Route::view('/user', 'user/home')->name('user home');
+Route::view('/user/rutas', 'user/routes')->name('user routes');
+Route::view('/user/opciones', 'user/options')->name('user options');
 
 Route::view('/company', 'company/home')->name('company home');
 Route::view('/plan', 'company/planes')->name('company plan');
