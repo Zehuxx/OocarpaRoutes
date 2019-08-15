@@ -4,11 +4,13 @@
     <li class="breadcrumb-item">User</li>
     <li class="breadcrumb-item active">
         <a href="#">Home</a>
-    </li>
+    </li> 
 @endsection
 
 @section('div_principal')
 <div id="mapid">
+	<button id="locate-position" class="colordefault" style="display: none"><i class="eye fas fa-globe-americas fa-lg"></i></button>
+</div>
 
 @endsection
 

@@ -14,28 +14,9 @@
 
 @section('div_principal')
     <div id="mapid">
-
-    <ul id="menuCapa" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-        <li role="presentation">
-            <a role="menuitem" tabindex="-1" href="#" onClick="desplegar();">Mostrar Modal</a>
-        </li>
-        <li role="presentation" class="divider"></li>
-        <li role="presentation">
-            <a role="menuitem" tabindex="-1" href="#" onClick="ocultar();">Ocultar Menu</a>
-        </li>
-        <!--<li role="presentation">
-            <a role="menuitem" tabindex="-1" href="#" onClick="desplegar();">Al fondo</a>
-        </li>
-        <li role="presentation" class="divider"></li>
-        <li role="presentation">
-            <a role="menuitem" tabindex="-1" href="#" onClick="desplegar();">Restaurar</a>
-        </li>
-        <li role="presentation" class="divider"></li>
-        <li role="presentation">
-            <a role="menuitem" tabindex="-1" href="#" onClick="desplegar();">Eliminar</a>
-        </li>-->
-    </ul>
+        <button id="locate-position" class="colordefault" style="display: none"><i class="eye fas fa-globe-americas fa-lg"></i></button>
     </div>
+    
 @endsection
 
 
@@ -44,7 +25,7 @@
 @endsection--}}
 
  <!-- Modal -->
- <div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="ModalEditar" aria-hidden="true">
+ <div class="modal fade" style="display: none" id="editar" tabindex="-1" role="dialog" aria-labelledby="ModalEditar" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
             <div class="modal-header">

@@ -1,14 +1,50 @@
 if ($('#mapid').length) {
+  //variables a usar no borrar --juan--
+  var geo=false;
+
+  $(document).ready(function (){
+        $("#locate-position").show();
+  });
+  // Derechos de autor, token de acceso a mapas de Mapbox
+  info={
+    'access_token':'pk.eyJ1IjoiemVodXh4IiwiYSI6ImNqd3UxZXhjZzAxeXY0YW1odnI2MW1weHQifQ.ujnaRa5lFM-Bh0laXJu3sQ',
+    'attribution':'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
+  };
+
+  // Mapas disponibles
+    var Calles = L.tileLayer('https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token='+info['access_token'], 
+      {
+        attribution: info['attribution'], 
+        id: 'mapbox.streets', 
+        maxZoom: 18,
+        accessToken: info['access_token'] 
+      }),
+      CallesSatelite  = L.tileLayer('https://api.tiles.mapbox.com/v4/mapbox.streets-satellite/{z}/{x}/{y}.png?access_token='+info['access_token'], 
+      {
+        id: 'mapbox.streets-satellite', 
+        attribution:info['attribution'],
+        maxZoom: 18,
+        accessToken: info['access_token'] 
+      });
+    Lapiz = L.tileLayer('https://api.tiles.mapbox.com/v4/mapbox.pencil/{z}/{x}/{y}.png?access_token='+info['access_token'],
+    {
+        attribution: info['attribution'],
+        id: 'mapbox.pencil',
+        maxZoom: 18,
+        accessToken: info['access_token']
+      });
+
     var mymap = L.map('mapid',{
           center: [14.10555, -87.204483],
           zoom: 15,
+          layers: [Lapiz,CallesSatelite,Calles],
           contextmenu: true,
           contextmenuWidth: 140,
           contextmenuItems: [{
               text: 'Crear ruta',
               callback: addRoute
           },{
-              text: 'Show coordinates',
+              text: 'Show coordinates', 
               callback: showCoordinates
           }, {
               text: 'Center map here',
@@ -23,8 +59,14 @@ if ($('#mapid').length) {
               callback: zoomOut
       }]
     });
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', { foo: 'bar', attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>' }).addTo(mymap);
-
+    // Mapeo clave valor de mapas y su nombre id
+  var baseMaps = {
+    'Lapiz':Lapiz,
+    'CallesSatelite':CallesSatelite,
+    'Calles': Calles
+  };
+  // Opciones de capas en el mapa
+  L.control.layers(baseMaps).addTo(mymap);
     var temp = [];
     // Marca utilizada al iniciar una nueva ruta
     var marker1;
@@ -83,5 +125,44 @@ if ($('#mapid').length) {
         //alert("haz click sobre el mapa y crea los marcadores de referencia");
         mymap.on('click', onMapClick);
       }
-      
+      // se encarga de la geolocalizacion del usuario
+      $('#locate-position').on('click', function(){
+          userlocation();
+
+      });
+
+      function userlocation(){
+        if ($('#locate-position').hasClass('colordefault')) {
+          mymap.locate(
+          {setView: true, // equivalente a un focus en html (enfoca el punto de ubicacion del usuario)
+            watch: true}) // hace seguimiento en caso de que el usuario se mueva
+            .on('locationfound', function(e){
+                marker.setLatLng([e.latitude, e.longitude]).addTo(mymap);
+                circle.setLatLng([e.latitude, e.longitude], e.accuracy/2, {
+                weight: 1,
+                color: 'blue',
+                fillColor: '#cacaca',
+                fillOpacity: 0.2
+            }).addTo(mymap);
+              $('#locate-position').removeClass('colordefault')
+              $('#locate-position').css('color','blue');
+              mymap.stopLocate(); //deja de localizar el usuario
+            })
+            .on('locationerror', function(e){
+              $('#locate-position').addClass('colordefault')
+              marker.remove();
+              circle.remove(); 
+              $('#locate-position').css('color','');
+              alert("Acceso a localización denegada.");
+            });
+        }else{
+              $('#locate-position').addClass('colordefault')
+              marker.remove();
+              circle.remove(); 
+              $('#locate-position').css('color','');
+              mymap.setView([14.089628, -87.199173],13);
+        }
+        
+      }
+  
 
