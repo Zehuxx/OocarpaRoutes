@@ -18,15 +18,15 @@
     <li class="nav-title">Bienvenido</li>
     <li class="nav-item">
         <a class="nav-link" href="{{route('company home')}}">
-            <i class="nav-icon fa fa-info-circle"></i> Información</a>
+            <i class="nav-icon icon-info"></i> Información</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{route('company location')}}">
-            <i class="nav-icon fa fa-map-marker"></i> Ubicación</a>
+            <i class="nav-icon icon-location-pin"></i> Ubicación</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{route('company plan')}}">
-            <i class="nav-icon fa fa-money"></i> Plan</a>
+            <i class="nav-icon icon-wallet"></i> Plan</a>
     </li>
     <!--<li class="nav-item">
         <a class="nav-link" href="#">
