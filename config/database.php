@@ -93,12 +93,8 @@ return [
 
         'mongodb' => [
             'driver'   => 'mongodb',
-            'host'     => env('MONGO_DB_HOST', 'localhost'),
-            'port'     => env('MONGO_DB_PORT', 27017),
-            'database' => env('MONGO_DB_DATABASE'),
-            'username' => env('MONGO_DB_USERNAME'),
-            'password' => env('MONGO_DB_PASSWORD'),
-            'options'  => []
+            'dsn' => 'mongodb://oocarpa_user:oocarpa1234@oocarpadb-3gli8.mongodb.net/oocarpadb?ssl=true&replicaSet=replicaSet&authSource=admin',
+            'database' => 'oocarpadb',
         ],
 
     ],
