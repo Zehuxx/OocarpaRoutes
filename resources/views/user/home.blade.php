@@ -4,10 +4,13 @@
     <li class="breadcrumb-item">User</li>
     <li class="breadcrumb-item active">
         <a href="#">Home</a>
-    </li> 
+    </li>
 @endsection
 
 @section('div_principal')
+<div>
+<h1>hola mundo desde h1</h1>
+</div>
 <div id="mapid">
 	<button id="locate-position" class="colordefault" style="display: none"><i class="eye fas fa-globe-americas fa-lg"></i></button>
 	<button id="route-save" class="colordefault" style="display: none"><i class="eye fas fa-save fa-lg"></i></button>
@@ -25,12 +28,12 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
-            </div> 
+            </div>
             <div class="modal-body">
                 	<span>Nombre</span>
                 	<input type="text" name="nombre" id="nombre" class="form-control">
                 <div class="modal-body row">
-                    <span>Descripción</span> 
+                    <span>Descripción</span>
                     <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción..." aria-label="With textarea"></textarea>
                 </div>
             </div>

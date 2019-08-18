@@ -23,8 +23,10 @@ Route::view('/user/rutas', 'user/routes')->name('user routes');
 Route::view('/user/opciones', 'user/options')->name('user options');
 
 Route::view('/company', 'company/home')->name('company home');
-Route::view('/plan', 'company/planes')->name('company plan');
-Route::view('/location', 'company/location')->name('company location');
+Route::view('/company/plan', 'company/planes')->name('company plan');
+Route::view('/company/location', 'company/location')->name('company location');
+Route::view('/company/banner', 'company/banner')->name('company banner');
+Route::view('/company/banner/add', 'company/banner_create')->name('company banner add');
 
 
 

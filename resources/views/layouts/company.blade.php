@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
   <link rel="stylesheet" href="{{asset('css/leaflet.contextmenu.css')}}"/>
   <link rel="stylesheet" href="{{asset('css/leaflet-number-icon.css')}}" />
-  
+
   <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
   <link rel="stylesheet" href="{{asset('fontawesome-free-5.7.1-web/css/all.css')}}" >
@@ -24,9 +24,13 @@
         <a class="nav-link" href="{{route('company location')}}">
             <i class="nav-icon icon-location-pin"></i> Ubicación</a>
     </li>
-    <li class="nav-item">
+    {{--<li class="nav-item">
         <a class="nav-link" href="{{route('company plan')}}">
             <i class="nav-icon icon-wallet"></i> Plan</a>
+    </li>--}}
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('company banner')}}">
+            <i class="nav-icon icon-wallet"></i> Banner</a>
     </li>
     <!--<li class="nav-item">
         <a class="nav-link" href="#">

@@ -9,7 +9,7 @@
   <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
   <link rel="stylesheet" href="{{asset('css/leaflet.contextmenu.css')}}"/>
   <link rel="stylesheet" href="{{asset('css/leaflet-number-icon.css')}}" />
-  
+
   <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
   <link rel="stylesheet" href="{{asset('fontawesome-free-5.7.1-web/css/all.css')}}" >
@@ -32,6 +32,8 @@
 
 @section('body')
     <div class="main">
+        <div style="background-image: url('{{ asset('img/banners/b2.jpg') }}'); height: 60px">
+        </div>
         <div id="mapid">
           <button id="locate-position" class="colordefault" style="display: none"><i class="eye fas fa-globe-americas fa-lg"></i></button>
         </div>
