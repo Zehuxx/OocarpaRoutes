@@ -19,7 +19,9 @@ Route::view('/admin', 'admin/home')->name('admin home');
 Route::view('/admin/plans', 'admin/plans')->name('admin plans');
 
 Route::view('/user', 'user/home')->name('user home');
-Route::view('/user/rutas', 'user/routes')->name('user routes');
+Route::get('/user/rutas', 'RouteController@index')->name('user routes');
+Route::post('/user/guardar/ruta','RouteController@store')->name('user store routes');
+Route::delete('/user/borrar/ruta/{id}','RouteController@destroy')->name('user destroy route');;
 Route::view('/user/opciones', 'user/options')->name('user options');
 
 Route::view('/company', 'company/home')->name('company home');

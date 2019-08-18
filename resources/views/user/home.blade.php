@@ -30,17 +30,21 @@
                 </button>
             </div>
             <div class="modal-body">
+        <form class="well form-horizontal" id="nueva_ruta" method="post" action="{{route('user store routes')}}">
+        @csrf
                 	<span>Nombre</span>
                 	<input type="text" name="nombre" id="nombre" class="form-control">
                 <div class="modal-body row">
                     <span>Descripción</span>
                     <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción..." aria-label="With textarea"></textarea>
                 </div>
+                <input type="hidden" name="waypoints" id="waypoints">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Guardar</button>
+                <button type="button" onclick="enviar_form()" class="btn btn-primary">Guardar</button>
             </div>
+        </form>
             </div>
         </div>
     </div>
@@ -53,4 +57,14 @@
     <script> var base_url = "{{asset('img')}}"; </script> <!-- variable para iconos del mapa juan* -->
     <script src="{{asset('js/leaflet-number-icon.js')}}"></script>
     <script src="{{asset('js/user/mapa.js') }}"></script>
+    <script type="text/javascript">
+
+        function enviar_form() {
+                
+                // UPDATE THE HIDDEN FIELD
+                document.getElementById("waypoints").value = getpoints();
+                // SUBMIT THE FORM
+                $("#nueva_ruta").submit();
+            }
+    </script>
 @endsection

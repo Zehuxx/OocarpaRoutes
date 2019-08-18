@@ -39,22 +39,21 @@
                         <th>Editar</th>
                         <th>Borrar</th>
                     </tr>
+                    @foreach($routes as $route)
                     <tr>
-                        <td>Carrizal-Kennedy</td>
-                        <td>Descripcion...sdksdkskdkds
-                            sdmsmdmsdk
-                            skdkskdkd.
-                        </td>
+                        <td>{{$route->name}}</td>
+                        <td>{{$route->description}}</td>
                         <td><a class="btn-see btn btn-primary" href="#"></a></td>
                         <td><a class="btn-edit btn btn-success" href="#"></a></td>
                         <td>
-                            <form method="post" action="#">
+                            <form method="post" action="{{ route('user destroy route',$route->id) }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit"  class="btn-delete btn btn-danger"></ button>
+                                <button type="submit"   class="btn-delete btn btn-danger"></ button>
                             </form>
                         </td>
                     </tr>
+                    @endforeach
                     </tr>
                   </tbody>
                 </table>
@@ -67,4 +66,5 @@
 
 @section('css_js_mapa')
 <link href="{{ asset('css/table.css') }}" rel="stylesheet">
+
 @endsection

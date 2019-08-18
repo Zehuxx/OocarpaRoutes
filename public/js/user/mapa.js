@@ -9,7 +9,7 @@ if ($('#mapid').length) {
         $("#route-save").on("click",function(){
           $("#guardar").modal("show");
         });
-  });
+  }); 
   // Derechos de autor, token de acceso a mapas de Mapbox
   info={
     'access_token':'pk.eyJ1IjoiemVodXh4IiwiYSI6ImNqd3UxZXhjZzAxeXY0YW1odnI2MW1weHQifQ.ujnaRa5lFM-Bh0laXJu3sQ',
@@ -120,7 +120,7 @@ if ($('#mapid').length) {
       }
 
       function centerMap (e) {
-          mymap.panTo(e.latlng);
+          getpoints();
       }
 
       function zoomIn (e) {
@@ -181,18 +181,20 @@ if ($('#mapid').length) {
         routeArray = route.getWaypoints();
         for (var i = 0; i < routeArray.length; i++) {
           item=[routeArray[i].latLng.lat,routeArray[i].latLng.lng];
+
           points.push(item);
         }
-        return points;
+        return JSON.stringify(points);
     }
     return null;
-  }
+  } 
 
  
 
     function DibujarRuta() {
       var icon = new L.NumberedDivIcon({ number: 1, color: 'red' });
       points=getpoints();
+      points=JSON.parse(points);
       if (points) {
         mymap.removeControl(route);
         route = L.Routing.control({
