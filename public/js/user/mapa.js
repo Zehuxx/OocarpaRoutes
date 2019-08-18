@@ -194,6 +194,7 @@ if ($('#mapid').length) {
     function DibujarRuta() {
       var icon = new L.NumberedDivIcon({ number: 1, color: 'red' });
       points=getpoints();
+      points=JSON.parse(points);
       if (points) {
         mymap.removeControl(route);
         route = L.Routing.control({
