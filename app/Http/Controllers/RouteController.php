@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 
 class RouteController extends Controller
-{
+{ 
 
     public function index()
     {
@@ -20,6 +20,12 @@ class RouteController extends Controller
     public function create()
     {
         return view('carcreate');
+    }
+
+    public function show($id)
+    {
+        $route = Route::find($id);
+        return view('user.home',compact('route'));
     }
 
     public function store(Request $request)
