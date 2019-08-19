@@ -17,9 +17,14 @@ class Route extends Eloquent
     protected $fillable = [
         'user_id', 'name','description','coordinates'
     ];
-
+ 
     public function User()
     {
         return $this->belongsTo(\App\Models\User::class,'user_id','_id');
+    }
+
+    public function RouteType()
+    {
+        return $this->belongsTo(\App\Models\RouteType::class,'Route_Type_id','_id');
     }
 }

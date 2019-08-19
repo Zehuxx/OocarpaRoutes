@@ -8,7 +8,7 @@ use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 
 class User extends Eloquent
 {
-	use SoftDeletes;
+	use SoftDeletes; 
 
     protected $connection = 'mongodb';
     protected $collection = 'users';
@@ -26,5 +26,10 @@ class User extends Eloquent
 	public function Route()
     {
         return $this->hasMany(\App\Models\Route::class,'user_id','_id');
+    }
+
+    public function Company()
+    {
+        return $this->hasOne(\App\Models\Company::class,'company_id','_id');
     }
 }
