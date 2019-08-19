@@ -15,6 +15,10 @@
 	<button id="locate-position" class="colordefault" style="display: none"><i class="eye fas fa-globe-americas fa-lg"></i></button>
 	<button id="route-save" class="colordefault" style="display: none"><i class="eye fas fa-save fa-lg"></i></button>
 </div>
+@if(isset($route))
+    <input type="text" style="display: none" value="{{json_encode($route->coordinates)}}" id="ruta">      
+@endif
+
 
 @endsection
 
@@ -66,5 +70,14 @@
                 // SUBMIT THE FORM
                 $("#nueva_ruta").submit();
             }
+            
+        @if(isset($route))
+        var ruta = $("#ruta").val();
+        DibujarRuta(jQuery.parseJSON(ruta));
+        @endif
+
+
     </script>
+    
+
 @endsection

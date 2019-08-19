@@ -1,6 +1,7 @@
 if ($('#mapid').length) {
   //variables a usar no borrar --juan--
   var route= null;
+  var route_draw=null;
 
   $(document).ready(function (){
         $("#locate-position").show();
@@ -8,7 +9,7 @@ if ($('#mapid').length) {
 
         $("#route-save").on("click",function(){
           $("#guardar").modal("show");
-        });
+        }); 
   }); 
   // Derechos de autor, token de acceso a mapas de Mapbox
   info={
@@ -48,9 +49,6 @@ if ($('#mapid').length) {
           contextmenuItems: [{
               text: 'Crear ruta',
               callback: addRoute
-          },{
-              text: 'Dibujar ruta',
-              callback: DibujarRuta
           },
           {
               text: 'Show coordinates', 
@@ -91,6 +89,9 @@ if ($('#mapid').length) {
                 marker1 = L.marker([e.latlng.lat, e.latlng.lng], { icon: icon, draggable: true }).addTo(mymap);
             } else {
                 marker1.remove();
+                if (route_draw!=null) {
+                  mymap.removeControl(route_draw);
+                }
                 route = L.Routing.control({
                     waypoints: temp,
                     createMarker: function(i, wp, nWps) {
@@ -191,13 +192,11 @@ if ($('#mapid').length) {
 
  
 
-    function DibujarRuta() {
+    function DibujarRuta(points) {
       var icon = new L.NumberedDivIcon({ number: 1, color: 'red' });
-      points=getpoints();
-      points=JSON.parse(points);
+      //points=JSON.parse(points);
       if (points) {
-        mymap.removeControl(route);
-        route = L.Routing.control({
+        route_draw = L.Routing.control({
           waypoints: points,
           createMarker: function(i, wp, nWps) {
               if (i === 0) {
