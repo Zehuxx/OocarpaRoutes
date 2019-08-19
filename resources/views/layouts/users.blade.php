@@ -59,6 +59,9 @@
             @yield('route')
         </ol>
 
+        <div>
+            @yield('div_principal') {{-- Seccion para mostrar el contenido --}}
+        </div>
         <!-- contenedores centrales -->
         <div class="container-fluid">
             <div class="animated fadeIn">
@@ -67,9 +70,6 @@
             </div>
 
             <!-- /.mapa-->
-
-        </div>
-            @yield('div_principal') {{-- Seccion para mostrar el contenido --}}
         </div>
         <!-- contenedores centrales -->
     </main>

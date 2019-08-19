@@ -7,16 +7,16 @@
     </li>
 @endsection
 
+
 @section('div_principal')
-<div>
-<h1>hola mundo desde h1</h1>
+<div style="background-image: url('{{ asset('img/banners/b2.jpg') }}'); height: 80px">
 </div>
 <div id="mapid">
 	<button id="locate-position" class="colordefault" style="display: none"><i class="eye fas fa-globe-americas fa-lg"></i></button>
 	<button id="route-save" class="colordefault" style="display: none"><i class="eye fas fa-save fa-lg"></i></button>
 </div>
 @if(isset($route))
-    <input type="text" style="display: none" value="{{json_encode($route->coordinates)}}" id="ruta">      
+    <input type="text" style="display: none" value="{{json_encode($route->coordinates)}}" id="ruta">
 @endif
 
 
@@ -64,13 +64,13 @@
     <script type="text/javascript">
 
         function enviar_form() {
-                
+
                 // UPDATE THE HIDDEN FIELD
                 document.getElementById("waypoints").value = getpoints();
                 // SUBMIT THE FORM
                 $("#nueva_ruta").submit();
             }
-            
+
         @if(isset($route))
         var ruta = $("#ruta").val();
         DibujarRuta(jQuery.parseJSON(ruta));
@@ -78,6 +78,6 @@
 
 
     </script>
-    
+
 
 @endsection

@@ -4,16 +4,22 @@
     <li class="breadcrumb-item">User</li>
     <li class="breadcrumb-item active">
         <a href="#">Rutas</a>
-    </li> 
+    </li>
 @endsection
 
 
+@section('div_principal')
+<div style="background-image: url('{{ asset('img/banners/b2.jpg') }}'); height: 60px;">
+</div>
+@endsection
+
 
 @section('cards')
+
 <div class="row">
     <div class="col-xs-12 col-lg-12 col-sm-12 col-md-12">
         <table style="margin-bottom: 10px">
-            <tr> 
+            <tr>
                 <td style="text-align: left;">
                     <a class="btn btn-primary btn-add" href="#"></a>
                 </td>
@@ -57,7 +63,7 @@
                     </tr>
                   </tbody>
                 </table>
-                    
+
             </div>
         </div>
     </div>
