@@ -1,9 +1,8 @@
 #mapid{
-height: calc(100vh - 101px);
-margin-top: -17px;
+height: calc(100vh - 173px);
 }
 
-#locate-position{
+#locate-position{ 
       color: black;
       position:absolute;
       top:85px;

@@ -44,7 +44,7 @@
     <!-- side bar left -->
     <div class="sidebar">
         <nav class="sidebar-nav">
-            <ul class="nav">
+            <ul class="nav"> 
                 @yield('sidebar elements')
             </ul>
         </nav>

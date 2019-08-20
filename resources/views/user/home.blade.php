@@ -8,8 +8,8 @@
 @endsection
 
 
-@section('div_principal')
-<div style="background-image: url('{{ asset('img/banners/b2.jpg') }}'); height: 80px">
+@section('div_principal') 
+<div style="background-image: url('{{ asset('img/banners/b2.jpg') }}'); height: 80px; margin-top: -24px">
 </div>
 <div id="mapid">
 	<button id="locate-position" class="colordefault" style="display: none"><i class="eye fas fa-globe-americas fa-lg"></i></button>
@@ -61,6 +61,15 @@
     <script> var base_url = "{{asset('img')}}"; </script> <!-- variable para iconos del mapa juan* -->
     <script src="{{asset('js/leaflet-number-icon.js')}}"></script>
     <script src="{{asset('js/user/mapa.js') }}"></script>
+    @if(isset($_GET["nR"]))
+        @if($_GET["nR"]=1)
+        <script type="text/javascript">
+            mymap.on('click', onMapClick);
+            
+        </script>
+            
+        @endif
+    @endif
     <script type="text/javascript">
 
         function enviar_form() {
