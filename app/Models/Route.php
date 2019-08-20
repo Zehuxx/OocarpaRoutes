@@ -15,7 +15,7 @@ class Route extends Eloquent
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'user_id', 'name','description','coordinates'
+        'user_id','Route_Type_id', 'name','description','coordinates'
     ];
  
     public function User()

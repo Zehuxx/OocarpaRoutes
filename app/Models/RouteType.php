@@ -11,7 +11,7 @@ class RouteType extends Eloquent
 	use SoftDeletes;
 
     protected $connection = 'mongodb';
-    protected $collection = 'Route_types';
+    protected $collection = 'route_types';
     protected $dates = ['deleted_at'];
 
     protected $fillable = [

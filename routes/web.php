@@ -23,6 +23,8 @@ Route::get('/user/rutas', 'RouteController@index')->name('user routes');
 Route::get('/user/ruta/{id}', 'RouteController@show')->name('user show route');
 Route::post('/user/guardar/ruta','RouteController@store')->name('user store routes');
 Route::delete('/user/borrar/ruta/{id}','RouteController@destroy')->name('user destroy route');
+
+Route::post('/user/tipos/rutas', 'RouteTypeController@index')->name('user types routes');// ->trae tipos de rutas ajax
 Route::view('/user/opciones', 'user/options')->name('user options');
 //RUTAS COMPANY
 Route::view('/company', 'company/home')->name('company home');

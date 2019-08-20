@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Route;
 use App\Models\User;
-use MongoDB\BSON\ObjectID;
+use MongoDB\BSON\ObjectID; 
 use Illuminate\Http\Request;
-
+use App\Http\Requests\RouteStoreRequest;
 
 class RouteController extends Controller
 { 
@@ -28,12 +29,13 @@ class RouteController extends Controller
         return view('user.home',compact('route'));
     }
 
-    public function store(Request $request)
+    public function store(RouteStoreRequest $request)
     {
         $routes=new Route();
         $routes->user_id = new ObjectID("5d56f8d0189dda3588cc7cfd");
-        $routes->name = $request->get('nombre');
-        $routes->description = $request->get('descripcion');
+        $routes->Route_Type_id = new ObjectID($request->input('slc_tipo'));
+        $routes->name = $request->input('nombre');
+        $routes->description = $request->input('descripcion');
         $routes->coordinates = json_decode($request->get('waypoints'));         
         $routes->save();
         return redirect()->route('user routes')->with('success', 'Ruta has been successfully added');

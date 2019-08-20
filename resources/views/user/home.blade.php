@@ -39,8 +39,24 @@
                 	<span>Nombre</span>
                 	<input type="text" name="nombre" id="nombre" class="form-control">
                 <div class="modal-body row">
+                    @if($errors->has('nombre'))
+                        <div class="alert alert-danger" style="width: 100%">
+                            <span>{{ $errors->first('nombre') }}</span>
+                        </div>
+                    @endif
+                    <span>Tipo ruta</span>
+                    <select name="slc_tipo" id="slc_tipo" class="form-control">
+                    </select>
+                    @if($errors->has('slc_tipo'))
+                        <div class="alert alert-danger" style="width: 100%">
+                            <span>{{ $errors->first('slc_tipo') }}</span>
+                        </div>
+                    @endif
                     <span>Descripción</span>
                     <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción..." aria-label="With textarea"></textarea>
+                        <div class="alert alert-danger" id="select_msg" style="width: 100%;">
+                           
+                        </div>
                 </div>
                 <input type="hidden" name="waypoints" id="waypoints">
             </div>
@@ -61,23 +77,49 @@
     <script> var base_url = "{{asset('img')}}"; </script> <!-- variable para iconos del mapa juan* -->
     <script src="{{asset('js/leaflet-number-icon.js')}}"></script>
     <script src="{{asset('js/user/mapa.js') }}"></script>
-    @if(isset($_GET["nR"]))
-        @if($_GET["nR"]=1)
+    <!-- abre la modal -guardar ruta- en caso de que no cumpla con los valores  -->
+    @if($errors->count() > 0)
+    <script type="text/javascript">
+        $.ajax({
+                    url:"{{ route('user types routes') }}",
+                    method:"POST",
+                    data:{_token: '{{csrf_token()}}'},
+                    success:function(result){
+                        $values='<option value='+0+'>Seleccione tipo de ruta</option>';
+                        for (var i = 0;i < result.length;i++) {
+                            $values+='<option value=' + result[i]._id + '>' + result[i].name+ '</option>';
+                        }
+                        $("#slc_tipo").html($values);
+                    }
+                });
+                setTimeout(function(){
+                    $("#guardar").modal("show");
+                }, 1000);
+    </script>
+    @endif
+    <!-- permite crear una ruta, solo se usa cuando se presiona el boton add en la vista rutas-->
+    @if(isset($_GET["nr"]))
         <script type="text/javascript">
             mymap.on('click', onMapClick);
-            
         </script>
-            
-        @endif
     @endif
     <script type="text/javascript">
 
         function enviar_form() {
 
-                // UPDATE THE HIDDEN FIELD
+                // 
                 document.getElementById("waypoints").value = getpoints();
                 // SUBMIT THE FORM
-                $("#nueva_ruta").submit();
+                var select=$("#slc_tipo").val();
+                if (select==0 || select=="" || select.length!=24) {
+                    $('#select_msg').html(
+                        " <span>Valor Incorrecto</span>"
+                    );
+                    //$('#select_msg').css('display','block');
+                }else{
+                    $("#nueva_ruta").submit();
+                }
+                
             }
 
         @if(isset($route))
@@ -85,6 +127,29 @@
         DibujarRuta(jQuery.parseJSON(ruta));
         @endif
 
+        $(document).ready(function (){
+            // habilita el icono de geolocalizacion
+            $("#locate-position").show();
+            
+            // consulta los tipos de rutas los trae y luego abre la modal guardar ruta
+            $("#route-save").on("click",function(){
+                $.ajax({
+                    url:"{{ route('user types routes') }}",
+                    method:"POST",
+                    data:{_token: '{{csrf_token()}}'},
+                    success:function(result){
+                        $values='<option value="">Seleccione tipo de ruta</option>';
+                        for (var i = 0;i < result.length;i++) {
+                            $values+='<option value=' + result[i]._id + '>' + result[i].name+ '</option>';
+                        }
+                        $("#slc_tipo").html($values);
+                    }
+                });
+                setTimeout(function(){
+                    $("#guardar").modal("show");
+                }, 1000); 
+            }); 
+        });
 
     </script>
 

@@ -3,14 +3,7 @@ if ($('#mapid').length) {
   var route= null;
   var route_draw=null;
 
-  $(document).ready(function (){
-        $("#locate-position").show();
-        //$("#route-save").show();
-
-        $("#route-save").on("click",function(){
-          $("#guardar").modal("show");
-        }); 
-  }); 
+ 
   // Derechos de autor, token de acceso a mapas de Mapbox
   info={
     'access_token':'pk.eyJ1IjoiemVodXh4IiwiYSI6ImNqd3UxZXhjZzAxeXY0YW1odnI2MW1weHQifQ.ujnaRa5lFM-Bh0laXJu3sQ',
@@ -39,7 +32,7 @@ if ($('#mapid').length) {
         maxZoom: 18,
         accessToken: info['access_token']
       });
-
+ 
     var mymap = L.map('mapid',{
           center: [14.10555, -87.204483],
           zoom: 15,
@@ -70,7 +63,7 @@ if ($('#mapid').length) {
   var baseMaps = {
     'Lapiz':Lapiz,
     'CallesSatelite':CallesSatelite,
-    'Calles': Calles
+    'Calles': Calles 
   };
   // Opciones de capas en el mapa
   L.control.layers(baseMaps).addTo(mymap);

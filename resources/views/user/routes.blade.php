@@ -21,7 +21,7 @@
         <table style="margin-bottom: 10px">
             <tr>
                 <td style="text-align: left;">
-                    <a class="btn btn-primary btn-add" href="{{route('user home', ['nR' => 1]) }}".?r=1></a>
+                    <a class="btn btn-primary btn-add" href="{{route('user home', ['nr']) }}"></a>
                 </td>
                 <td >
                     <form method="get">
