@@ -47,7 +47,7 @@
                     @foreach($routes as $route)
                     <tr>
                         <td>{{$route->name}}</td>
-                        <td>{{$route->route_type["name"]}}</td>
+                        <td>{{$route->RouteType["name"]}}</td>
                         <td>{{$route->description}}</td>
                         <td>
                         <a class="btn-see btn btn-primary" href="{{ route('user show route',$route->id) }}"></a>

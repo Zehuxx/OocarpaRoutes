@@ -26,8 +26,9 @@ class RouteController extends Controller
 
     public function show($id)
     {
+        $routesType=RouteType::all();
         $route = Route::find($id);
-        return view('user.home',compact('route'));
+        return view('user.home',compact('route','routesType'));
     }
 
     public function store(RouteStoreRequest $request)
