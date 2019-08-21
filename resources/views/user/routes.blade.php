@@ -21,7 +21,7 @@
         <table style="margin-bottom: 10px">
             <tr>
                 <td style="text-align: left;">
-                    <a class="btn btn-primary btn-add" href="{{route('user home', ['nr']) }}"></a>
+                    <a class="btn btn-primary btn-add" href="{{route('root', ['nr']) }}"></a>
                 </td>
                 <td >
                     <form method="get">
@@ -40,12 +40,14 @@
                   <tbody>
                     <tr>
                         <th>Nombre</th>
+                        <th>Tipo</th>
                         <th>Descripción</th>
                         <th>Acción</th>
                     </tr>
                     @foreach($routes as $route)
                     <tr>
                         <td>{{$route->name}}</td>
+                        <td>{{$route->route_type["name"]}}</td>
                         <td>{{$route->description}}</td>
                         <td>
                         <a class="btn-see btn btn-primary" href="{{ route('user show route',$route->id) }}"></a>

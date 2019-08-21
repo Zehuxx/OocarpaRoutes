@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Route;
+use App\Models\RouteType;
 use App\Models\User;
 use MongoDB\BSON\ObjectID; 
 use Illuminate\Http\Request;
@@ -33,7 +34,7 @@ class RouteController extends Controller
     {
         $routes=new Route();
         $routes->user_id = new ObjectID("5d56f8d0189dda3588cc7cfd");
-        $routes->Route_Type_id = new ObjectID($request->input('slc_tipo'));
+        $routes->route_type_id = new ObjectID($request->input('slc_tipo'));
         $routes->name = $request->input('nombre');
         $routes->description = $request->input('descripcion');
         $routes->coordinates = json_decode($request->get('waypoints'));         

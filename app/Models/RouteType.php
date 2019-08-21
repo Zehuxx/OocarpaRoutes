@@ -20,6 +20,6 @@ class RouteType extends Eloquent
 
 	public function Route()
     {
-        return $this->hasMany(\App\Models\Route::class,'Route_Type_id','_id');
+        return $this->hasMany(\App\Models\Route::class,'route_type_id','_id');
     }
 }

@@ -14,11 +14,12 @@
 Route::get('/', function () { 
     return view('landing');
 })->name('home');
+
 //RUTAS ADMIN
 Route::view('/admin', 'admin/home')->name('admin home');
 Route::view('/admin/plans', 'admin/plans')->name('admin plans');
 //RUTAS USER
-Route::view('/user', 'user/home')->name('user home');
+Route::get('/user','HomeController@index')->name('root');
 Route::get('/user/rutas', 'RouteController@index')->name('user routes');
 Route::get('/user/ruta/{id}', 'RouteController@show')->name('user show route');
 Route::post('/user/guardar/ruta','RouteController@store')->name('user store routes');
