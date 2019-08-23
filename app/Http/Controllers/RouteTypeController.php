@@ -11,8 +11,7 @@ class RouteTypeController extends Controller
 
     public function index()
     {
-        $routesType=RouteType::all();
-        return $routesType;
+        //
     }
 
     public function create()

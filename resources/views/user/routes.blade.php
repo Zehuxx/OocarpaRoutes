@@ -14,7 +14,7 @@
 @endsection
 
 
-@section('cards')
+@section('cards') 
 
 <div class="row">
     <div class="col-xs-12 col-lg-12 col-sm-12 col-md-12">
@@ -51,7 +51,7 @@
                         <td>{{$route->description}}</td>
                         <td>
                         <a class="btn-see btn btn-primary" href="{{ route('user show route',$route->id) }}"></a>
-                        <a class="btn-edit btn btn-success" href="#"></a>
+                        <a class="btn-edit btn btn-success" href="{{ route('user edit route',$route->id) }}"></a>
                             <form method="post" style="display: contents;" action="{{ route('user destroy route',$route->id) }}">
                                 @csrf
                                 @method('DELETE')

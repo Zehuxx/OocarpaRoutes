@@ -25,7 +25,7 @@
             <a class="nav-link" href="{{ route('company home') }}">Compañia</a>
         </li>
         <li class="nav-item px-3">
-            <a class="nav-link" href="{{ route('user home') }}">Usuarios</a>
+            <a class="nav-link" href="{{ route('root') }}">Usuarios</a>
         </li>
     </ul>
 @endsection

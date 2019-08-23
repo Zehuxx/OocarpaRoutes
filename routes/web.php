@@ -12,20 +12,22 @@
 */
 
 Route::get('/', function () { 
-    return view('landing');
+    return view('landing'); 
 })->name('home');
 
-//RUTAS ADMIN
+//RUTAS ADMIN 
 Route::view('/admin', 'admin/home')->name('admin home');
 Route::view('/admin/plans', 'admin/plans')->name('admin plans');
 //RUTAS USER
 Route::get('/user','HomeController@index')->name('root');
 Route::get('/user/rutas', 'RouteController@index')->name('user routes');
 Route::get('/user/ruta/{id}', 'RouteController@show')->name('user show route');
+Route::get('/user/editar/ruta/{id}','RouteController@edit')->name('user edit route');
 Route::post('/user/guardar/ruta','RouteController@store')->name('user store routes');
+Route::put('/user/actualizar/ruta/{id}', 'RouteController@update')->name('user update route');
 Route::delete('/user/borrar/ruta/{id}','RouteController@destroy')->name('user destroy route');
 
-Route::post('/user/tipos/rutas', 'RouteTypeController@index')->name('user types routes');// ->trae tipos de rutas ajax
+
 Route::view('/user/opciones', 'user/options')->name('user options');
 //RUTAS COMPANY
 Route::view('/company', 'company/home')->name('company home');
