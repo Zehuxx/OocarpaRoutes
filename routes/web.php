@@ -17,6 +17,7 @@ Route::view('/', 'landing')->name('landing');
 Route::get('/home', 'HomeController@index')->name('home');//home general
 Route::view('/login', 'auth.login')->name('login');
 Route::post('/login', 'Auth\LoginController@login')->name("login_p");
+Route::get('/logout', 'Auth\LoginController@logout')->name("logout");
 Route::view('/registro', 'auth.register')->name('registro');
 
 

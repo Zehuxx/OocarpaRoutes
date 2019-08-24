@@ -42,11 +42,25 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     } */
 
+    public function logout(Request $request) {
+        Auth::logout();
+        return redirect('/');
+    }
+
     public function login(Request $request){
-        $this->validate($request, [
-                'email' => 'required|max:255',
-                'password' => 'required|max:255'
-        ]);
+        $rules=[
+        'email' => 'required|max:255',
+        'password' => 'required|min:8',
+        ];
+
+        $messages = [
+            'email.required' => 'El correo es requerido.',
+            'password.required' => 'La contraseña es requerida.',
+            'max' => 'La longitud del correo no debe ser mayor a 255.',
+            'min' => 'La contraseña debe ser mayor a :min caracteres.',
+        ];
+
+         $this->validate($request, $rules, $messages);
 
          $authUser = User::where('email', $request->email)->first();
          
@@ -56,10 +70,10 @@ class LoginController extends Controller
                 Auth::login($authUser);
                 return redirect()->route('home');
             }else{
-                return redirect()->back()->withErrors(["email"=>"email incorrecto","password"=>"password incorrecta"]);
+                return redirect()->back()->withErrors(["general"=>"Datos incorrectos"]);
             }
         }else{
-            return redirect()->back()->withErrors(["email"=>"email incorrecto","password"=>"password incorrecta"]);
+            return redirect()->back()->withErrors(["general"=>"Datos incorrectos"]);
         }
     }
 

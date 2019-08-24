@@ -12,6 +12,15 @@
                         @csrf
 
                         <div class="form-group row">
+                            @error('general')
+                            <div class="col-md-12">
+                                <span class="invalid-feedback" style="display: block;margin-bottom: 10px;margin-left: 35%;" role="alert">
+                                    <strong>
+                                    {{$errors->first('general')}}
+                                    </strong>
+                                </span>
+                            </div>
+                            @enderror
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Correo electrónico') }}</label>
 
                             <div class="col-md-6">
@@ -19,7 +28,7 @@
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @enderror
                             </div>
@@ -33,7 +42,7 @@
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                                        <strong>{{ $errors->first('password') }}</strong>
                                     </span>
                                 @enderror
                             </div>
