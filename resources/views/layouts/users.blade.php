@@ -32,7 +32,7 @@
                 <a class="dropdown-item" href="#">
                     <i class="fa fa-shield"></i> Lock Account
                 </a>
-                <a class="dropdown-item" href="{{Auth::logout()}}">
+                <a class="dropdown-item" href="#">
                     <i class="fa fa-lock"></i> Logout
                 </a>
             </div>
