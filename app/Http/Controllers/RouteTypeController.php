@@ -11,7 +11,8 @@ class RouteTypeController extends Controller
 
     public function index()
     {
-        //
+        $routesType=RouteType::all();
+        return view('user.home',compact('routesType'));
     }
 
     public function create()

@@ -21,7 +21,7 @@
 @section('sidebar elements')
     <li class="nav-title">Bienvenido</li>
     <li class="nav-item">
-        <a class="nav-link" href="{{route('root')}}">
+        <a class="nav-link" href="{{route('home')}}">
             <i class="nav-icon icon-map"></i> Home</a>
     </li>
     <li class="nav-item">

@@ -10,13 +10,13 @@ class HomeController extends Controller
 {
     /**
      * Create a new controller instance.
-     *
+     * 
      * @return void
-     */
+    
     public function __construct()
     {
-        //$this->middleware('auth');
-    }
+        $this->middleware('auth');
+    }  */
 
     /**
      * Show the application dashboard.
@@ -25,19 +25,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //if(Auth::user()->role_id === 1){
-        //    return redirect()->route('usuarios.index');
-        //}elseif(Auth::user()->role_id === 2){
-        //    Appointment::Appointments();
-        //    return view('doctor.dashboard');
-        //}elseif(Auth::user()->role_id === 3){
-        //    Appointment::Appointments();
-        //    return view('assistant.dashboard');
-        //}
-        $routesType=RouteType::all();
-        return view('user.home',compact('routesType'));
-
+        
+        if(Auth::user()->role_id == "5d607f9db2d1b72ef0ec1366"){
+            return view('admin.home');
+        }elseif(Auth::user()->role_id == "5d607fa9b2d1b72ef0ec1367"){
+            $routesType=RouteType::all();
+            return view('user.home')->with('routesType', $routesType);
+        }elseif(Auth::user()->role_id == "5d607fb2b2d1b72ef0ec1368"){
+            return view('company.home');
+        }   
     }
-
-  
 }

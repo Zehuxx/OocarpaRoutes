@@ -11,31 +11,40 @@
 |
 */
 
-Route::get('/', function () { 
-    return view('landing'); 
-})->name('home');
 
-//RUTAS ADMIN 
-Route::view('/admin', 'admin/home')->name('admin home');
+Auth::routes();
+Route::view('/', 'landing')->name('landing');
+Route::get('/home', 'HomeController@index')->name('home');//home general
+Route::view('/login', 'auth.login')->name('login');
+Route::post('/login', 'Auth\LoginController@login')->name("login_p");
+Route::view('/registro', 'auth.register')->name('registro');
+
+
+Route::group(['middleware'=>['check.admin.role']], function(){
+//RUTAS ADMIN
 Route::view('/admin/plans', 'admin/plans')->name('admin plans');
+
+});
+
+Route::group(['middleware'=>['check.user.role']], function(){
 //RUTAS USER
-Route::get('/user','HomeController@index')->name('root');
 Route::get('/user/rutas', 'RouteController@index')->name('user routes');
 Route::get('/user/ruta/{id}', 'RouteController@show')->name('user show route');
 Route::get('/user/editar/ruta/{id}','RouteController@edit')->name('user edit route');
 Route::post('/user/guardar/ruta','RouteController@store')->name('user store routes');
 Route::put('/user/actualizar/ruta/{id}', 'RouteController@update')->name('user update route');
 Route::delete('/user/borrar/ruta/{id}','RouteController@destroy')->name('user destroy route');
-
-
 Route::view('/user/opciones', 'user/options')->name('user options');
+
+});
+Route::group(['middleware'=>['check.company.role']], function(){
 //RUTAS COMPANY
-Route::view('/company', 'company/home')->name('company home');
 Route::view('/company/plan', 'company/planes')->name('company plan');
 Route::view('/company/location', 'company/location')->name('company location');
 Route::view('/company/banner', 'company/banner')->name('company banner');
 Route::view('/company/banner/add', 'company/banner_create')->name('company banner add');
 
+});
 
 
 Route::get('add','CarController@create');
@@ -44,3 +53,5 @@ Route::get('car','CarController@index');
 Route::get('edit/{id}','CarController@edit');
 Route::post('edit/{id}','CarController@update');
 Route::delete('{id}','CarController@destroy');
+
+

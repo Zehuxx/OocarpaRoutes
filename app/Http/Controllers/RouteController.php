@@ -8,6 +8,7 @@ use App\Models\RouteType;
 use App\Models\User;
 use MongoDB\BSON\ObjectID; 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\RouteStoreRequest;
 use App\Http\Requests\RouteUpdateRequest;
 
@@ -35,7 +36,7 @@ class RouteController extends Controller
     public function store(RouteStoreRequest $request)
     {
         $routes=new Route();
-        $routes->user_id = new ObjectID("5d56f8d0189dda3588cc7cfd");
+        $routes->user_id = new ObjectID(Auth::user()->id);
         $routes->route_type_id = new ObjectID($request->input('slc_tipo'));
         $routes->name = $request->input('nombre');
         $routes->description = $request->input('descripcion');
