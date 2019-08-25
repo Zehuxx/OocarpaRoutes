@@ -1,8 +1,5 @@
 @extends('layouts.company')
 
-@section('css_js_mapa')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.css">
-@endsection
 
 @section('route')
     <li class="breadcrumb-item">Company</li>
@@ -28,22 +25,20 @@
                 <strong>Cargar banner</strong>
             </div>
             <div class="card-body">
-                <form>
+                <form id="form-img" name="form-img">
                     <div class="form-group">
-                            <label for="nf-email">Email</label>
-                            <input class="form-control" id="nf-email" type="email" name="nf-email" placeholder="Enter Email..">
-                            <span class="help-block">Please enter your email</span>
-                    </div>
-                    <div action="/file-upload" class="dropzone" id="my-awesome-dropzone">
-
+                            <label for="banner">Banner:</label>
+                            <input class="form-control-file" id="banner" type="file" name="banner" placeholder="png, jpg, ...">
                     </div>
                 </form>
-
+                <span class="border border-primary">
+                    <img src="" class="card-img-top" width="100%" height="60px" id="imagenmuestra" alt="Cargar la imagen porfavor">
+                </span>
             </div>
             <div class="card-footer">
                 <button class="btn btn-sm btn-primary" form="form-img" type="submit">
                 <i class="fa fa-dot-circle-o"></i> Submit</button>
-                <button class="btn btn-sm btn-danger" type="reset">
+                <button class="btn btn-sm btn-danger" form="form-img" type="reset">
                 <i class="fa fa-ban"></i> Reset</button>
             </div>
         </div>
@@ -53,5 +48,21 @@
 
 
 @section('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/min/dropzone.min.js"></script>
+    <script type="text/javascript">
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                // Asignamos el atributo src a la tag de imagen
+                $('#imagenmuestra').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // El listener va asignado al input
+        $("#banner").change(function() {
+            readURL(this);
+        });
+    </script>
 @endsection
