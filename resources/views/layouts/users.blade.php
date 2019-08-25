@@ -32,7 +32,7 @@
                 <a class="dropdown-item" href="#">
                     <i class="fa fa-shield"></i> Lock Account
                 </a>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="{{route('logout')}}">
                     <i class="fa fa-lock"></i> Logout
                 </a>
             </div>
@@ -44,7 +44,7 @@
     <!-- side bar left -->
     <div class="sidebar">
         <nav class="sidebar-nav">
-            <ul class="nav">
+            <ul class="nav"> 
                 @yield('sidebar elements')
             </ul>
         </nav>

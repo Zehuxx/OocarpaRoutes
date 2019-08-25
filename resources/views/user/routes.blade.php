@@ -9,19 +9,19 @@
 
 
 @section('div_principal')
-<div style="background-image: url('{{ asset('img/banners/b2.jpg') }}'); height: 60px;">
+<div style="background-image: url('{{ asset('img/banners/b2.jpg') }}'); height: 60px;margin-top: -16px;margin-bottom: 10px">
 </div>
 @endsection
 
 
-@section('cards')
+@section('cards') 
 
 <div class="row">
     <div class="col-xs-12 col-lg-12 col-sm-12 col-md-12">
         <table style="margin-bottom: 10px">
             <tr>
                 <td style="text-align: left;">
-                    <a class="btn btn-primary btn-add" href="#"></a>
+                    <a class="btn btn-primary btn-add" href="{{route('home', ['nr']) }}"></a>
                 </td>
                 <td >
                     <form method="get">
@@ -40,19 +40,19 @@
                   <tbody>
                     <tr>
                         <th>Nombre</th>
+                        <th>Tipo</th>
                         <th>Descripción</th>
-                        <th>Ver</th>
-                        <th>Editar</th>
-                        <th>Borrar</th>
+                        <th>Acción</th>
                     </tr>
                     @foreach($routes as $route)
                     <tr>
                         <td>{{$route->name}}</td>
+                        <td>{{$route->RouteType["name"]}}</td>
                         <td>{{$route->description}}</td>
-                        <td><a class="btn-see btn btn-primary" href="{{ route('user show route',$route->id) }}"></a></td>
-                        <td><a class="btn-edit btn btn-success" href="#"></a></td>
                         <td>
-                            <form method="post" action="{{ route('user destroy route',$route->id) }}">
+                        <a class="btn-see btn btn-primary" href="{{ route('user show route',$route->id) }}"></a>
+                        <a class="btn-edit btn btn-success" href="{{ route('user edit route',$route->id) }}"></a>
+                            <form method="post" style="display: contents;" action="{{ route('user destroy route',$route->id) }}">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit"   class="btn-delete btn btn-danger"></ button>
