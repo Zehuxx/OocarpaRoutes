@@ -30,6 +30,9 @@
         <!-- Main styles for this application-->
         <link href="{{ asset('css/fw/style.css')}}" rel="stylesheet">
         <link href="{{ asset('css/pace.min.css')}}" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
         @yield('css_js_mapa')
         <!-- Global site tag (gtag.js) - Google Analytics-->
         {{-- <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script> --}}
@@ -51,8 +54,9 @@
         <header class="app-header navbar">
             {{-- logo de la empresa --}}
             <a class="navbar-brand" href="{{route('landing')}}">
-                <img class="navbar-brand-full" src="{{asset('img/brand/logo.svg')}}" width="89" height="25" alt="CoreUI Logo">
-                <img class="navbar-brand-minimized" src="{{asset('img/brand/sygnet.svg')}}" width="30" height="30" alt="CoreUI Logo">
+                <!--<img class="navbar-brand-full" src="{{asset('img/brand/logo.svg')}}" width="89" height="25" alt="CoreUI Logo">
+                <img class="navbar-brand-minimized" src="{{asset('img/brand/sygnet.svg')}}" width="30" height="30" alt="CoreUI Logo">-->
+                <span style="font-family: Pacifico, cursive; font-size:1.5rem;">Oocarpa<span style="font-family: Pacifico, cursive; font-size:1.5rem; color:#7f4600">Routes<span></span>
             </a>
 
             @yield('navbar')
