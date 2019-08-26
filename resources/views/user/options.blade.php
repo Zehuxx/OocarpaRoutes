@@ -26,7 +26,7 @@
                     @csrf
                     @method('PUT')
                     <div class="input-group">
-                        <input type="password" class="form-control" disabled="disabled" name="password">
+                        <input type="password" class="form-control" value="qwerty12" disabled="disabled" name="password">
                         <span class="input-group-append">
                             <button class="btn btn-primary" type="submit">Actualizar</button>
                         </span>

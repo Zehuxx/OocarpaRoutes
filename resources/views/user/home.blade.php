@@ -165,25 +165,25 @@
         //verifica si se quiere visualizar una ruta
         //si es asi la dibuja
         @if(isset($route))
-        var ruta = $("#ruta").val();
-        DibujarRuta(jQuery.parseJSON(ruta));
-        @if($errors->count() > 0)
-            $("#route-save").show();
-            $("#guardar").modal("show");
-        @endif
+            var ruta = $("#ruta").val();
+            DibujarRuta(jQuery.parseJSON(ruta));
+            @if($errors->count() > 0)
+                $("#route-save").show();
+                $("#guardar").modal("show");
+            @endif
         @endif
 
         //verifica si se quiere dibujar una ruta para luego ser editada
         @if(isset($routeedit))
-        var ruta = $("#rutaedit").val();
-        $("#route-edit").show();
-        @if($errors->count() > 0)
-            EditarRuta({{old("waypointsedit")}});
-            $("#route-save").show();
-            $("#editar").modal("show");
-        @else
-            EditarRuta(jQuery.parseJSON(ruta));
-        @endif
+            var ruta = $("#rutaedit").val();
+            $("#route-edit").show();
+            @if($errors->count() > 0)
+                EditarRuta({{old("waypointsedit")}});
+                $("#route-save").show();
+                $("#editar").modal("show");
+            @else
+                EditarRuta(jQuery.parseJSON(ruta));
+            @endif
         @endif
 
         $(document).ready(function (){

@@ -11,7 +11,7 @@
 |
 */
 
-
+ 
 Auth::routes();
 Route::get('/', 'BannerController@show')->name('landing');
 Route::get('/home', 'HomeController@index')->name('home');//home general

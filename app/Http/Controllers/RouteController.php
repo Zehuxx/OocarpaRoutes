@@ -17,7 +17,7 @@ class RouteController extends Controller
 
     public function index()
     {
-        $routes=Route::all();
+        $routes=Route::where('deleted_at', 'exists', false)->take(15)->get();
         return view('user.routes',compact('routes'));
     }
 

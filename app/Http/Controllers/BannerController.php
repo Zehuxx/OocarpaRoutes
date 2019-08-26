@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\BannerStoreRequest;
 
 class BannerController extends Controller
-{
+{ 
     public function index()
     {
         $banners = Banner::all()->where('company_id', Auth::user()->id);

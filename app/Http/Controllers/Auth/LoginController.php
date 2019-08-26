@@ -58,11 +58,11 @@ class LoginController extends Controller
             'password.required' => 'La contraseña es requerida.',
             'max' => 'La longitud del correo no debe ser mayor a 255.',
             'min' => 'La contraseña debe ser mayor a :min caracteres.',
-        ];
+        ]; 
 
          $this->validate($request, $rules, $messages);
 
-         $authUser = User::where('email', $request->email)->first();
+         $authUser = User::where('email', $request->email)->where('deleted_at', 'exists', false)->first();
          
         if (isset($authUser)) {
             if (Hash::check($request->password , $authUser->password)) {
