@@ -17,9 +17,11 @@
 @section('cards')
 
 <div class="row">
+    @foreach ($banners as $banner)
+
     <div class="col-sm-6 col-md-4">
         <div class="card">
-            <div class="card-header">Code Img
+            <div class="card-header">Banner
                 <div class="card-header-actions" style="height: 21px;">
                     <button class="btn dropdown-toggle p-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="icon-settings"></i>
@@ -32,9 +34,11 @@
                 </div>
             </div>
             <div class="card-body">
-                <img src="{{asset('img/imagen.png')}}" width="100%" alt="imagen">
+                <img src="{{asset('img/banners/'.$banner->img)}}" width="100%" alt="imagen">
             </div>
         </div>
     </div>
+
+    @endforeach
 </div>
 @endsection

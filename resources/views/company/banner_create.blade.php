@@ -25,11 +25,18 @@
                 <strong>Cargar banner</strong>
             </div>
             <div class="card-body">
-                <form id="form-img" name="form-img">
+                <form id="form-img" name="form-img"  method="POST" role="form" enctype="multipart/form-data"  action="{{ route('company banner store') }}">
+                    @csrf
+
                     <div class="form-group">
                             <label for="banner">Banner:</label>
                             <input class="form-control-file" id="banner" type="file" name="banner" placeholder="png, jpg, ...">
                     </div>
+                    @if($errors->has('banner'))
+                        <div class="alert alert-danger">
+                            <span>{{ $errors->first('banner') }}</span>
+                        </div>
+                    @endif
                 </form>
                 <span class="border border-primary">
                     <img src="" class="card-img-top" width="100%" height="60px" id="imagenmuestra" alt="Cargar la imagen porfavor">

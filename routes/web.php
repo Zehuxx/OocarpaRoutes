@@ -13,7 +13,7 @@
 
 
 Auth::routes();
-Route::view('/', 'landing')->name('landing');
+Route::get('/', 'BannerController@show')->name('landing');
 Route::get('/home', 'HomeController@index')->name('home');//home general
 Route::view('/login', 'auth.login')->name('login');
 Route::post('/login', 'Auth\LoginController@login')->name("login_p");
@@ -42,8 +42,9 @@ Route::group(['middleware'=>['check.company.role']], function(){
 //RUTAS COMPANY
 Route::view('/company/plan', 'company/planes')->name('company plan');
 Route::view('/company/location', 'company/location')->name('company location');
-Route::view('/company/banner', 'company/banner')->name('company banner');
-Route::view('/company/banner/add', 'company/banner_create')->name('company banner add');
+Route::get('/company/banner', 'BannerController@index')->name('company banner');
+Route::get('/company/banner/add', 'BannerController@create')->name('company banner add');
+Route::post('/company/banner/save', 'BannerController@store')->name('company banner store');
 
 });
 

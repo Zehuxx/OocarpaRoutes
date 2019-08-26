@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="{{asset('fontawesome-free-5.7.1-web/css/all.css')}}" >
   <link href="{{asset('fontawesome-free-5.7.1-web/js/all.js')}}" >
 @endsection
- 
+
 @section('navbar')
 <ul class="nav navbar-nav d-md-down-none">
     <li class="nav-item px-3">
@@ -31,7 +31,7 @@
 
 @section('body')
     <div class="main">
-        <div style="background-image: url('{{ asset('img/banners/b2.jpg') }}'); height: 60px">
+        <div style="background-image: url('{{ asset('img/banners/'.$banner) }}'); height: 60px">
         </div>
         <div id="mapid">
           <button id="locate-position" class="colordefault" style="display: none"><i class="eye fas fa-globe-americas fa-lg"></i></button>
