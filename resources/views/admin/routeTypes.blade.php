@@ -3,7 +3,7 @@
 @section('route')
     <li class="breadcrumb-item">Admin</li>
     <li class="breadcrumb-item active">
-        <a href="#">Roles</a>
+    <a href="{{route('route Types')}}">Tipos de ruta</a>
     </li>
 @endsection
 
@@ -14,7 +14,7 @@
         <table style="margin-bottom: 10px">
             <tr>
                 <td style="text-align: left;">
-                    <a class="btn btn-primary btn-add" href="{{route('home', ['nr']) }}"><i class="fa fa-plus"></i></a>
+                    <a class="btn btn-success btn-add" href="{{route('add route Types') }}"><i class="fa fa-plus"></i></a>
                 </td>
                 <td >
                     <form method="get">
@@ -28,25 +28,30 @@
 
         <div class="card">
             <div class="card-header">
-                <i class="fa fa-table"></i>Roles
+                <i class="fa fa-table"></i>Tipos de Ruta
             </div>
             <div class="card-body" style="overflow-x: auto;">
                 <table class="table  table-striped table-hover">
                 <tbody>
                     <tr>
-                        <th>ID</th>
-                        <th>Rol</th>
+                        <th></th>
+                        <th>Tipo Ruta</th>
                         <th>Acciones</th>
                     </tr>
-                    @foreach($roles as $role)
+                    @foreach($routeTypes as $routeType)
                     <tr>
-                        <td>{{$role->_id}}</td>
-                        <td>{{$role->name}}</td>
+                        <td>{{$loop->iteration}}</<td>
+                        <td>{{$routeType->name}}</td>
                         <td>
-                        <a class="btn-see btn btn-primary" href=""><i class="fa fa-eye"></i></a>
+                        <!--<a class="btn-see btn btn-primary" href=""><i class="fa fa-eye"></i></a>-->
                         <a class="btn-edit btn btn-success" href=""><i class="fa fa-pencil"></i></a>
 
-                            <button type="submit"   class="btn-delete btn btn-danger"><i class="fa fa-trash"></i></ button>
+                        <form action="{{route('destroy route Types', $routeType->id)}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                            <!--<input name="_method" type="hidden" value="DELETE">-->
+                            <button type="submit" class="btn-delete btn btn-danger"><i class="fa fa-trash"></i></button>
+                        </form>
                         </td>
                     </tr>
                     @endforeach

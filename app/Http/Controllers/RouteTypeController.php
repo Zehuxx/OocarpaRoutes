@@ -5,36 +5,42 @@ namespace App\Http\Controllers;
 
 use App\Models\RouteType;
 use Illuminate\Http\Request;
+use App\Http\Requests\ValidarStoreRT;
 
 class RouteTypeController extends Controller
-{ 
+{
 
     public function index()
     {
-        $routesType=RouteType::all();
-        return view('user.home',compact('routesType'));
+        $routeTypes=RouteType::all();
+        return view('admin.routeTypes',compact('routeTypes'));
     }
 
     public function create()
     {
-       //
+        return view('admin.routeTypes_create');
     }
 
     public function show($id)
     {
-        //
+       //
     }
 
-    public function store(Request $request)
+    public function store(ValidarStoreRT $request)
     {
-        //
+        $rt = new RouteType;
+        $rt->name = $request->input("name");
+
+        //return ($rt);
+        $rt->save();
+        return redirect()->route('route Types');
     }
-    
+
     public function edit($id)
     {
-        //
+        //return view('admin.routeType_create');
     }
-    
+
     public function update(Request $request)
     {
         //
@@ -42,6 +48,8 @@ class RouteTypeController extends Controller
 
     public function destroy($id)
     {
-        //
+        $rt = RouteType::find($id);
+        $rt-> delete();
+        return redirect()->route('route Types');
     }
 }

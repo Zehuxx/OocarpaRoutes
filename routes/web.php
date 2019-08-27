@@ -23,9 +23,20 @@ Route::view('/registro', 'auth.register')->name('registro');
 
 Route::group(['middleware'=>['check.admin.role']], function(){
 //RUTAS ADMIN
-Route::view('/admin/plans', 'admin/plans')->name('admin plans');
-Route::get('/admin/roles', 'RolesController@index')->name('roles');
+//Route::view('/admin/plans', 'admin/plans')->name('admin plans');
 Route::get('/admin/users', 'UsersController@index')->name('users');
+
+//Rutas CRUD de planes
+Route::get('/admin/plans', 'PlanController@index')->name('plans');
+Route::get('/admin/plans/add', 'PlanController@create')->name('add plan');
+Route::post('/admin/plans/create', 'PlanController@store')->name('create plan');
+Route::delete('admin/plans/delete/{id}', 'PlanController@destroy')->name('destroy plan');
+
+//Rutas CRUD de RouteTypes
+Route::get('/admin/routeTypes', 'RouteTypeController@index')->name('route Types');
+Route::get('/admin/routeTypes/add', 'RouteTypeController@create')->name('add route Types');
+Route::post('/admin/routeTypes/create', 'RouteTypeController@store')->name('create route Types');
+Route::Delete('/admin/routeTypes/delete/{id}', 'RouteTypeController@destroy')->name('destroy route Types');
 });
 
 Route::group(['middleware'=>['check.user.role']], function(){
