@@ -9,7 +9,7 @@
 @endsection
 
 @section('cards')
-<div class="row">
+<!--<div class="row">
     <div class="col-sm-6">
         <div class="card">
             <div class="card-header">
@@ -24,7 +24,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- /.row-->
+
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- /.row-->
+
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
@@ -43,7 +43,7 @@
                     </div>
                 </div>
 
-                <!-- /.row-->
+
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
@@ -62,12 +62,12 @@
             </div>
         </div>
     </div>
-    
-    <!-- /.col-->
+
+
     <div class="col-sm-6">
         <div class="container">
             <div class="row">
-                
+
                 <div class="col-sm-6 col-lg-6">
                     <div class="card">
                         <div class="card-body">
@@ -115,7 +115,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-sm-6 col-lg-6">
                         <div class="card">
                             <div class="card-body">
@@ -143,6 +143,64 @@
             </div>
         </div>
     </div>
-    <!-- /.col-->
-  </div>
+  </div>-->
+
+<div class="row">
+    <div class="col-xs-12 col-lg-12 col-sm-12 col-md-12">
+        <table style="margin-bottom: 10px">
+            <tr>
+                <td style="text-align: left;">
+                    <a class="btn btn-success btn-add" href="{{route('add plan') }}"><i class="fa fa-plus"></i></a>
+                </td>
+                <td >
+                    <form method="get">
+                        <input type="text" id="search" value="{{ isset($search) ? $search : ''}}" autofocus="" name="search" placeholder="Filtrar..." style="width: auto;">
+                        <input type="submit" style="display: none" />
+                    </form>
+                </td>
+            </tr>
+        </table>
+
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-table"></i>Planes
+            </div>
+            <div class="card-body" style="overflow-x: auto;">
+                <table class="table  table-striped table-hover">
+                    <tbody>
+                        <tr>
+                            <th></th>
+                            <th>Título</th>
+                            <th>Descripción</th>
+                            <th>precio</th>
+                            <th>duración</th>
+                            <th>Acciones</th>
+                        </tr>
+                        @foreach($plans as $plan)
+                        <tr>
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$plan->name}}</td>
+                            <td>{{$plan->description}}</td>
+                            <td>{{$plan->price}}</td>
+                            <td>{{$plan->duration}}</td>
+                            <td>
+                                <!--<a class="btn-see btn btn-primary" href=""><i class="fa fa-eye"></i></a>-->
+                                <a class="btn-edit btn btn-success" href=""><i class="fa fa-pencil"></i></a>
+
+                                <form action="{{route('destroy plan', $plan->id)}}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                    <!--<input name="_method" type="hidden" value="DELETE">-->
+                                    <button type="submit" class="btn-delete btn btn-danger"><i class="fa fa-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
