@@ -13280,7 +13280,8 @@ canvas {
 }
 
 .sidebar .nav-link.active .nav-icon {
-    color: #20a8d8;
+    color: #00b330;
+    /*Aqui*/
 }
 
 .sidebar .nav-link:hover {

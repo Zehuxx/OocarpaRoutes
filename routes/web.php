@@ -24,7 +24,8 @@ Route::view('/registro', 'auth.register')->name('registro');
 Route::group(['middleware'=>['check.admin.role']], function(){
 //RUTAS ADMIN
 Route::view('/admin/plans', 'admin/plans')->name('admin plans');
-
+Route::get('/admin/roles', 'RolesController@index')->name('roles');
+Route::get('/admin/users', 'UsersController@index')->name('users');
 });
 
 Route::group(['middleware'=>['check.user.role']], function(){
