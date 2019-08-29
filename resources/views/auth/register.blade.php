@@ -153,9 +153,12 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn" style="color: white;background-color: #038827">
                                     {{ __('Registrarse') }}
                                 </button>
+                                <a href="{{route("login")}}"><button type="button" style="background-color: #7f4600;color: white" class="btn">
+                                    Login
+                                </button></a>
                             </div>
                         </div>
                     </form>

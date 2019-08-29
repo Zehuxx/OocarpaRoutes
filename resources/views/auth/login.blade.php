@@ -62,16 +62,14 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn" style="color: white;background-color: #038827">
                                     {{ __('Login') }}
                                 </button>
-
-                                @if (Route::has('password.request'))
-                                    <!--<a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>-->
-                                @endif
+                                <a href="{{route("registro")}}"><button type="button" style="background-color: #7f4600;color: white" class="btn">
+                                    Registrarse
+                                </button></a>
                             </div>
+                            
                         </div>
                     </form>
                 </div>
@@ -80,4 +78,6 @@
     </div>
 </div>
 @endsection
+
+
 
