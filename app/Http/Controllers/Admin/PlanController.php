@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 
 use App\Models\Plan;
 use Illuminate\Http\Request;
-use App\Http\Requests\ValidarStorePlan;
+use App\Http\Requests\PlanStoreRequest;
+use App\Http\Controllers\Controller;
 
 class PlanController extends Controller
 {
@@ -26,7 +27,7 @@ class PlanController extends Controller
         //
     }
 
-    public function store(ValidarStorePlan $request)
+    public function store(PlanStoreRequest $request)
     {
         $plan = new Plan;
         $plan->name = $request->input("name");

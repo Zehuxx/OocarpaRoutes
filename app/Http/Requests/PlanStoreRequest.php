@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ValidarStorePlan extends FormRequest
+class PlanStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -12,7 +12,7 @@ class ValidarStorePlan extends FormRequest
      * @return bool
      */
     public function authorize()
-    {
+    { 
         return true;
     }
 

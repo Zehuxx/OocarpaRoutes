@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Company;
 
 use Image;
 use App\Models\Banner;
@@ -8,6 +8,7 @@ use MongoDB\BSON\ObjectID;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\BannerStoreRequest;
+use App\Http\Controllers\Controller;
 
 class BannerController extends Controller
 { 

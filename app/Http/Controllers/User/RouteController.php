@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
 
 use App\Models\Route;
@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\RouteStoreRequest;
 use App\Http\Requests\RouteUpdateRequest;
+use App\Http\Controllers\Controller;
 
 class RouteController extends Controller
 { 

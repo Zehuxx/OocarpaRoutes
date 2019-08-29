@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 
 use App\Models\RouteType;
 use Illuminate\Http\Request;
-use App\Http\Requests\ValidarStoreRT;
+use App\Http\Requests\RouteTypeStoreRequest;
+use App\Http\Controllers\Controller;
 
 class RouteTypeController extends Controller
 {
@@ -26,7 +27,7 @@ class RouteTypeController extends Controller
        //
     }
 
-    public function store(ValidarStoreRT $request)
+    public function store(RouteTypeStoreRequest $request)
     {
         $rt = new RouteType;
         $rt->name = $request->input("name");
