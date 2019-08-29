@@ -37,6 +37,8 @@ Route::put('/user/actualizar/ruta/{id}', 'RouteController@update')->name('user u
 Route::delete('/user/borrar/ruta/{id}','RouteController@destroy')->name('user destroy route');
 Route::view('/user/opciones', 'user/options')->name('user options');
 
+
+
 });
 Route::group(['middleware'=>['check.company.role']], function(){
 //RUTAS COMPANY

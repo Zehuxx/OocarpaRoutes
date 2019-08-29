@@ -12,7 +12,7 @@ class Company extends Eloquent
 
     protected $connection = 'mongodb';
     protected $collection = 'companies';
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at']; 
 
     protected $fillable = [
         'company_id','name','phone','description','address'
@@ -20,7 +20,7 @@ class Company extends Eloquent
 
 	public function User()
     {
-        return $this->belongsTo(\App\Models\User::class,'company_id','company_id');
+        return $this->belongsTo(\App\Models\User::class,'user_id','user_id');
     }
 
     public function Banner()

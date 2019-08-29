@@ -176,8 +176,10 @@ return [
         App\Providers\RouteServiceProvider::class,
         //mongodb
         Jenssegers\Mongodb\MongodbServiceProvider::class,
+        Jenssegers\Mongodb\Validation\ValidationServiceProvider::class,
         Jenssegers\Mongodb\Auth\PasswordResetServiceProvider::class,
         'Intervention\Image\ImageServiceProvider'
+
 
     ],
 

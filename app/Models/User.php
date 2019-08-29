@@ -6,13 +6,13 @@ namespace App\Models;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\Authenticatable; 
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-
+ 
 class User extends Eloquent implements AuthenticatableContract, AuthorizableContract,CanResetPasswordContract
 { 
     use Authenticatable, Authorizable, CanResetPassword, Notifiable, SoftDeletes;
@@ -23,7 +23,7 @@ class User extends Eloquent implements AuthenticatableContract, AuthorizableCont
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'role_id', 'name','last_name','email','password','user_img'
+        'role_id', 'name', 'last_name', 'email', 'user_img',
     ];
 
     protected $hidden = [
@@ -42,6 +42,6 @@ class User extends Eloquent implements AuthenticatableContract, AuthorizableCont
 
     public function Company()
     {
-        return $this->hasOne(\App\Models\Company::class,'company_id','_id');
+        return $this->hasOne(\App\Models\Company::class,'user_id','_id');
     }
 }

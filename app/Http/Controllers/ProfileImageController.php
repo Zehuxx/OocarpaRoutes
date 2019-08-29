@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class ProfileImageController extends Controller
 { 
 
     public function index()
