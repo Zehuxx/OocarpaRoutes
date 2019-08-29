@@ -12693,6 +12693,12 @@ canvas {
     padding: 0;
     margin-right: 0;
     background-color: transparent;
+    color: #038827;
+    /*Aqui Agregue #038827*/
+}
+
+.app-header .navbar-brand:hover {
+    color: #016b1e;
 }
 
 .app-header .navbar-brand .navbar-brand-minimized {
@@ -12762,12 +12768,14 @@ canvas {
 }
 
 .navbar-nav .nav-link {
-    color: #73818f;
+    color: #016b1e;
+    /*Aqui*/
 }
 
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-link:focus {
-    color: #2f353a;
+    color: #00b330;
+    /*Aqui*/
 }
 
 .navbar-nav .open>.nav-link,
@@ -12782,7 +12790,7 @@ canvas {
 .navbar-nav .nav-link.active,
 .navbar-nav .nav-link.active:hover,
 .navbar-nav .nav-link.active:focus {
-    color: #2f353a;
+    color: #00b330;
 }
 
 .navbar-divider {
@@ -13272,7 +13280,8 @@ canvas {
 }
 
 .sidebar .nav-link.active .nav-icon {
-    color: #20a8d8;
+    color: #00b330;
+    /*Aqui*/
 }
 
 .sidebar .nav-link:hover {

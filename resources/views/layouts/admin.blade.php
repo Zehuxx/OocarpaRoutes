@@ -11,16 +11,20 @@
             <i class="nav-icon icon-map"></i> Rutas</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="colors.html">
+    <a class="nav-link" href="{{route('users')}}">
             <i class="nav-icon icon-people"></i> Usuarios</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="colors.html">
-            <i class="nav-icon icon-people"></i> Compañias</a>
+    <a class="nav-link" href="#">
+            <i class="nav-icon icon-directions"></i> Compañias</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin plans') }}">
+        <a class="nav-link" href="{{ route('plans') }}">
             <i class="nav-icon icon-wallet"></i> Planes</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{route('route Types')}}">
+            <i class="nav-icon icon-user"></i>Tipos de Ruta</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="typography.html">
