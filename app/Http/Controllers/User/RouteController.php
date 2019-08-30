@@ -66,8 +66,8 @@ class RouteController extends Controller
                        return $item;
                     }
                 }
-            })->paginate(10);
-        return view('user.routes',compact('routes'));
+            });
+        return dd($routes);//view('user.routes',compact('routes'));
     }
 
     public function create()
