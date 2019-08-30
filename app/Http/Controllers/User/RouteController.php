@@ -13,6 +13,8 @@ use App\Http\Requests\RouteStoreRequest;
 use App\Http\Requests\RouteUpdateRequest;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 use App\Http\Controllers\Controller;
+use App\Support\Collection;
+
 
 class RouteController extends Controller
 {  
@@ -20,7 +22,7 @@ class RouteController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
-        $user_id= new ObjectID(Auth::user()->id);
+        
         $routes=Route::raw((function($collection) {
               return $collection->aggregate([
                 [
@@ -33,25 +35,38 @@ class RouteController extends Controller
                 ]
               ]);
          }))->where('deleted_at', 'exists', false)
-            ->whereIn('user_id',$user_id)
-            ->filter(function ($item) use ($search) {
+            ->filter(function ($item) use ($search){
+                $user_id= new ObjectID(Auth::user()->id);
+                $id=false;$nom=false;$des=false;$tr=false;$public=false;
+                if($item->user_id== $user_id){ //rutas usuario
+                    $id=true;
+                }
                 $nombre=stristr($item->name, $search); //match nombre
                 if($nombre){
-                    return $item;
+                    $nom=true;
                 }
                 $descripcion=stristr($item->description, $search); //match descripcion
                 if($descripcion){
-                    return $item;
+                    $des=true;
                 }
                 $tipor=stristr($item->tiporuta[0]->name, $search); //match tiporuta
                 if($tipor){
-                    return $item;
+                    $tr=true;
+                }
+                if($item->is_public==true){ //rutas publicas
+                    $public=true;
+                }
+                if ($public || $id) {
+                    if ($nom || $des || $tr) {
+                       return $item;
+                    }
                 }
                 if ($search=='') {
-                    return $item;
+                    if ($public || $id) {
+                       return $item;
+                    }
                 }
-                
-            });
+            })->paginate(10);
         return view('user.routes',compact('routes'));
     }
 
@@ -73,6 +88,7 @@ class RouteController extends Controller
         $routes->user_id = new ObjectID(Auth::user()->id);
         $routes->route_type_id = new ObjectID($request->input('slc_tipo'));
         $routes->name = $request->input('nombre');
+        $routes->is_public=false;
         $routes->description = $request->input('descripcion');
         $routes->coordinates = json_decode($request->get('waypoints'));         
         $routes->save();

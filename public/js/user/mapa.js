@@ -14,7 +14,7 @@ if ($('#mapid').length) {
       {
         attribution: info['attribution'], 
         id: 'mapbox.streets', 
-        maxZoom: 18,
+        maxZoom: 18, 
         accessToken: info['access_token'] 
       }),
       CallesSatelite  = L.tileLayer('https://api.tiles.mapbox.com/v4/mapbox.streets-satellite/{z}/{x}/{y}.png?access_token='+info['access_token'], 
