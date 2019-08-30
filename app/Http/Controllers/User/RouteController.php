@@ -23,7 +23,7 @@ class RouteController extends Controller
     {
         $search = $request->input('search');
         
-        $routes=Route::all();/*raw((function($collection) {
+        $routes=Route::raw((function($collection) {
               return $collection->aggregate([
                 [
                   '$lookup' => [
@@ -66,7 +66,7 @@ class RouteController extends Controller
                        return $item;
                     }
                 }
-            })->paginate(10);*/
+            })->paginate(10);
         return view('user.routes',compact('routes'));
     }
 

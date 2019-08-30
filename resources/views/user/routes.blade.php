@@ -63,7 +63,7 @@
                     </tr>
                   </tbody>
                 </table>
-                
+                {{ $routes->links() }}
             </div>
         </div>
     </div>
