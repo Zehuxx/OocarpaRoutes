@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 
@@ -17,7 +16,9 @@ class Route extends Eloquent
     protected $fillable = [
         'user_id','route_type_id','is_public', 'name','description','coordinates'
     ];
- 
+
+    
+  
     public function User()
     {
         return $this->belongsTo(\App\Models\User::class,'user_id','_id');
@@ -27,4 +28,7 @@ class Route extends Eloquent
     {
         return $this->belongsTo(\App\Models\RouteType::class,'route_type_id','_id');
     }
+
+
+      
 }

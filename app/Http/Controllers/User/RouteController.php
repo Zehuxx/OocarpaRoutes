@@ -11,14 +11,47 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\RouteStoreRequest;
 use App\Http\Requests\RouteUpdateRequest;
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 use App\Http\Controllers\Controller;
 
 class RouteController extends Controller
-{ 
+{  
 
-    public function index()
+    public function index(Request $request)
     {
-        $routes=Route::where('deleted_at', 'exists', false)->take(15)->get();
+        $search = $request->input('search');
+        $user_id= new ObjectID(Auth::user()->id);
+        $routes=Route::raw((function($collection) {
+              return $collection->aggregate([
+                [
+                  '$lookup' => [
+                    'from' => 'route_types',
+                    'localField' => 'route_type_id',
+                    'foreignField'=> '_id',
+                    'as' => 'tiporuta'
+                  ]
+                ]
+              ]);
+         }))->where('deleted_at', 'exists', false)
+            ->whereIn('user_id',$user_id)
+            ->filter(function ($item) use ($search) {
+                $nombre=stristr($item->name, $search); //match nombre
+                if($nombre){
+                    return $item;
+                }
+                $descripcion=stristr($item->description, $search); //match descripcion
+                if($descripcion){
+                    return $item;
+                }
+                $tipor=stristr($item->tiporuta[0]->name, $search); //match tiporuta
+                if($tipor){
+                    return $item;
+                }
+                if ($search=='') {
+                    return $item;
+                }
+                
+            });
         return view('user.routes',compact('routes'));
     }
 

@@ -15,7 +15,7 @@
 
 
 @section('cards') 
-
+ 
 <div class="row">
     <div class="col-xs-12 col-lg-12 col-sm-12 col-md-12">
         <table style="margin-bottom: 10px">

@@ -95,6 +95,21 @@ class RegisterController extends Controller
         ];
 
         $rules_company= [
+            'name'=>'required',
+            'last_name'=>'required',
+            'email'=>['required',
+                      'email',
+                      function($attribute, $value, $fail) {
+                        if($attribute == 'email'){
+                            $user = User::where($attribute,$value)->where('deleted_at', 'exists', false)->first();
+                            if($user !== null)
+                                return $fail('Este correo ya esta en uso.');
+                        }
+
+                },
+            ],
+            'slc_cuenta'=>'required|integer',
+            'password' => 'required|same:password_confirmation|min:8',
             'company_name'=>'required',
             'phone'=> 'required|regex:/^([0-9]){8}$/',
             'descripcion'=> 'required|max:10',
@@ -120,7 +135,6 @@ class RegisterController extends Controller
         ];
 
         if ($request->slc_cuenta==2) {
-            $this->validate($request, $rules_user, $messages);
             $this->validate($request, $rules_company, $messages);
         }else{
             $this->validate($request, $rules_user, $messages);
