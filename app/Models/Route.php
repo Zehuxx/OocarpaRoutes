@@ -10,7 +10,7 @@ class Route extends Eloquent
 	use SoftDeletes;
 
     protected $connection = 'mongodb';
-    protected $collection = 'routes';
+    protected $collection = 'routes'; 
     protected $dates = ['deleted_at'];
 
     protected $fillable = [

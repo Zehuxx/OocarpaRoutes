@@ -147,9 +147,11 @@
     <!-- permite crear una ruta, solo se usa cuando se presiona el boton add en la vista rutas-->
     @if(isset($_GET["nr"]))
         <script type="text/javascript">
-            mymap.on('click', onMapClick);
+           
             @if($errors->count() > 0)
                 RedibujarRuta({{old("waypoints")}});
+            @else
+                 mymap.on('click', onMapClick);
             @endif
         </script>
        

@@ -38,7 +38,7 @@ Route::get('/admin/routeTypes/add', 'Admin\RouteTypeController@create')->name('a
 Route::post('/admin/routeTypes/create', 'Admin\RouteTypeController@store')->name('create route Types');
 Route::Delete('/admin/routeTypes/delete/{id}', 'Admin\RouteTypeController@destroy')->name('destroy route Types');
 });
-
+ 
 Route::group(['middleware'=>['check.user.role']], function(){
 //RUTAS USER
 Route::get('/user/rutas', 'User\RouteController@index')->name('user routes');

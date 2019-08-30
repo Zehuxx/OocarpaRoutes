@@ -28,7 +28,7 @@
                         <input type="text" id="search" value="{{ isset($search) ? $search : ''}}" autofocus="" name="search" placeholder="Filtrar..." style="width: auto;">
                         <input type="submit" style="display: none" />
                     </form>
-                </td>
+                </td> 
             </tr>
         </table>
         <div class="card">
@@ -63,7 +63,7 @@
                     </tr>
                   </tbody>
                 </table>
-                {{ $routes->links() }}
+                
             </div>
         </div>
     </div>
