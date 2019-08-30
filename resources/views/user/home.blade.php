@@ -8,7 +8,7 @@
 @endsection
 
 
-@section('div_principal') 
+@section('div_principal')  
 <div style="background-image: url('{{ asset('img/banners/b2.jpg') }}'); height: 80px; margin-top: -24px">
 </div> 
 <div id="mapid">
@@ -69,7 +69,7 @@
                         </div>
                     @endif
                 </div>
-                <input type="hidden" name="waypoints" value="{{old("waypointsedit")}}" id="waypoints">
+                <input type="hidden" name="waypoints" value="{{old("waypoints")}}" id="waypoints">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -148,7 +148,11 @@
     @if(isset($_GET["nr"]))
         <script type="text/javascript">
             mymap.on('click', onMapClick);
+            @if($errors->count() > 0)
+                RedibujarRuta({{old("waypoints")}});
+            @endif
         </script>
+       
     @endif
     
     <script type="text/javascript">
@@ -171,7 +175,7 @@
                 $("#route-save").show();
                 $("#guardar").modal("show");
             @endif
-        @endif
+        @endif 
 
         //verifica si se quiere dibujar una ruta para luego ser editada
         @if(isset($routeedit))

@@ -14,7 +14,7 @@ if ($('#mapid').length) {
       {
         attribution: info['attribution'], 
         id: 'mapbox.streets', 
-        maxZoom: 18, 
+        maxZoom: 18,
         accessToken: info['access_token'] 
       }),
       CallesSatelite  = L.tileLayer('https://api.tiles.mapbox.com/v4/mapbox.streets-satellite/{z}/{x}/{y}.png?access_token='+info['access_token'], 
@@ -174,6 +174,34 @@ if ($('#mapid').length) {
   	  return null;
   	} 
 
+    //usada para redibujar la ruta que sera guardada,
+    //esto en caso de que la ventana modal no cumpla con los capos especificados
+    function RedibujarRuta(points) {
+        var icon = new L.NumberedDivIcon({ number: 1, color: 'red' });
+        //points=JSON.parse(points);
+        if (points) {
+            route = L.Routing.control({
+              waypoints: points,
+              createMarker: function(i, wp, nWps) {
+                  var icon = new L.NumberedDivIcon({ number: i+1, color: 'red' });
+                    if (i === 0 || i === nWps - 1) {
+                        return L.marker(wp.latLng, { icon: icon, draggable: true });
+                    }else{
+                        return L.marker(wp.latLng, { icon: icon, draggable: true });
+                    }
+                },
+              fitSelectedRoutes: 'smart',
+              addWaypoints:true,
+              lineOptions: {
+                  styles: [{ color: 'red', weight: 6 }]
+              }
+              
+          }).addTo(mymap);
+            $("#route-save").show();
+            $("#guardar").modal("show");
+        }
+      
+    }
  
 
     function DibujarRuta(points) {
