@@ -22,8 +22,9 @@ class RouteController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
-        
-        $routes=Route::raw((function($collection) {
+            try
+        {
+            $routes=Route::raw((function($collection) {
               return $collection->aggregate([
                 [
                   '$lookup' => [
@@ -67,7 +68,14 @@ class RouteController extends Controller
                     }
                 }
             });
-        return dd($routes);//view('user.routes',compact('routes'));
+        }
+        catch(Exception $e)
+        {
+            $errorMessage = 'Caught exception: ' . $e->getMessage();
+            return $errorMessage;
+        }
+        
+        //return dd($routes);//view('user.routes',compact('routes'));
     }
 
     public function create()
