@@ -22,9 +22,8 @@ class RouteController extends Controller
     public function index(Request $request)
     {
         $search = $request->input('search');
-            try
-        {
-            $routes=Route::raw((function($collection) {
+        
+        $routes=Route::raw((function($collection) {
               return $collection->aggregate([
                 [
                   '$lookup' => [
@@ -42,16 +41,13 @@ class RouteController extends Controller
                 if($item->user_id== $user_id){ //rutas usuario
                     $id=true;
                 }
-                $nombre=stristr($item->name, $search); //match nombre
-                if($nombre){
+                if(!empty($search) && (stristr($item->name, $search) !== false)){//match nombre
                     $nom=true;
                 }
-                $descripcion=stristr($item->description, $search); //match descripcion
-                if($descripcion){
+                if(!empty($search) && (stristr($item->descripcion, $search) !== false)){//match descripcion
                     $des=true;
                 }
-                $tipor=stristr($item->tiporuta[0]->name, $search); //match tiporuta
-                if($tipor){
+                if(!empty($search) && (stristr($item->tiporuta[0]->name, $search) !== false)){//match tiporuta
                     $tr=true;
                 }
                 if($item->is_public==true){ //rutas publicas
@@ -67,15 +63,8 @@ class RouteController extends Controller
                        return $item;
                     }
                 }
-            });
-        }
-        catch(Exception $e)
-        {
-            $errorMessage = 'Caught exception: ' . $e->getMessage();
-            return $errorMessage;
-        }
-        
-        //return dd($routes);//view('user.routes',compact('routes'));
+            })->paginate(10);
+        return view('user.routes',compact('routes'));
     }
 
     public function create()
