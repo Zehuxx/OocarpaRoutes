@@ -38,26 +38,27 @@ class RouteController extends Controller
             ->filter(function ($item) use ($search){
                 $user_id= new ObjectID(Auth::user()->id);
                 $id=false;$nom=false;$des=false;$tr=false;$public=false;
+
                 if($item->user_id== $user_id){ //rutas usuario
                     $id=true;
                 }
-                if(!empty($search) && (stristr($item->name, $search) !== false)){//match nombre
-                    $nom=true;
-                }
-                if(!empty($search) && (stristr($item->descripcion, $search) !== false)){//match descripcion
-                    $des=true;
-                }
-                if(!empty($search) && (stristr($item->tiporuta[0]->name, $search) !== false)){//match tiporuta
-                    $tr=true;
-                }
+
                 if($item->is_public==true){ //rutas publicas
                     $public=true;
                 }
                 if ($public || $id) {
-                    if ($nom || $des || $tr) {
+                    if(!empty($search) && (strpos(strtolower($item->name), strtolower($search)) !== false)){//match nombre
+                        return $item;
+                    }
+                    if(!empty($search) && (strpos(strtolower($item->description), strtolower($search)) !== false)){//match descripcion
+                        return $item;
+                    }
+                    if(!empty($search) && (strpos(strtolower($item->tiporuta[0]->name), strtolower($search)) !== false)){//match tiporuta
                        return $item;
                     }
+                    
                 }
+
                 if ($search=='') {
                     if ($public || $id) {
                        return $item;
