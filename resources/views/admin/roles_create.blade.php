@@ -3,10 +3,10 @@
 @section('route')
     <li class="breadcrumb-item">Admin</li>
     <li class="breadcrumb-item">
-        <a href="{{route('route Types') }}">Tipos ruta</a>
+        <a href="{{route('roles') }}">Roles</a>
     </li>
     <li class="breadcrumb-item active">
-        <a href="{{route('add route Types') }}">Crear tipo ruta</a>
+        <a href="{{route('add role') }}">Crear rol</a>
     </li>
 @endsection
 
@@ -15,14 +15,14 @@
     <div class="col-md-6 align-self-center mr-auto ml-auto">
         <div class="card">
             <div class="card-header">
-                <strong>Crear Tipo de Ruta</strong>
+                <strong>Crear Rol</strong>
             </div>
             <div class="card-body">
-                <form id="form-plan" name="form-plan"  method="POST" role="form" enctype="multipart/form-data"  action="{{ route('create route Types') }}">
+                <form id="form-plan" name="form-plan"  method="POST" role="form" enctype="multipart/form-data"  action="{{ route('create role') }}">
                     @csrf
 
                     <div class="form-group">
-                            <label for="name">Nombre Ruta</label>
+                            <label for="name">Nombre Rol</label>
                             <input class="form-control" id="name" type="text" name="name" placeholder="nombre">
 
                         @if($errors->has('name'))

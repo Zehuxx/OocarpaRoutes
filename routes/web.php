@@ -11,7 +11,7 @@
 |
 */
 
- 
+
 Auth::routes();
 Route::get('/', 'Landing\BannerController@show')->name('landing');
 Route::get('/home', 'HomeController@index')->name('home');//home general
@@ -20,9 +20,9 @@ Route::post('/login', 'Auth\LoginController@login')->name("login_p");
 Route::get('/logout', 'Auth\LoginController@logout')->name("logout");
 Route::view('/registro', 'auth.register')->name('registro');
 
- 
+
 Route::group(['middleware'=>['check.admin.role']], function(){
-//RUTAS ADMIN
+//------------------------ ADMIN -----------------------------------
 //Route::view('/admin/plans', 'admin/plans')->name('admin plans');
 Route::get('/admin/users', 'Admin\UserController@index')->name('users');
 
@@ -32,13 +32,32 @@ Route::get('/admin/plans/add', 'Admin\PlanController@create')->name('add plan');
 Route::post('/admin/plans/create', 'Admin\PlanController@store')->name('create plan');
 Route::delete('admin/plans/delete/{id}', 'Admin\PlanController@destroy')->name('destroy plan');
 
-//Rutas CRUD de RouteTypes
+//Rutas CRUD de routeTypes
 Route::get('/admin/routeTypes', 'Admin\RouteTypeController@index')->name('route Types');
 Route::get('/admin/routeTypes/add', 'Admin\RouteTypeController@create')->name('add route Types');
 Route::post('/admin/routeTypes/create', 'Admin\RouteTypeController@store')->name('create route Types');
 Route::Delete('/admin/routeTypes/delete/{id}', 'Admin\RouteTypeController@destroy')->name('destroy route Types');
+
+
+//Rutas CRUD de roles
+Route::get('/admin/roles', 'Admin\RoleController@index')->name('roles');
+Route::get('/admin/roles/add', 'Admin\RoleController@create')->name('add role');
+Route::post('/admin/roles/create', 'Admin\RoleController@store')->name('create role');
+Route::Delete('/admin/roles/delete/{id}', 'Admin\RoleController@destroy')->name('destroy role');
+
+
+// Rutas CRUD de empresas
+Route::get('/admin/companies', 'Admin\CompanyController@index')->name('companies');
+Route::Delete('/admin/company/delete/{id}', 'Admin\CompanyController@destroy')->name('destroy company');
+
+
+//Rutas CRUD de rutas
+Route::get('/admin/routes', 'Admin\RouteController@index')->name('routes');
+Route::Delete('/admin/routes/delete/{id}', 'Admin\RouteController@destroy')->name('destroy route');
+
+// --------------------------- FIN ADMIN ----------------------------------------
 });
- 
+
 Route::group(['middleware'=>['check.user.role']], function(){
 //RUTAS USER
 Route::get('/user/rutas', 'User\RouteController@index')->name('user routes');
