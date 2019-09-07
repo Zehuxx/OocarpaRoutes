@@ -5,14 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\RouteType;
+use App\Models\Company;
+use App\Models\User;
+use MongoDB\BSON\ObjectID;
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
+use App\Http\Controllers\Controller;
+use App\Support\Collection;
 
 class HomeController extends Controller
 {
     /**
      * Create a new controller instance.
-     * 
+     *
      * @return void
-    
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -32,7 +38,38 @@ class HomeController extends Controller
                 $routesType=RouteType::all();
                 return view('user.home')->with('routesType', $routesType);
             }elseif(Auth::user()->role_id == "5d607fb2b2d1b72ef0ec1368"){
-                return view('company.home');
+                //$company = Company::all()->where('user_id', Auth::user()->id);
+                //$company = array_pop($company['items']);
+                //$user = Company::find($company->id)->User;
+
+               $companies=Company::raw((function($collection) {
+                return $collection->aggregate([
+                    [
+                        '$lookup' => [
+                        'from' => 'users',
+                        'localField' => 'user_id',
+                        'foreignField'=> '_id',
+                        'as' => 'usuario'
+                        ]
+                    ]
+                    ]);
+                }));
+
+                /*foreach ($companies as $e) {
+                    //if($company->usuario->_id->oid == Auth::user()->id)
+                    return($e);
+                }*/
+                //unset($e);
+                for ($i=0; $i < count($companies) ; $i++) {
+                    if(count($companies[$i]->usuario)>0){
+                        if($companies[$i]->usuario[0]->_id == Auth::user()->id){
+                            return view('company.home',["company"=>$companies[$i]]);
+                        }
+                    }
+                }
+               //return($companies);
+               //return view('company.home',;
+
             }
         }else{
             return redirect()->route("login");

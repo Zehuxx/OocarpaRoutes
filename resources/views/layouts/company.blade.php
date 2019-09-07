@@ -24,10 +24,10 @@
         <a class="nav-link" href="{{route('company location')}}">
             <i class="nav-icon icon-location-pin"></i> Ubicación</a>
     </li>
-    {{--<li class="nav-item">
+    <li class="nav-item">
         <a class="nav-link" href="{{route('company plan')}}">
             <i class="nav-icon icon-wallet"></i> Plan</a>
-    </li>--}}
+    </li>
     <li class="nav-item">
         <a class="nav-link" href="{{route('company banner')}}">
             <i class="nav-icon icon-wallet"></i> Banner</a>

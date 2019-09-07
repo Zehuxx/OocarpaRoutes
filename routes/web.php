@@ -73,7 +73,8 @@ Route::view('/user/opciones', 'user/options')->name('user options');
 });
 Route::group(['middleware'=>['check.company.role']], function(){
 //RUTAS COMPANY
-Route::view('/company/plan', 'company/planes')->name('company plan');
+//Route::get('/company/plan', 'Company\PlanController@index')->name('company plan');
+Route::get('/company/plan', 'Company\PlanController@index')->name('company plan');
 Route::view('/company/location', 'company/location')->name('company location');
 Route::get('/company/banner', 'Company\BannerController@index')->name('company banner');
 Route::get('/company/banner/add', 'Company\BannerController@create')->name('company banner add');
