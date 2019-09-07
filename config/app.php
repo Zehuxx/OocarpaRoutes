@@ -178,7 +178,7 @@ return [
         Jenssegers\Mongodb\MongodbServiceProvider::class,
         Jenssegers\Mongodb\Validation\ValidationServiceProvider::class,
         Jenssegers\Mongodb\Auth\PasswordResetServiceProvider::class,
-        'Intervention\Image\ImageServiceProvider'
+        'Intervention\Image\ImageServiceProvider' 
 
 
     ],
