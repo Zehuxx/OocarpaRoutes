@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use App\Models\Company;
+use App\Models\Company_Plan;
 use MongoDB\BSON\ObjectID; 
 use Illuminate\Support\Facades\Auth; 
 use App\Http\Controllers\Controller;
@@ -112,7 +113,7 @@ class RegisterController extends Controller
             'password' => 'required|same:password_confirmation|min:8',
             'company_name'=>'required',
             'phone'=> 'required|regex:/^([0-9]){8}$/',
-            'descripcion'=> 'required|max:10',
+            'descripcion'=> 'required|max:300',
             'address'=> 'required|max:100',
         ];
 
@@ -125,9 +126,9 @@ class RegisterController extends Controller
             'password.same' => 'Las contraseñas no coinciden',
             'password.min' => 'La contraseña debe tener 8 caracteres minimo.',
             'phone.required'=>"El campo 'Telefono' es obligatorio",
-            'phone.regex'=>'Valores valido de la forma 98765432',
+            'phone.regex'=>'Valores valido de la forma NNNNNNNN',
             'descripcion.required'=>"El campo 'Descripción' es obligatorio.",
-            'descripcion.max'=>'Solo 150 caracteres permitidos.',
+            'descripcion.max'=>'Solo 300 caracteres permitidos.',
             'address.required'=>"El campo 'Dirección' es obligatorio.",
             'address'=>'Solo 100 caracteres permitidos.',
             'slc_cuenta.required'=>"El campo 'Tipo usuario' es requerido.",
@@ -163,6 +164,12 @@ class RegisterController extends Controller
                 $company->description = $request->descripcion;
                 $company->address = $request->address;
                 $company->save();
+                $companyplan=new Company_Plan();
+                $companyplan->company_id=new ObjectID($company->id);
+                $companyplan->plan_id=new ObjectID('5d64b7df3e3d5527794f4b9c');
+                $companyplan->start_date= now()->format('Y-m-d');
+                $companyplan->end_date=null;
+                $companyplan->save();
                 Auth::login($user); //esta linea siempre debe ir 1 antes del return
                 return redirect()->route('home');
              }else{
@@ -170,3 +177,4 @@ class RegisterController extends Controller
              }
     }
 }
+ 

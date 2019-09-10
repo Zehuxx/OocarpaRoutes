@@ -15,7 +15,7 @@ class Company_Plan extends Eloquent
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'company_id', 'plan_id','start_date','final_date'
+        'company_id', 'plan_id','start_date','end_date'
     ];
 
     public function Company()
