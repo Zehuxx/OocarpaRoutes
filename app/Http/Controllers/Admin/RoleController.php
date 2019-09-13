@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RoleStoreRequest;
 
 class RoleController extends Controller
 {
@@ -18,7 +19,7 @@ class RoleController extends Controller
 
     public function create()
     {
-       //
+       return view('admin.roles_create');
     }
 
     public function show($id)
@@ -26,9 +27,14 @@ class RoleController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(RoleStoreRequest $request)
     {
-        //
+        $role = new Role;
+        $role->name = $request->input("name");
+
+        //return ($role);
+        $role->save();
+        return redirect()->route('roles');
     }
 
     public function edit($id)
@@ -43,6 +49,8 @@ class RoleController extends Controller
 
     public function destroy($id)
     {
-        //
+        $role = Role::find($id);
+        $role-> delete();
+        return redirect()->route('roles');
     }
 }

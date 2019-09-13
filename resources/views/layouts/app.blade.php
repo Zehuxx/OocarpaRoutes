@@ -56,7 +56,8 @@
             <a class="navbar-brand" href="{{route('landing')}}">
                 <!--<img class="navbar-brand-full" src="{{asset('img/brand/logo.svg')}}" width="89" height="25" alt="CoreUI Logo">
                 <img class="navbar-brand-minimized" src="{{asset('img/brand/sygnet.svg')}}" width="30" height="30" alt="CoreUI Logo">-->
-                <span style="font-family: Pacifico, cursive; font-size:1.5rem;">Oocarpa<span style="font-family: Pacifico, cursive; font-size:1.5rem; color:#7f4600">Routes<span></span>
+                <span class="navbar-brand-full" style="font-family: Pacifico, cursive; font-size:1.5rem;">Oocarpa<span  style="font-family: Pacifico, cursive; font-size:1.5rem; color:#7f4600">Routes</span></span>
+                <span class="navbar-brand-minimized" class="navbar-brand-minimized" style="font-family: Pacifico, cursive; font-size:1.5rem;">O<span  style="font-family: Pacifico, cursive; font-size:1.5rem; color:#7f4600">R</span></span>
             </a>
 
             @yield('navbar')

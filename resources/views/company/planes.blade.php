@@ -14,12 +14,12 @@
 @section('route')
     <li class="breadcrumb-item">Company</li>
     <li class="breadcrumb-item active">
-        <a href="#">Plan</a>
+        <a href="{{route('company plan')}}">Plan</a>
     </li>
 @endsection
 
 @section('cards')
-    <div class="card card-accent-primary col-lg-8 margen">
+    <div class="card card-accent-success col-lg-8 margen">
         <div class="card-header">
             <h3 class="card-title mb-0">Planes</h3>
         </div>
@@ -53,34 +53,39 @@
 
         <!-----------------------Cards inferiores Planes--------------------------->
         <div class="row">
+
             <!--------------------------------PLAN 1------------------------------------->
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            @foreach ($planes as $plan)
+
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                  <div class="card">
                     <!--<img src="..." class="card-img-top" alt="...">-->
                     <div class="card-body">
-                        <strong class="card-title">Plan Base</strong>
+                    <strong class="card-title">{{$plan->name}}</strong>
                         <div class="row">
                             <span class="col-lg-4 col-md-6 col-xs-12 arriba" >Duración:</span>
-                            <span class="col-lg-8 col-md-6 col-xs-12 arriba" > 1 Mes</span>
+                        <span class="col-lg-8 col-md-6 col-xs-12 arriba" > {{$plan->duration}}</span>
                         </div>
                         <div class="row">
                             <span class="col-lg-4 col-md-6 col-xs-12 arriba" >Costo:</span>
-                            <span class="col-lg-8 col-md-6 col-xs-12 arriba" >HNL XX.XX</span>
+                        <span class="col-lg-8 col-md-6 col-xs-12 arriba" >{{$plan->price}}</span>
                         </div>
                         <div class="row">
-                            <span class="col-lg-12 col-md-6 col-xs-12 arriba" >Descripción:</span>
-                            <span class="col-lg-12 col-md-12 col-xs-12" >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum veniam modi odit non commodi rerum, quas ea accusamus ullam hic sed quaerat assumenda voluptas excepturi voluptates doloremque fugiat incidunt eos.</span>
+                            <span class="col-lg-12 col-md-6 col-xs-12 arriba">Descripción:</span>
+                        <span class="col-lg-12 col-md-12 col-xs-12" >{{$plan->description}}</span>
                         </div>
                         <div class="row">
-                            <a href="#" class="btn btn-primary ml-auto">Obtener</a>
+                            <a href="#" class="btn btn-success ml-auto">Obtener</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--------------------FIN PLAN 1------------------->
+
+            @endforeach
+            <!--------------------FIN PLAN ------------------->
 
             <!--------------------------------PLAN 2------------------------------------->
-            <div class="col-md-4 col-sm-12 col-xs-12">
+            <!--<div class="col-md-4 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="card-body">
                         <strong class="card-title">Plan Silver</strong>
@@ -101,12 +106,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <!-------------------------FIN PLAN 2------------------------>
 
 
             <!--------------------------------PLAN 3------------------------------------->
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <!--<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="card-body">
                         <strong class="card-title">Plan Gold</strong>
@@ -127,7 +132,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <!-------------------------------FIN PLAN 3----------------------------------->
 
         </div>

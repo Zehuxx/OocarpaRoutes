@@ -6,7 +6,7 @@
         <a href="{{route('plans')}}">Planes</a>
     </li>
     <li class="breadcrumb-item active">
-            <a href="{{route('create plan')}}">Planes</a>
+            <a href="{{route('add plan')}}">Planes</a>
     </li>
 @endsection
 

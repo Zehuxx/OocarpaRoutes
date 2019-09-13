@@ -6,7 +6,7 @@
         <a href="{{route('route Types') }}">Tipos ruta</a>
     </li>
     <li class="breadcrumb-item active">
-        <a href="{{route('create route Types') }}">Crear tipo ruta</a>
+        <a href="{{route('add route Types') }}">Crear tipo ruta</a>
     </li>
 @endsection
 
@@ -22,7 +22,7 @@
                     @csrf
 
                     <div class="form-group">
-                            <label for="name">Nombre Plan</label>
+                            <label for="name">Nombre Ruta</label>
                             <input class="form-control" id="name" type="text" name="name" placeholder="nombre">
 
                         @if($errors->has('name'))
