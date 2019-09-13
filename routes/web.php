@@ -11,7 +11,7 @@
 |
 */
 
- 
+
 Auth::routes();
 Route::get('/', 'Landing\BannerController@show')->name('landing');
 Route::get('/home', 'HomeController@index')->name('home');//home general
@@ -20,7 +20,7 @@ Route::post('/login', 'Auth\LoginController@login')->name("login_p");
 Route::get('/logout', 'Auth\LoginController@logout')->name("logout");
 Route::view('/registro', 'auth.register')->name('registro');
 
- 
+
 Route::group(['middleware'=>['check.admin.role']], function(){
 //RUTAS ADMIN
 //Route::view('/admin/plans', 'admin/plans')->name('admin plans');
@@ -38,7 +38,7 @@ Route::get('/admin/routeTypes/add', 'Admin\RouteTypeController@create')->name('a
 Route::post('/admin/routeTypes/create', 'Admin\RouteTypeController@store')->name('create route Types');
 Route::Delete('/admin/routeTypes/delete/{id}', 'Admin\RouteTypeController@destroy')->name('destroy route Types');
 });
- 
+
 Route::group(['middleware'=>['check.user.role']], function(){
 //RUTAS USER
 Route::get('/user/rutas', 'User\RouteController@index')->name('user routes');
@@ -59,6 +59,7 @@ Route::view('/company/location', 'company/location')->name('company location');
 Route::get('/company/banner', 'Company\BannerController@index')->name('company banner');
 Route::get('/company/banner/add', 'Company\BannerController@create')->name('company banner add');
 Route::post('/company/banner/save', 'Company\BannerController@store')->name('company banner store');
+Route::delete('/company/banner/delete/{id}', 'Company\BannerController@destroy')->name('company banner delete');
 
 });
 
