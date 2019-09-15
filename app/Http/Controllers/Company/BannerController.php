@@ -49,6 +49,6 @@ class BannerController extends Controller
         $banner = Banner::find($id);
         $banner->delete();
 
-        return "Borrado correctamente";
+        return redirect()->route('company banner');
     }
 }
