@@ -19,21 +19,10 @@ class RouteController extends Controller
     public function index(Request $request)
     {
 
-        $routes=Route::raw((function($collection) {
-            return $collection->aggregate([
-              [
-                '$lookup' => [
-                  'from' => 'route_types',
-                  'localField' => 'route_type_id',
-                  'foreignField'=> '_id',
-                  'as' => 'tiporuta'
-                ]
-              ]
-            ]);
-       }))->where('deleted_at', 'exists', false);
+        $routes=Route::paginate(10);
 
-        //return view('admin.routes',compact('routes'));
-        return($routes);
+        return view('admin.routes',compact('routes'));
+        //return($routes);
 
     }
 

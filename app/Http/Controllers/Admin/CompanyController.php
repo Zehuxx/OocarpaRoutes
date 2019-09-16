@@ -18,10 +18,6 @@ class CompanyController extends Controller
 
     public function index()
     {
-        //$companies=Company::all();
-        //return view('admin.companies',compact('companies'));
-        //return($companies);
-
         $companies=Company::raw((function($collection) {
             return $collection->aggregate([
               [
@@ -33,12 +29,9 @@ class CompanyController extends Controller
                 ]
               ]
             ]);
-       }));
+       }))->paginate(10);
 
-       //5d64b60a3e3d5527794f4b92
-
-        return view('admin.companies',compact('companies'));
-       //return($companies);
+       return view('admin.companies',compact('companies'));
     }
 
     public function create()
