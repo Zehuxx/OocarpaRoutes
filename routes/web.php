@@ -79,6 +79,7 @@ Route::view('/company/location', 'company/location')->name('company location');
 Route::get('/company/banner', 'Company\BannerController@index')->name('company banner');
 Route::get('/company/banner/add', 'Company\BannerController@create')->name('company banner add');
 Route::post('/company/banner/save', 'Company\BannerController@store')->name('company banner store');
+Route::delete('/company/banner/delete/{id}', 'Company\BannerController@destroy')->name('company banner delete');
 
 });
 

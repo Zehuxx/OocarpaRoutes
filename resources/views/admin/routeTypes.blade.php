@@ -9,57 +9,64 @@
 
 
 @section('cards')
-<div class="row">
-    <div class="col-xs-12 col-lg-12 col-sm-12 col-md-12">
-        <table style="margin-bottom: 10px">
-            <tr>
-                <td style="text-align: left;">
-                    <a class="btn btn-success btn-add" href="{{route('add route Types') }}"><i class="fa fa-plus"></i></a>
-                </td>
-                <td >
-                    <form method="get">
-                        <input type="text" id="search" value="{{ isset($search) ? $search : ''}}" autofocus="" name="search" placeholder="Filtrar..." style="width: auto;">
-                        <input type="submit" style="display: none" />
-                    </form>
-                </td>
-            </tr>
-        </table>
+<table style="margin-bottom: 10px">
+    <tr>
+        <td style="text-align: left;">
+            <a class="btn btn-primary btn-add" href="{{route('add route Types') }}"></a>
+        </td>
+        <td >
+            <form method="get">
+                <input type="text" id="search" value="{{ isset($search) ? $search : ''}}" autofocus="" name="search" placeholder="Filtrar..." style="width: auto;">
+                <input type="submit" style="display: none" />
+            </form>
+        </td>
+    </tr>
+</table>
 
 
-        <div class="card">
-            <div class="card-header">
-                <i class="fa fa-table"></i>Tipos de Ruta
-            </div>
-            <div class="card-body" style="overflow-x: auto;">
-                <table class="table  table-striped table-hover">
-                <tbody>
-                    <tr>
-                        <th></th>
-                        <th>Tipo Ruta</th>
-                        <th>Acciones</th>
-                    </tr>
-                    @foreach($routeTypes as $routeType)
-                    <tr>
-                        <td>{{$loop->iteration}}</<td>
-                        <td>{{$routeType->name}}</td>
-                        <td>
-                        <!--<a class="btn-see btn btn-primary" href=""><i class="fa fa-eye"></i></a>-->
-                        <a class="btn-edit btn btn-success" href=""><i class="fa fa-pencil"></i></a>
-
-                        <form action="{{route('destroy route Types', $routeType->id)}}" method="post">
+<div class="card">
+    <div class="card-header">
+        <i class="fa fa-table"></i>Tipos de Ruta
+    </div>
+    <div class="card-body" style="overflow-x: auto;">
+        <table class="table table-responsive-sm table-sm table-condensed table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Tipo Ruta</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($routeTypes as $routeType)
+                <tr>
+                    <td>{{$loop->iteration}}</<td>
+                    <td>{{$routeType->name}}</td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            {{-- <a class="btn btn-sm btn-outline-info mr-2" href="#">
+                                <i class="fa fa-eye"></i>
+                            </a> --}}
+                            <a class="btn btn-sm btn-outline-success mr-2" href="#">
+                                <i class="fa fa-pencil-square-o"></i>
+                            </a>
+                            <form action="{{route('destroy route Types', $routeType->id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
-                            <!--<input name="_method" type="hidden" value="DELETE">-->
-                            <button type="submit" class="btn-delete btn btn-danger"><i class="fa fa-trash"></i></button>
-                        </form>
-                        </td>
-                    </tr>
-                    @endforeach
-                    </tr>
-                </tbody>
-                </table>
-            </div>
-        </div>
+                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                    <i class="fa fa-trash-o"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
     </div>
 </div>
+@endsection
+
+@section('css_js_mapa')
+    <link href="{{ asset('css/table.css') }}" rel="stylesheet">
 @endsection

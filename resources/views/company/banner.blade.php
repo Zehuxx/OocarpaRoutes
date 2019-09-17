@@ -27,9 +27,11 @@
                         <i class="icon-settings"></i>
                     </button>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <form method="post" action="{{route('company banner delete', $banner->id)}}">
+							@csrf
+							@method('DELETE')
+							<button type="submit" class="btn btn-block btn-link" >Borrar</button>
+						</form>
                     </div>
                 </div>
             </div>

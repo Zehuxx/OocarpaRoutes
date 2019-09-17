@@ -11,7 +11,7 @@ use App\Http\Requests\BannerStoreRequest;
 use App\Http\Controllers\Controller;
 
 class BannerController extends Controller
-{ 
+{
     public function index()
     {
         $banners = Banner::all()->where('company_id', Auth::user()->id);
@@ -42,5 +42,13 @@ class BannerController extends Controller
         $banner = (Banner::all()->random(1)->first())->img;
 
         return view('landing', compact('banner'));
+    }
+
+    public function destroy($id)
+    {
+        $banner = Banner::find($id);
+        $banner->delete();
+
+        return redirect()->route('company banner');
     }
 }
