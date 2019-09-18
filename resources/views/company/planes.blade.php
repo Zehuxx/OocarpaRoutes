@@ -30,24 +30,24 @@
         </div>
 
         <div class="row arriba">
-            <strong class="col-lg-2 col-md-3 col-sm-3 col-xs-12">Titulo:</strong>
-            <span class="col-lg-10 col-md-9 col-sm-9 col-xs-12 card-text">Lorem ipsum</span>
+            <strong class="text-right col-lg-3 col-md-4 col-sm-4 col-xs-12">Titulo:</strong>
+            <span class="col-lg-9 col-md-8 col-sm-8 col-xs-12 card-text">{{$planBuyed->Plan->name}}</span>
         </div>
         <div class="row arriba">
-            <strong class="col-lg-2 col-md-3 col-sm-3 col-xs-12">Duración:</strong>
-            <span class="col-lg-10 col-md-9 col-sm-9 col-xs-12 card-text">Lorem ipsum dolor sit amet.</span>
+            <strong class="text-right col-lg-3 col-md-4 col-sm-4 col-xs-12">Duración:</strong>
+            <span class="col-lg-9 col-md-8 col-sm-8 col-xs-12 card-text">{{$planBuyed->Plan->duration}}</span>
         </div>
         <div class="row arriba">
-            <strong class="col-lg-2 col-md-3 col-sm-3 col-xs-12">Costo:</strong>
-            <span class="col-lg-10 col-md-9 col-sm-9 col-xs-12 card-text">HNL XX.XX</span>
+            <strong class="text-right col-lg-3 col-md-4 col-sm-4 col-xs-12">Costo:</strong>
+            <span class="col-lg-9 col-md-8 col-sm-8 col-xs-12 card-text">{{$planBuyed->Plan->price}}</span>
         </div>
         <div class="row arriba">
-            <strong class="col-lg-2 col-md-3 col-sm-3 col-xs-12">Fecha Inicio:</strong>
-            <span class="col-lg-10 col-md-9 col-sm-9 col-xs-12 card-text">XX/XX/XXXX</span>
+            <strong class="text-right col-lg-3 col-md-4 col-sm-4 col-xs-12">Fecha Inicio:</strong>
+            <span class="col-lg-9 col-md-8 col-sm-8 col-xs-12 card-text">{{$planBuyed->start_date}}</span>
         </div>
         <div class="row arriba">
-            <strong class="col-lg-2 col-md-3 col-sm-3 col-xs-12">Fecha Fin:</strong>
-            <span class="col-lg-10 col-md-9 col-sm-9 col-xs-12 card-text">XX/XX/XXXX</span>
+            <strong class="text-right col-lg-3 col-md-4 col-sm-4 col-xs-12">Fecha Fin:</strong>
+            <span class="col-lg-9 col-md-8 col-sm-8 col-xs-12 card-text">{{$planBuyed->end_date}}</span>
         </div>
         <hr>
 
@@ -75,7 +75,7 @@
                         <span class="col-lg-12 col-md-12 col-xs-12" >{{$plan->description}}</span>
                         </div>
                         <div class="row">
-                            <a href="#" class="btn btn-success ml-auto">Obtener</a>
+                            <a href="{{ route('company plan buy', $plan->id) }}" class="btn btn-success ml-auto">Obtener</a>
                         </div>
                     </div>
                 </div>
@@ -83,58 +83,6 @@
 
             @endforeach
             <!--------------------FIN PLAN ------------------->
-
-            <!--------------------------------PLAN 2------------------------------------->
-            <!--<div class="col-md-4 col-sm-12 col-xs-12">
-                <div class="card">
-                    <div class="card-body">
-                        <strong class="card-title">Plan Silver</strong>
-                        <div class="row">
-                            <span class="col-lg-4 col-md-6 col-xs-12 arriba" >Duración:</span>
-                            <span class="col-lg-8 col-md-6 col-xs-12 arriba" > 6 Meses</span>
-                        </div>
-                        <div class="row">
-                            <span class="col-lg-4 col-md-6 col-xs-12 arriba" >Costo:</span>
-                            <span class="col-lg-8 col-md-6 col-xs-12 arriba" >HNL XX.XX</span>
-                        </div>
-                        <div class="row">
-                            <span class="col-lg-12 col-md-6 col-xs-12 arriba" >Descripción:</span>
-                            <span class="col-lg-12 col-md-12 col-xs-12" >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum veniam modi odit non commodi rerum, quas ea accusamus ullam hic sed quaerat assumenda voluptas excepturi voluptates doloremque fugiat incidunt eos.</span>
-                        </div>
-                        <div class="row">
-                            <a href="#" class="btn btn-primary ml-auto">Obtener</a>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
-            <!-------------------------FIN PLAN 2------------------------>
-
-
-            <!--------------------------------PLAN 3------------------------------------->
-            <!--<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="card">
-                    <div class="card-body">
-                        <strong class="card-title">Plan Gold</strong>
-                        <div class="row">
-                            <span class="col-lg-4 col-md-6 col-xs-12 arriba" >Duración:</span>
-                            <span class="col-lg-8 col-md-6 col-xs-12 arriba" > 1 Año</span>
-                        </div>
-                        <div class="row">
-                            <span class="col-lg-4 col-md-6 col-xs-12 arriba" >Costo:</span>
-                            <span class="col-lg-8 col-md-6 col-xs-12 arriba" >HNL XX.XX</span>
-                        </div>
-                        <div class="row">
-                            <span class="col-lg-12 col-md-6 col-xs-12 arriba" >Descripción:</span>
-                            <span class="col-lg-12 col-md-12 col-xs-12" >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum veniam modi odit non commodi rerum, quas ea accusamus ullam hic sed quaerat assumenda voluptas excepturi voluptates doloremque fugiat incidunt eos.</span>
-                        </div>
-                        <div class="row">
-                            <a href="#" class="btn btn-primary ml-auto">Obtener</a>
-                        </div>
-                    </div>
-                </div>
-            </div>-->
-            <!-------------------------------FIN PLAN 3----------------------------------->
-
         </div>
         <!--------------------FIN DE CARDS INFERIORES PLANES----------------------->
     </div>

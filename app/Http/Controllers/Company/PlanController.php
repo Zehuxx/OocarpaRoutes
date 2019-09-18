@@ -3,20 +3,33 @@
 namespace App\Http\Controllers\Company;
 
 use App\Models\Plan;
-//use MongoDB\BSON\ObjectID;
+use App\Models\Company_Plan as CompanyPlan;
+use MongoDB\BSON\ObjectID;
 use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 
 class PlanController extends Controller
 {
     public function index()
     {
+
         $planes = Plan::all();
-        return view('company.planes', compact('planes'));
-        //return($planes);
+        $planBuyed = CompanyPlan::all()->where('company_id', Auth::user()->id)->first();
 
+        return view('company.planes', compact('planes', "planBuyed"));
+    }
 
+    public function buyPlan($id) {
+        $plan = new CompanyPlan();
+        $plan->company_id = new ObjectID(Auth::user()->id);
+        $plan->plan_id = new ObjectID($id);
+        $plan->start_date = Carbon::now()->toDateTimeString();
+        $plan->end_date = Carbon::now()->addDay(7)->toDateTimeString();
+        $plan->save();
+
+        return redirect()->route('company plan');
     }
 
     public function create()
@@ -26,7 +39,7 @@ class PlanController extends Controller
 
     public function store(Request $request)
     {
-        //
+
     }
 
     public function show()

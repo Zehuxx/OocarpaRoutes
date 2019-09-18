@@ -74,12 +74,14 @@ Route::view('/user/opciones', 'user/options')->name('user options');
 Route::group(['middleware'=>['check.company.role']], function(){
 //RUTAS COMPANY
 //Route::get('/company/plan', 'Company\PlanController@index')->name('company plan');
-Route::get('/company/plan', 'Company\PlanController@index')->name('company plan');
-Route::view('/company/location', 'company/location')->name('company location');
-Route::get('/company/banner', 'Company\BannerController@index')->name('company banner');
-Route::get('/company/banner/add', 'Company\BannerController@create')->name('company banner add');
-Route::post('/company/banner/save', 'Company\BannerController@store')->name('company banner store');
-Route::delete('/company/banner/delete/{id}', 'Company\BannerController@destroy')->name('company banner delete');
+    Route::get('/company/plan', 'Company\PlanController@index')->name('company plan');
+    Route::get ('/company/plan/buy/{id}', 'Company\PlanController@buyPlan')->name('company plan buy');
+
+    Route::view('/company/location', 'company/location')->name('company location');
+    Route::get('/company/banner', 'Company\BannerController@index')->name('company banner');
+    Route::get('/company/banner/add', 'Company\BannerController@create')->name('company banner add');
+    Route::post('/company/banner/save', 'Company\BannerController@store')->name('company banner store');
+    Route::delete('/company/banner/delete/{id}', 'Company\BannerController@destroy')->name('company banner delete');
 
 });
 
