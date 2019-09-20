@@ -8,7 +8,7 @@ use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 class Route extends Eloquent
 {
 	use SoftDeletes;
-
+ 
     protected $connection = 'mongodb';
     protected $collection = 'routes'; 
     protected $dates = ['deleted_at'];

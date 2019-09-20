@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Requests;
-
+use App\Models\RouteType;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RouteStoreRequest extends FormRequest
@@ -16,7 +16,13 @@ class RouteStoreRequest extends FormRequest
         return [
             'nombre'=>'max:25|required|regex:/^([A-Za-z]+[A-Za-z0-9 -]*)$/',//valores validos e-4,ew43, skd
             'descripcion'=>'required|max:100',
-            'slc_tipo'=>'required|min:24|max:24',
+            'slc_tipo'=>['required',
+                      function($attribute, $value, $fail) {
+                            $routetype = RouteType::where('_id',$value)->where('deleted_at', 'exists', false)->first();
+                            if($routetype === null)
+                                return $fail('Valor no permitido.');
+                },
+            ],
         ];
     }
 
@@ -29,9 +35,7 @@ class RouteStoreRequest extends FormRequest
             'nombre.regex' => 'Nombres aceptables: abc, abc12, a-1, ruta 1',
             'descripcion.required' => "El campo 'Descripción' es obligatorio",
             'descripcion.max' => 'Caracteres maximos permitidos 100',
-            'slc_tipo.required'=> "Campo 'Tipo ruta' requerido",
-            'slc_tipo.min'=> 'Valor no permitido',
-            'slc_tipo.max'=> 'Valor no permitido'
+            'slc_tipo.required'=> "Campo 'Tipo ruta' requerido"
         ];
     }
 }

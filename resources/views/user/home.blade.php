@@ -8,7 +8,7 @@
 @endsection
 
 
-@section('div_principal')  
+@section('div_principal')   
 <div style="background-image: url('{{ asset('img/banners/b2.jpg') }}'); height: 80px; margin-top: -24px">
 </div> 
 <div id="mapid">
@@ -42,32 +42,33 @@
         <form class="well form-horizontal" id="nueva_ruta" method="post" action="{{route('user store routes')}}">
         @csrf
                 	<span>Nombre</span>
-                	<input type="text" name="nombre" value="{{old("nombre")}}" id="nombre" class="form-control">
+                  <input type="text" name="nombre" value="{{old("nombre")}}" id="nombre" class="form-control @error('nombre') is-invalid @enderror">
+                  @error('nombre')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('nombre') }}</strong>
+                        </span>
+                    @enderror
                 <div class="modal-body row">
-                    @if($errors->has('nombre'))
-                        <div class="alert alert-danger" style="width: 100%">
-                            <span>{{ $errors->first('nombre') }}</span>
-                        </div>
-                    @endif
+                    
                     <span>Tipo ruta</span>
-                    <select name="slc_tipo" id="slc_tipo" class="form-control">
+                    <select name="slc_tipo" id="slc_tipo" class="form-control @error('slc_tipo') is-invalid @enderror">
                             <option value="0">Seleccione tipo de ruta</option>
                         @foreach($routesType as $routeType)
                             <option value="{{$routeType->id}}" {{ old('slc_tipo') == $routeType->id ? 'selected' : ''  }}>{{$routeType->name}}</option>
                         @endforeach
                     </select>
-                    @if($errors->has('slc_tipo'))
-                        <div class="alert alert-danger" style="width: 100%">
-                            <span>{{ $errors->first('slc_tipo') }}</span>
-                        </div>
-                    @endif
-                    <span>Descripción</span>
-                    <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción..." aria-label="With textarea">{{old('descripcion')}}</textarea>
-                    @if($errors->has('descripcion'))
-                        <div class="alert alert-danger" style="width: 100%;">
-                           <span>{{ $errors->first('descripcion') }}</span>
-                        </div>
-                    @endif
+                    @error('slc_tipo')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('slc_tipo') }}</strong>
+                        </span>
+                    @enderror
+                    <span>Descripción</span> 
+                    <textarea class="form-control @error('descripcion') is-invalid @enderror" name="descripcion" id="descripcion" placeholder="Descripción..." aria-label="With textarea">{{old('descripcion')}}</textarea>
+                    @error('descripcion')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('descripcion') }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <input type="hidden" name="waypoints" value="{{old("waypoints")}}" id="waypoints">
             </div>
@@ -96,32 +97,32 @@
         @csrf
         @method('PUT') 
                     <span>Nombre</span>
-                    <input type="text" name="nombre" value="{{$routeedit->name}}" id="nombre" class="form-control">
+                    <input type="text" name="nombre" value="{{$routeedit->name}}" id="nombre" class="form-control @error('nombre') is-invalid @enderror">
+                    @error('nombre')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('nombre') }}</strong>
+                        </span>
+                    @enderror
                 <div class="modal-body row">
-                    @if($errors->has('nombre'))
-                        <div class="alert alert-danger" style="width: 100%">
-                            <span>{{ $errors->first('nombre') }}</span>
-                        </div>
-                    @endif
                     <span>Tipo ruta</span>
-                    <select name="slc_tipo" id="slc_tipo" class="form-control">
+                    <select name="slc_tipo" id="slc_tipo" class="form-control @error('slc_tipo') is-invalid @enderror">
                             <option value="0">Seleccione tipo de ruta</option>
                         @foreach($routesType as $routeType)
                             <option value="{{$routeType->id}}" {{ $routeedit->route_type_id == $routeType->id ? 'selected' : ''  }}>{{$routeType->name}}</option>
                         @endforeach
                     </select>
-                    @if($errors->has('slc_tipo'))
-                        <div class="alert alert-danger" style="width: 100%">
-                            <span>{{ $errors->first('slc_tipo') }}</span>
-                        </div>
-                    @endif
+                    @error('slc_tipo')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('slc_tipo') }}</strong>
+                        </span>
+                    @enderror
                     <span>Descripción</span>
-                    <textarea class="form-control" name="descripcion" id="descripcion" placeholder="Descripción..." aria-label="With textarea">{{$routeedit->description}}</textarea>
-                    @if($errors->has('descripcion'))
-                        <div class="alert alert-danger" style="width: 100%;">
-                           <span>{{ $errors->first('descripcion') }}</span>
-                        </div>
-                    @endif
+                    <textarea class="form-control @error('descripcion') is-invalid @enderror" name="descripcion" id="descripcion" placeholder="Descripción..." aria-label="With textarea">{{$routeedit->description}}</textarea>
+                    @error('descripcion')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('descripcion') }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <input type="hidden" name="waypointsedit" id="waypointsedit">
             </div>

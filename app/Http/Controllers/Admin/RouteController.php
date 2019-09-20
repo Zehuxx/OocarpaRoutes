@@ -21,8 +21,7 @@ class RouteController extends Controller
 
     public function index(Request $request)
     {
-        //$search = $request->input('search');
-        $search="";
+        $search = $request->input('search');
         $routes=Route::raw((function($collection) {
               return $collection->aggregate([
                 [
@@ -36,48 +35,41 @@ class RouteController extends Controller
               ]);
          }))->where('deleted_at', 'exists', false)
             ->filter(function ($item) use ($search){
-                $user_id= new ObjectID(Auth::user()->id);
-                $id=false;$nom=false;$des=false;$tr=false;$public=false;
+                
 
-                if($item->user_id== $user_id){ //rutas usuario
-                    $id=true;
+                if(!empty($search) && (strpos(strtolower($item->is_public ? 'true' : 'false'), strtolower($search)) !== false)){//match por estado de ruta
+                    return $item;
                 }
 
-                if($item->is_public==true){ //rutas publicas
-                    $public=true;
+                if(!empty($search) && (strpos(strtolower($item->name), strtolower($search)) !== false)){//match nombre ruta
+                    return $item;
                 }
-                if ($public || $id) {
-                    if(!empty($search) && (strpos(strtolower($item->name), strtolower($search)) !== false)){//match nombre
-                        return $item;
-                    }
-                    if(!empty($search) && (strpos(strtolower($item->description), strtolower($search)) !== false)){//match descripcion
-                        return $item;
-                    }
-                    if(!empty($search) && (strpos(strtolower($item->tiporuta[0]->name), strtolower($search)) !== false)){//match tiporuta
-                       return $item;
-                    }
-                    
+                if(!empty($search) && (strpos(strtolower($item->description), strtolower($search)) !== false)){//match descripcion
+                    return $item;
+                }
+                if(!empty($search) && (strpos(strtolower($item->tiporuta[0]->name), strtolower($search)) !== false)){//match tiporuta
+                   return $item;
+                }
+
+                if(!empty($search) && (strpos(strtolower($item->User['name']), strtolower($search)) !== false)){//match nombre usuario
+                   return $item;
+                }
+                if(!empty($search) && (strpos(strtolower($item->User['last_name']), strtolower($search)) !== false)){//match apellido
+                   return $item;
                 }
 
                 if ($search=='') {
-                    if ($public || $id) {
                        return $item;
-                    }
                 }
             })->paginate(10);
         return view('admin.routes',compact('routes'));
-    }
-
-    public function create()
-    {
-        return view('carcreate');
     }
 
     public function show($id)
     {
         $routesType=RouteType::all();
         $route = Route::find($id);
-        return view('user.home',compact('route','routesType'));
+        return view('admin.home',compact('route','routesType'));
     } 
 
     public function store(RouteStoreRequest $request)
@@ -86,18 +78,18 @@ class RouteController extends Controller
         $routes->user_id = new ObjectID(Auth::user()->id);
         $routes->route_type_id = new ObjectID($request->input('slc_tipo'));
         $routes->name = $request->input('nombre');
-        $routes->is_public=false;
+        $routes->is_public=true;
         $routes->description = $request->input('descripcion');
         $routes->coordinates = json_decode($request->get('waypoints'));         
         $routes->save();
-        return redirect()->route('user routes')->with('success', 'Ruta has been successfully added');
+        return redirect()->route('admin routes')->with('success', 'Ruta has been successfully added');
     }
     
     public function edit($id)
     {
         $routesType=RouteType::all();
         $routeedit = Route::find($id);
-        return view('user.home',compact('routeedit','routesType'));
+        return view('admin.home',compact('routeedit','routesType'));
     }
     
     public function update(RouteUpdateRequest $request, $id)
@@ -108,13 +100,13 @@ class RouteController extends Controller
         $routes->description = $request->input('descripcion'); 
         $routes->coordinates = json_decode($request->get('waypointsedit'));       
         $routes->save();
-        return redirect()->route('user routes')->with('success', 'Ruta has been successfully update');
+        return redirect()->route('admin routes')->with('success', 'Ruta has been successfully update');
     }
 
     public function destroy($id)
     {
         $route = Route::find($id);
         $route->delete();
-        return redirect()->route('user routes')->with('success', 'Ruta has been successfully deleted');
+        return redirect()->route('admin routes')->with('success', 'Ruta has been successfully deleted');
     }
 }

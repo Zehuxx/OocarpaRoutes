@@ -12,7 +12,7 @@
 <table style="margin-bottom: 10px">
     <tr>
         <td style="text-align: left;"> 
-            <a class="btn btn-primary btn-add" href=""></a>
+            <a class="btn btn-primary btn-add" href="{{route('home', ['nr'])}}"></a>
         </td>
         <td>
             <form method="get">
@@ -32,9 +32,9 @@
             <thead>
                 <tr>
                     <th>#</th>
+                    <th>Usuario</th>
                     <th>Nombre</th>
                     <th>Tipo</th>
-                    <!--<th>Verificada</th>-->
                     <th>Pública</th>
                     <th>Acciones</th>
                 </tr>
@@ -44,15 +44,16 @@
                 @foreach($routes as $route)
                     <tr>
                         <td>{{$loop->iteration}}</td>
+                        <td>{{$route->User['name'].' '.$route->User['last_name']}}</td>
                         <td>{{$route->name}}</td>
                         <td>{{$route->RouteType['name']}}</td>
-                        <td>{{$route->ispublic ? 'true' : 'false'}}</td>
+                        <td>{{$route->is_public ? 'true' : 'false'}}</td>
                         <td>
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <a class="btn btn-sm btn-outline-primary mr-2" href="#">
+                                <a class="btn btn-sm btn-outline-primary mr-2" href="{{ route('admin show route',$route->id) }}">
                                     <i class="fa fa-eye"></i>
                                 </a>
-                                <a class="btn btn-sm btn-outline-success mr-2" href="#">
+                                <a class="btn btn-sm btn-outline-success mr-2" href="{{ route('admin edit route',$route->id) }}">
                                     <i class="fa fa-pencil-square-o"></i>
                                 </a>
                                 <form action="{{route('admin destroy route', $route->id)}}" method="post">

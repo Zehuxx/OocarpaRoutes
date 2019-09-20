@@ -15,3 +15,29 @@ margin-top: -16px;
       border-radius: 4px;
       padding: 5px 6px 5px 6px;
     }
+
+#route-save{
+      color: black;
+      position:absolute;
+      top:128px;
+      left:10px;
+      border:2px solid hsla(0, 3%, 27%, 0.58);
+      outline:0;
+      z-index: 999;
+      background-color: #fff;
+      border-radius: 4px;
+      padding: 5px 7px 5px 7px;
+    }
+
+#route-edit{
+      color: black;
+      position:absolute;
+      top:128px;
+      left:10px;
+      border:2px solid hsla(0, 3%, 27%, 0.58);
+      outline:0;
+      z-index: 999;
+      background-color: #fff;
+      border-radius: 4px;
+      padding: 5px 5px 5px 5px;
+    }
