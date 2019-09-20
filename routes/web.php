@@ -14,6 +14,7 @@
 
 Auth::routes();
 Route::get('/', 'Landing\LandingController@index')->name('landing');
+Route::get('/ruta/{id}', 'Landing\LandingController@show')->name('landing route show');
 Route::get('/home', 'HomeController@index')->name('home');//home general
 Route::view('/login', 'auth.login')->name('login');
 Route::post('/login', 'Auth\LoginController@login')->name("login_p");

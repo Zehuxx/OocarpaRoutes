@@ -14,7 +14,7 @@ use App\Http\Controllers\Controller;
 class LandingController extends Controller
 {  
 
-    public function index(Request $request)
+    public function index(Request $request,$ruta=null)
     {
         $search = $request->input('search');
         if (Auth::user()!=null) {
@@ -34,11 +34,11 @@ class LandingController extends Controller
                 $user_id= new ObjectID(Auth::user()->id);
                 $id=false;$nom=false;$des=false;$tr=false;$public=false;
 
-                if($item->user_id== $user_id){ //rutas usuario
+                if($item->user_id=== $user_id){ //rutas usuario
                     $id=true;
                 }
 
-                if($item->is_public==true){ //rutas publicas
+                if($item->is_public===true){ //rutas publicas
                     $public=true;
                 }
                 if ($public || $id) {
@@ -77,7 +77,7 @@ class LandingController extends Controller
                 $nom=false;$des=false;$tr=false;$public=false;
 
 
-                if($item->is_public==true){ //rutas publicas
+                if($item->is_public===true){ //rutas publicas
                     $public=true;
                 }
                 if ($public) {
@@ -101,7 +101,7 @@ class LandingController extends Controller
             })->paginate(10);
         }
         //dd($routes);
-        return view('landing',compact('routes'));
+        return view('landing',compact('routes','ruta'));
     }
 
     public function create()
@@ -109,11 +109,10 @@ class LandingController extends Controller
         
     }
 
-    public function show($id)
+    public function show(Request $request,$id)
     {
-        //$routesType=RouteType::all();
-        //$route = Route::find($id);
-        //return view('user.home',compact('route','routesType'));
+        $ruta = Route::find($id);
+        return $this->index($request,$ruta);
     } 
 
     public function store()

@@ -26,18 +26,11 @@ if ($('#mapid').length) {
         maxZoom: 18,
         accessToken: info['access_token'] 
       });
-    Lapiz = L.tileLayer('https://api.tiles.mapbox.com/v4/mapbox.pencil/{z}/{x}/{y}.png?access_token='+info['access_token'],
-    {
-        attribution: info['attribution'],
-        id: 'mapbox.pencil',
-        maxZoom: 18,
-        accessToken: info['access_token']
-      });
 
     var mymap = L.map('mapid',{
           center: [14.10555, -87.204483],
           zoom: 15,
-          layers: [Lapiz,CallesSatelite,Calles],
+          layers: [CallesSatelite,Calles],
           contextmenu: true,
           contextmenuWidth: 140,
           contextmenuItems: [{
@@ -61,7 +54,6 @@ if ($('#mapid').length) {
     });
     // Mapeo clave valor de mapas y su nombre id
   var baseMaps = {
-    'Lapiz':Lapiz,
     'CallesSatelite':CallesSatelite,
     'Calles': Calles
   };

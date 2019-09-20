@@ -1,6 +1,7 @@
 if ($('#mapid').length) {
   //variables a usar no borrar --juan--
   var geo=false;
+  var route= null;
 
   $(document).ready(function (){
         $("#locate-position").show();
@@ -26,18 +27,11 @@ if ($('#mapid').length) {
         maxZoom: 18,
         accessToken: info['access_token'] 
       });
-    Lapiz = L.tileLayer('https://api.tiles.mapbox.com/v4/mapbox.pencil/{z}/{x}/{y}.png?access_token='+info['access_token'],
-    {
-        attribution: info['attribution'],
-        id: 'mapbox.pencil',
-        maxZoom: 18,
-        accessToken: info['access_token']
-      });
 
     var mymap = L.map('mapid',{
           center: [14.10555, -87.204483],
           zoom: 15,
-          layers: [Lapiz,CallesSatelite,Calles],
+          layers: [CallesSatelite,Calles],
           contextmenu: true,
           contextmenuWidth: 140,
           contextmenuItems: [{
@@ -61,7 +55,6 @@ if ($('#mapid').length) {
     });
     // Mapeo clave valor de mapas y su nombre id
   var baseMaps = {
-    'Lapiz':Lapiz,
     'CallesSatelite':CallesSatelite,
     'Calles': Calles
   };
@@ -95,7 +88,7 @@ if ($('#mapid').length) {
                     },
                     fitSelectedRoutes: 'smart',
                     lineOptions: {
-                        styles: [{ color: 'red', weight: 6 }]
+                        styles: [{ color: 'brown', weight: 6 }]
                     }
                     //show:false
                 }).addTo(mymap);
@@ -123,6 +116,7 @@ if ($('#mapid').length) {
 
       function addRoute(e){
         //alert("haz click sobre el mapa y crea los marcadores de referencia");
+        reset();
         mymap.on('click', onMapClick);
       }
       // se encarga de la geolocalizacion del usuario
@@ -164,5 +158,46 @@ if ($('#mapid').length) {
         }
         
       }
+
+  function reset(){
+    if (route != null) {
+              mymap.removeControl(route);
+              route = null;
+              temp=[];
+              if (marker1) {
+                marker1.remove();
+                marker.remove();
+              }
+          }
+      circle.remove();
+  }
   
+
+      function DibujarRuta(points) {
+        var icon = new L.NumberedDivIcon({ number: 1, color: 'red' });
+        //points=JSON.parse(points);
+        if (points) {
+            route = L.Routing.control({
+              waypoints: points,
+              createMarker: function(i, wp, nWps) {
+                  if (i === 0) {
+                      //alert(wp.latLng);
+                      var icon = new L.NumberedDivIcon({ number: "A", color: 'red' });
+                      return L.marker(wp.latLng, { icon: icon, draggable: false });
+                  }
+                  if (i === nWps - 1) {
+                      var icon = new L.NumberedDivIcon({ number: "B", color: 'red' });
+                      return L.marker(wp.latLng, { icon: icon, draggable: false });
+                  }
+              },
+              fitSelectedRoutes: 'smart',
+              addWaypoints:false,
+              lineOptions: {
+                  styles: [{ color: 'green', weight: 6 }]
+              }
+              //show:false
+          }).addTo(mymap);
+        }
+      
+    }
 

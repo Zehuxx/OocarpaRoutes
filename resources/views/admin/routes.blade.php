@@ -34,6 +34,7 @@
                     <th>#</th>
                     <th>Usuario</th>
                     <th>Nombre</th>
+                    <th>Descripción</th>
                     <th>Tipo</th>
                     <th>Pública</th>
                     <th>Acciones</th>
@@ -46,6 +47,7 @@
                         <td>{{$loop->iteration}}</td>
                         <td>{{$route->User['name'].' '.$route->User['last_name']}}</td>
                         <td>{{$route->name}}</td>
+                        <td style="width: 15%; text-align: left;">{{$route->description}}</td>
                         <td>{{$route->RouteType['name']}}</td>
                         <td>{{$route->is_public ? 'true' : 'false'}}</td>
                         <td>

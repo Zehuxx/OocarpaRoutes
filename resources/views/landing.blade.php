@@ -136,7 +136,9 @@
                                                     <td>{{$route->RouteType["name"]}}</td>
                                                     <td>{{$route->description}}</td>
                                                     <td>
-                                                        <a class="btn-see btn btn-primary" href="{{--route('user show route',$route->id)--}}"></a>
+                                                        <a class="btn btn-outline-primary mr-2" href="{{ route('landing route show',$route->id)}}">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -150,8 +152,12 @@
                     </div>
                 </div>
            </div>
+                <!-- usada para visualizar rutas-->
+                @if(isset($ruta))
+                    <input type="text" style="display: none" value="{{json_encode($ruta->coordinates)}}" id="ruta">
+                @endif
                 <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="padding: 0px">
-                    <main class="main">
+                    <main class="main"> 
                         <div>
                             <div id="mapid">
                                 <button id="locate-position" class="colordefault" style="display: none"><i class="eye fas fa-globe-americas fa-lg"></i></button>
@@ -184,6 +190,13 @@
         <script src="{{asset('js/leaflet-number-icon.js')}}"></script>
         <script src="{{asset('js/landing/mapa.js') }}"></script>
         <!-- scripts ends here-->
-
+        <script type="text/javascript">
+        //verifica si se quiere visualizar una ruta
+        //si es asi la dibuja
+        @if(isset($ruta))
+            var ruta = $("#ruta").val();
+            DibujarRuta(jQuery.parseJSON(ruta));
+        @endif 
+        </script>
     </body>
 </html>
