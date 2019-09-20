@@ -1,0 +1,17 @@
+#mapid{
+height: calc(100vh - 101px);
+margin-top: -16px;
+}
+
+#locate-position{
+      color: black;
+      position:absolute;
+      top:85px;
+      left:10px;
+      border:2px solid hsla(0, 3%, 27%, 0.58);
+      outline:0;
+      z-index: 999;
+      background-color: #fff;
+      border-radius: 4px;
+      padding: 5px 6px 5px 6px;
+    }

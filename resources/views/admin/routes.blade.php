@@ -11,8 +11,8 @@
 
 <table style="margin-bottom: 10px">
     <tr>
-        <td style="text-align: left;">
-            <!--<a class="btn btn-success btn-add" href=""><i class="fa fa-plus"></i></a>-->
+        <td style="text-align: left;"> 
+            <a class="btn btn-primary btn-add" href=""></a>
         </td>
         <td>
             <form method="get">
@@ -55,7 +55,7 @@
                                 <a class="btn btn-sm btn-outline-success mr-2" href="#">
                                     <i class="fa fa-pencil-square-o"></i>
                                 </a>
-                                <form action="{{route('destroy route', $route->id)}}" method="post">
+                                <form action="{{route('admin destroy route', $route->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-outline-danger">

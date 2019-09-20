@@ -33,7 +33,8 @@ class HomeController extends Controller
     {
         if (Auth::user()!=null) {
             if(Auth::user()->role_id == "5d607f9db2d1b72ef0ec1366"){
-                return view('admin.home');
+                $routesType=RouteType::all();
+                return view('admin.home')->with('routesType', $routesType);
             }elseif(Auth::user()->role_id == "5d607fa9b2d1b72ef0ec1367"){
                 $routesType=RouteType::all();
                 return view('user.home')->with('routesType', $routesType);

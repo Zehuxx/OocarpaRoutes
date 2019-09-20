@@ -52,8 +52,12 @@ Route::Delete('/admin/company/delete/{id}', 'Admin\CompanyController@destroy')->
 
 
 //Rutas CRUD de rutas
-Route::get('/admin/routes', 'Admin\RouteController@index')->name('routes');
-Route::Delete('/admin/routes/delete/{id}', 'Admin\RouteController@destroy')->name('destroy route');
+Route::get('/admin/rutas', 'Admin\RouteController@index')->name('admin routes');
+Route::get('/admin/ruta/{id}', 'Admin\RouteController@show')->name('admin show route');
+Route::get('/admin/editar/ruta/{id}','Admin\RouteController@edit')->name('admin edit route');
+Route::post('/admin/guardar/ruta','Admin\RouteController@store')->name('admin store routes');
+Route::put('/admin/actualizar/ruta/{id}', 'Admin\RouteController@update')->name('admin update route');
+Route::delete('/admin/borrar/ruta/{id}','Admin\RouteController@destroy')->name('admin destroy route');
 
 // --------------------------- FIN ADMIN ----------------------------------------
 });
