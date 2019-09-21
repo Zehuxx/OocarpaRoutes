@@ -56,31 +56,31 @@
 
             <!--------------------------------PLAN 1------------------------------------->
             @foreach ($planes as $plan)
-
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                 <div class="card">
-                    <!--<img src="..." class="card-img-top" alt="...">-->
-                    <div class="card-body">
-                    <strong class="card-title">{{$plan->name}}</strong>
-                        <div class="row">
-                            <span class="col-lg-4 col-md-6 col-xs-12 arriba" >Duración:</span>
-                        <span class="col-lg-8 col-md-6 col-xs-12 arriba" > {{$plan->duration}}</span>
-                        </div>
-                        <div class="row">
-                            <span class="col-lg-4 col-md-6 col-xs-12 arriba" >Costo:</span>
-                        <span class="col-lg-8 col-md-6 col-xs-12 arriba" >{{$plan->price}}</span>
-                        </div>
-                        <div class="row">
-                            <span class="col-lg-12 col-md-6 col-xs-12 arriba">Descripción:</span>
-                        <span class="col-lg-12 col-md-12 col-xs-12" >{{$plan->description}}</span>
-                        </div>
-                        <div class="row">
-                            <a href="{{ route('company plan buy', $plan->id) }}" class="btn btn-success ml-auto">Obtener</a>
+            @if ($plan->name != 'Gratis')
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <!--<img src="..." class="card-img-top" alt="...">-->
+                        <div class="card-body">
+                        <strong class="card-title">{{$plan->name}}</strong>
+                            <div class="row">
+                                <span class="col-lg-4 col-md-6 col-xs-12 arriba" >Duración:</span>
+                            <span class="col-lg-8 col-md-6 col-xs-12 arriba" > {{$plan->duration}}</span>
+                            </div>
+                            <div class="row">
+                                <span class="col-lg-4 col-md-6 col-xs-12 arriba" >Costo:</span>
+                            <span class="col-lg-8 col-md-6 col-xs-12 arriba" >{{$plan->price}}</span>
+                            </div>
+                            <div class="row">
+                                <span class="col-lg-12 col-md-6 col-xs-12 arriba">Descripción:</span>
+                            <span class="col-lg-12 col-md-12 col-xs-12" >{{$plan->description}}</span>
+                            </div>
+                            <div class="row">
+                                <a href="{{ route('company plan buy', $plan->id) }}" class="btn btn-success ml-auto">Obtener</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
+            @endif
             @endforeach
             <!--------------------FIN PLAN ------------------->
         </div>

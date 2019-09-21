@@ -22,12 +22,21 @@ class PlanController extends Controller
     }
 
     public function buyPlan($id) {
-        $plan = new CompanyPlan();
-        $plan->company_id = new ObjectID(Auth::user()->id);
-        $plan->plan_id = new ObjectID($id);
-        $plan->start_date = Carbon::now()->toDateTimeString();
-        $plan->end_date = Carbon::now()->addDay(7)->toDateTimeString();
-        $plan->save();
+        $planBuyed = CompanyPlan::all()->where('company_id', Auth::user()->id)->sortByDesc('created_at')->first();
+
+        if ($planBuyed != NULL) {
+            if (Carbon::now() > (new Carbon($planBuyed->end_date))) {
+                $plan = new CompanyPlan();
+                $plan->company_id = new ObjectID(Auth::user()->id);
+                $plan->plan_id = new ObjectID($id);
+                $plan->start_date = Carbon::now()->toDateTimeString();
+                $plan->end_date = Carbon::now()->addDay(7)->toDateTimeString();
+                $plan->save();
+
+            } else {
+
+            }
+        }
 
         return redirect()->route('company plan');
     }
