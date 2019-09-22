@@ -69,7 +69,7 @@
                                     Registrarse
                                 </button></a>
                             </div>
-                            
+
                         </div>
                     </form>
                 </div>

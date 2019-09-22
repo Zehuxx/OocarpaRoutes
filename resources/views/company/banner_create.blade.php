@@ -16,10 +16,15 @@
     </li>
 @endsection
 
+@section('div_principal')
+<div style="background-image: url('{{ asset('img/banners/b2.jpg') }}'); height: 60px;margin-top: -16px;margin-bottom: 10px">
+</div>
+@endsection
+
 @section('cards')
 
 <div class="row">
-    <div class="col-md-6 align-self-center">
+    <div class="col-md-6 mx-auto my-5">
         <div class="card">
             <div class="card-header">
                 <strong>Cargar banner</strong>
@@ -44,9 +49,9 @@
             </div>
             <div class="card-footer">
                 <button class="btn btn-sm btn-primary" form="form-img" type="submit">
-                <i class="fa fa-dot-circle-o"></i> Submit</button>
+                <i class="fa fa-save"></i> Guardar</button>
                 <button class="btn btn-sm btn-danger" form="form-img" type="reset">
-                <i class="fa fa-ban"></i> Reset</button>
+                <i class="fa fa-ban"></i> Cancelar</button>
             </div>
         </div>
     </div>

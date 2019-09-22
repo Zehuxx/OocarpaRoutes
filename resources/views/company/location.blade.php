@@ -13,10 +13,12 @@
 @endsection
 
 @section('div_principal')
+    <div style="background-image: url('{{ asset('img/banners/b2.jpg') }}'); height: 70px;margin-top: -16px;margin-bottom: 10px">
+    </div>
     <div id="mapid">
         <button id="locate-position" class="colordefault" style="display: none"><i class="eye fas fa-globe-americas fa-lg"></i></button>
     </div>
-    
+
 @endsection
 
 
@@ -33,7 +35,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
-            </div> 
+            </div>
             <div class="modal-body">
                 <span>Nombre</span>
                 <input type="text" name="nombre" id="nombre" class="form-control">
@@ -66,7 +68,7 @@
 
 <!---------Seccion que habilita el uso de location.js------->
 @section('scripts')
-    <!-- Mapa 
+    <!-- Mapa
 
     <script src="{{ asset('js/company/location.js') }}"></script>-->
 @endsection
