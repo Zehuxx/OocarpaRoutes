@@ -1,12 +1,12 @@
-@extends('layouts.admin')
+@extends('layouts.company')
 
 @section('route')
     <li class="breadcrumb-item">Admin</li>
     <li class="breadcrumb-item">
-        <a href="{{route('plans')}}">Planes</a>
+        <a href="{{route('company location')}}">Ubicación</a>
     </li>
     <li class="breadcrumb-item active">
-            <a href="{{route('add plan')}}">Crear Planes</a>
+            <a href="{{route('company add location')}}">Agregar Ubicacion</a>
     </li>
 @endsection
 
@@ -15,14 +15,14 @@
     <div class="col-md-6 align-self-center mr-auto ml-auto">
         <div class="card">
             <div class="card-header">
-                <strong>Crear Plan</strong>
+                <strong>Crear Ubicación</strong>
             </div>
             <div class="card-body">
-                <form id="form-plan" name="form-plan"  method="POST" role="form" enctype="multipart/form-data"  action="{{ route('create plan') }}">
+                <form id="form-location" name="form-location"  method="POST" role="form" enctype="multipart/form-data"  action="{{ route('company create location') }}">
                     @csrf
 
                     <div class="form-group">
-                            <label for="name">Nombre Plan</label>
+                            <label for="name">Nombre Ubicación o Sucursal</label>
                             <input class="form-control" id="name" type="text" name="name" placeholder="nombre">
 
                         @if($errors->has('name'))
@@ -33,43 +33,43 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="description">Descripción</label>
-                        <input class="form-control" id="description" type="text" name="description" placeholder="descripción">
+                        <label for="lat">Latitud</label>
+                        <input class="form-control" id="lat" type="text" name="lat" placeholder="Debería rellenarse solo, al cargar la página">
 
-                        @if($errors->has('description'))
+                        @if($errors->has('lat'))
                         <small class="form-text text-danger">
-                            <span>{{ $errors->first('description') }}</span>
+                            <span>{{ $errors->first('lat') }}</span>
                         </small>
                     @endif
                     </div>
 
                     <div class="form-group">
-                        <label for="price">Precio</label>
-                        <input class="form-control" id="price" type="text" name="price" placeholder="Precio: Lps. XX.XX">
+                        <label for="lng">Longitud</label>
+                        <input class="form-control" id="lng" type="text" name="lng" placeholder="Debería rellenarse solo, al cargar la página">
 
-                        @if($errors->has('price'))
+                        @if($errors->has('lng'))
                         <small class="form-text text-danger">
-                            <span>{{ $errors->first('price') }}</span>
+                            <span>{{ $errors->first('lng') }}</span>
                         </small>
                     @endif
                     </div>
 
                     <div class="form-group">
-                        <label for="duration">Duración</label>
-                        <input class="form-control" id="duration" type="text" name="duration" placeholder="duración">
+                        <label for="marker"></label>
+                        <input id="marker" type="file" name="marker">
 
-                        @if($errors->has('duration'))
+                        @if($errors->has('marker'))
                         <small class="form-text text-danger">
-                            <span>{{ $errors->first('duration') }}</span>
+                            <span>{{ $errors->first('marker') }}</span>
                         </small>
                     @endif
                     </div>
                 </form>
             </div>
             <div class="card-footer">
-                <button class="btn btn-sm btn-success" form="form-plan" type="submit">
+                <button class="btn btn-sm btn-success" form="form-location" type="submit">
                 <i class="fa fa-dot-circle-o"></i> Submit</button>
-                <button class="btn btn-sm btn-danger" form="form-plan" type="reset">
+                <button class="btn btn-sm btn-danger" form="form-location" type="reset">
                 <i class="fa fa-ban"></i> Reset</button>
             </div>
         </div>

@@ -3,20 +3,27 @@
 @section('route')
     <li class="breadcrumb-item">Company</li>
     <li class="breadcrumb-item active">
-        <a href="#">location</a>
+        <a href="#">Ubicación</a>
     </li>
     <!--<li class="ml-auto">
         <button type="button" class="btn btn-primary ml-auto" data-toggle="modal" data-target="#editar">
             Editar
         </button>
     </li>-->
+    <li class="breadcrumb-menu">
+        <div class="btn-group" role="group" aria-label="Button group">
+        <a class="btn" href="{{route('company add location')}}">
+                <i class="icon-plus"></i>
+            </a>
+        </div>
+    </li>
 @endsection
 
 @section('div_principal')
     <div id="mapid">
         <button id="locate-position" class="colordefault" style="display: none"><i class="eye fas fa-globe-americas fa-lg"></i></button>
     </div>
-    
+
 @endsection
 
 
@@ -33,7 +40,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
-            </div> 
+            </div>
             <div class="modal-body">
                 <span>Nombre</span>
                 <input type="text" name="nombre" id="nombre" class="form-control">
@@ -66,7 +73,7 @@
 
 <!---------Seccion que habilita el uso de location.js------->
 @section('scripts')
-    <!-- Mapa 
+    <!-- Mapa
 
     <script src="{{ asset('js/company/location.js') }}"></script>-->
 @endsection
