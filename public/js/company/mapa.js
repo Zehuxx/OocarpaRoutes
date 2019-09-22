@@ -1,10 +1,15 @@
 if ($('#mapid').length) {
   //variables a usar no borrar --juan--
+  var route= null;
   var geo=false;
 
   $(document).ready(function (){
         $("#locate-position").show();
   });
+  // se encarga del guardado de una sucursal
+    $('#route-save').on('click', function(){
+        $("#guardar-sucursal").modal("show");
+    });
   // Derechos de autor, token de acceso a mapas de Mapbox
   info={
     'access_token':'pk.eyJ1IjoiemVodXh4IiwiYSI6ImNqd3UxZXhjZzAxeXY0YW1odnI2MW1weHQifQ.ujnaRa5lFM-Bh0laXJu3sQ',
@@ -34,8 +39,8 @@ if ($('#mapid').length) {
           contextmenu: true,
           contextmenuWidth: 140,
           contextmenuItems: [{
-              text: 'Crear ruta',
-              callback: addRoute
+              text: 'Agregar sucursal',
+              callback: addBranch
           },{
               text: 'Show coordinates', 
               callback: showCoordinates
@@ -67,31 +72,12 @@ if ($('#mapid').length) {
     var circle = L.circle([0, 0]);
 
     function onMapClick(e) {
-        if (temp.length < 2) {
-            temp.push([e.latlng.lat, e.latlng.lng]);
-            if (temp.length == 1) {
-                var icon = new L.NumberedDivIcon({ number: 1, color: 'red' });
-                marker1 = L.marker([e.latlng.lat, e.latlng.lng], { icon: icon, draggable: true }).addTo(mymap);
-            } else {
-                marker1.remove();
-                route = L.Routing.control({
-                    waypoints: temp,
-                    createMarker: function(i, wp, nWps) {
-                        var icon = new L.NumberedDivIcon({ number: i+1, color: 'red' });
-                        if (i === 0 || i === nWps - 1) {
-                            //alert(wp.latLng);
-                            return L.marker(wp.latLng, { icon: icon, draggable: true });
-                        } else {
-                            return L.marker(wp.latLng, { icon: icon, draggable: true });
-                        }
-                    },
-                    fitSelectedRoutes: 'smart',
-                    lineOptions: {
-                        styles: [{ color: 'red', weight: 6 }]
-                    }
-                    //show:false
-                }).addTo(mymap);
-            }
+        if (temp.length < 1) {
+            temp.push([e.latlng]);
+            var icon = new L.icon({iconUrl:base_url+'/markers/marcador-defecto.png',iconSize:[38, 55]});
+            marker1 = L.marker([e.latlng.lat, e.latlng.lng], { icon: icon, draggable: true }).addTo(mymap);
+            $("#route-save").show();
+            
         }
     }
     
@@ -113,9 +99,8 @@ if ($('#mapid').length) {
           mymap.zoomOut();
       }
 
-      function addRoute(e){
+      function addBranch(e){
         //alert("haz click sobre el mapa y crea los marcadores de referencia");
-        $('#editar').modal('show');
         mymap.on('click', onMapClick);
       }
       // se encarga de la geolocalizacion del usuario
@@ -157,6 +142,16 @@ if ($('#mapid').length) {
         }
         
       }
+
+    function getpoints(){
+      if (temp!=null) {
+        var routeArray = new Array();
+          routeArray = marker1.getLatLng();
+          item=[routeArray.lat,routeArray.lng];
+          return JSON.stringify(item);
+      }
+      return null;
+    } 
   
 
 

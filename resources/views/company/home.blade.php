@@ -36,7 +36,50 @@
 @endsection
 
 @section('cards')
+<div class="card col-lg-8 card-accent-warning margen">
+    <div class="card-header">
+        <h3 class="card-title mb-0">Sucursales</h3>
+    </div>
+    <div class="card-body" style="overflow-x: auto;">
+        <table class="table table-responsive-sm table-sm table-condensed table-striped table-hover" style="text-align: center;">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($locations as $location)
+            <tr>
+                <td>{{$loop->iteration}}</td>
+                <td>{{$location->name}}</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <a class="btn btn-sm btn-outline-primary mr-2" href="#{{$location->id }}">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                        <a class="btn btn-sm btn-outline-success mr-2" href="#{{$location->id  }}">
+                                <i class="fa fa-pencil-square-o"></i>
+                        </a>
+                        <form method="post" style="display: contents;" action="#{{$location->id }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"   class="btn btn-sm btn-outline-danger">
+                                    <i class="fa fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            @endforeach
+            </tbody>
+        </table>
+        {{ $locations->links() }}
+    </div>
+</div>
     <div class="card card-accent-primary col-lg-8 margen">
+
         <div class="card-header">
         <h3 class="card-title mb-0">Información Pública</h3>
         </div>
@@ -45,11 +88,7 @@
             <div class="row">
             <!-- /.col-->
                 <div class="col-lg-3 col-md-2 col-sm-6 col-xs-12 margen">
-                    @if(isset($company->usuario[0]->user_img))
-                        <img src="{{$company->usuario[0]->user_img}}" alt="Logo Empresa" class="logo">
-                    @else
-                        <img src="{{ asset('img/images/profile.png')}}" alt="Logo Empresa" class="logo">
-                    @endif
+                        <img src="{{ asset('img/brand/bat.png')}}" alt="Logo Empresa" class="logo">
                 </div>
 
                 <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
@@ -62,17 +101,11 @@
             </div>
             <div class="row arriba">
                 <strong class="col-lg-2 col-md-3 col-sm-3 col-xs-12">Encargado:</strong>
-                <span class="col-lg-10 col-md-9 col-sm-9 col-xs-12 card-text">{{$company->usuario[0]->name}} {{$company->usuario[0]->last_name}}</span>
+                <span class="col-lg-10 col-md-9 col-sm-9 col-xs-12 card-text">{{Auth::user()->name.' '.Auth::user()->last_name}}</span>
             </div>
             <div class="row arriba">
                 <strong class="col-lg-2 col-md-3 col-sm-3 col-xs-12">Telefono:</strong>
                 <span class="col-lg-10 col-md-9 col-sm-9 col-xs-12 card-text">{{$company->phone}}</span>
-            </div>
-            <div class="row arriba">
-                <strong class="col-lg-2 col-md-3 col-sm-3 col-xs-12">Ubicaciones:</strong>
-                <span class="col-lg-10 col-md-9 col-sm-9 col-xs-12 card-text">coordenadaLat</span>
-                <span class="col-lg-2 col-md-3 col-sm-3 col-xs-12"></span>
-                <span class="col-lg-10 col-md-9 col-sm-9 col-xs-12 card-text">coordenadaLng</span>
             </div>
             <div class="row arriba">
                 <button class="btn btn-primary ml-auto">Editar</button>
@@ -89,13 +122,8 @@
 
         <div class="card-body">
             <div class="row">
-                <span class="col-lg-3 col-md-3 col-sm-10 col-xs-10 ml-auto">Nombre de Usuario</span>
-            <span class="col-lg-4 col-md-6 col-sm-10 col-xs-10 form-control mr-auto">{{$company->usuario[0]->name}}</span>
-            </div>
-
-            <div class="row">
                <span class="col-lg-3 col-md-3 col-sm-10 col-xs-10 ml-auto arriba">Correo Electrónico</span>
-               <span class="col-lg-4 col-md-6 col-sm-10 col-xs-10 form-control mr-auto arriba">{{$company->usuario[0]->email}}</span>
+               <span class="col-lg-4 col-md-6 col-sm-10 col-xs-10 form-control mr-auto arriba">{{Auth::user()->email}}</span>
             </div>
 
             <!--<div class="row">

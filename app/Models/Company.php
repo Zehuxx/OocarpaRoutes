@@ -20,7 +20,7 @@ class Company extends Eloquent
 
 	public function User()
     {
-        return $this->belongsTo(\App\Models\User::class,'user_id','user_id');
+        return $this->belongsTo(\App\Models\User::class,'company_id','company_id');
     }
 
     public function Banner()

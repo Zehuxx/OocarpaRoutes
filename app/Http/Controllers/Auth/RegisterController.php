@@ -159,7 +159,7 @@ class RegisterController extends Controller
                 $company=new Company();
                 $user->role_id =new ObjectID('5d607fb2b2d1b72ef0ec1368');
                 $user->save();
-                $company->user_id =new ObjectID($user->id);
+                $company->company_id =new ObjectID($user->id);
                 $company->name = $request->company_name;
                 $company->phone = $request->phone;
                 $company->description = $request->descripcion;
@@ -167,7 +167,7 @@ class RegisterController extends Controller
                 $company->save();
                 $companyplan=new Company_Plan();
                 $companyplan->company_id=new ObjectID($company->id);
-                $companyplan->plan_id=new ObjectID('5d64b7df3e3d5527794f4b9c');
+                $companyplan->plan_id=new ObjectID('5d7305b850142027477a45e2');
                 $companyplan->start_date= Carbon::now()->toDateTimeString();
                 $companyplan->end_date= Carbon::now()->addDay(7)->toDateTimeString();
                 $companyplan->save();

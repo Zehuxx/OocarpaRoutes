@@ -10,7 +10,7 @@
     <li class="breadcrumb-item active">
         <a href="#">Home</a>
     </li>
-@endsection
+@endsection 
 
 
 @section('div_principal')

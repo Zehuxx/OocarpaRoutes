@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Company;
 
 use App\Models\Location;
 use Illuminate\Http\Request;
+use MongoDB\BSON\ObjectID; 
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LocationStoreRequest;
 
 
-
+ 
 class LocationController extends Controller
 {
     /**
@@ -29,7 +30,7 @@ class LocationController extends Controller
      */
     public function create()
     {
-        return view('company.location_create');
+        //return view('company.location_create');
     }
 
     /**
@@ -40,34 +41,26 @@ class LocationController extends Controller
      */
     public function store(LocationStoreRequest $request)
     {
+        $location = new Location();
         if($request->hasFile('marker')){
             $file = $request->file('marker');
             $file_name = time().$file->getClientOriginalName(); //Nombrar como fecha actual + nombre original del archivo
             $file->move(public_path().'/img/markers/', $file_name);
 
-
-            $location = new Location();
+            $location->company_id= new ObjectID(Auth::user()->id);
             $location->name = $request->input('name');
-            $location->lat = $request->input('lat');
-            $location->lng = $request->input('lng');
-            $location->marker = $file_name;
-
-            //$location->save();
-            return($location);
-
+            $location->coordinates = json_decode($request->get('waypoints')); 
+            $location->img = $file_name;
+            $location->save();
         }else{
             $marcadorD = 'marcador-defecto.png';
-
-            $location = new Location();
+            $location->company_id= new ObjectID(Auth::user()->id);
             $location->name = $request->input('name');
-            $location->lat = $request->input('lat');
-            $location->lng = $request->input('lng');
-            $location->marker = $marcadorD;
-
-            //$location->save();
-            return($location);
-
+            $location->coordinates = json_decode($request->get('waypoints')); 
+            $location->img = $marcadorD;
+            $location->save();
         }
+        return redirect()->route('home');
     }
 
     /**

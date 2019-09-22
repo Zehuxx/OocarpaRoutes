@@ -83,8 +83,7 @@ Route::group(['middleware'=>['check.company.role']], function(){
     Route::get ('/company/plan/buy/{id}', 'Company\PlanController@buyPlan')->name('company plan buy');
 
     Route::view('/company/location', 'company/location')->name('company location');
-    Route::get('/company/location/add', 'Company\LocationController@create')->name('company add location');
-    Route::post('/company/location/create', 'Company\LocationController@store')->name('company create location');
+    Route::post('/company/location/store', 'Company\LocationController@store')->name('company store location');
 
     Route::get('/company/banner', 'Company\BannerController@index')->name('company banner');
     Route::get('/company/banner/add', 'Company\BannerController@create')->name('company banner add');

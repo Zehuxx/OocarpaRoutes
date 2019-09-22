@@ -42,6 +42,6 @@ class User extends Eloquent implements AuthenticatableContract, AuthorizableCont
 
     public function Company()
     {
-        return $this->hasOne(\App\Models\Company::class,'user_id','_id');
+        return $this->hasOne(\App\Models\Company::class,'company_id','_id');
     }
 }

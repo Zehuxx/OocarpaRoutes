@@ -24,22 +24,14 @@ class LocationStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:5',
-            'lat' => 'required',
-            'lng' => 'required',
+            'name' => 'required',
             'marker' => 'image|mimes:png|max:4096|dimensions:max_width=95, max_height=237'
         ];
     }
 
     public function messages(){
-        return[
+        return [ 
             'name.required' => 'El nombres de la ubicación o sucursal es obligatorio',
-            'name.min' => 'La longitud mínima es 5',
-
-            'lat.required' => 'La latitud es obligatoria',
-
-            'price.required' => 'El longitud es obligatoria',
-
             'marker.image' => 'El archivo debe ser una imagen',
             'marker.mimes' => 'El archivo debe ser extensión png y sin color de fondo',
             'marker.max' => 'El tamaño máximo del archivo es 4 mb',
