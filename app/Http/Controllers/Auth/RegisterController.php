@@ -166,7 +166,7 @@ class RegisterController extends Controller
                 $company->address = $request->address;
                 $company->save();
                 $companyplan=new Company_Plan();
-                $companyplan->company_id=new ObjectID($company->id);
+                $companyplan->company_id=new ObjectID($company->company_id);
                 $companyplan->plan_id=new ObjectID('5d7305b850142027477a45e2');
                 $companyplan->start_date= Carbon::now()->toDateTimeString();
                 $companyplan->end_date= Carbon::now()->addDay(7)->toDateTimeString();

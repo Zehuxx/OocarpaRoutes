@@ -20,6 +20,6 @@ class Location extends Eloquent
 
     public function Company()
     {
-        return $this->belongsTo(\App\Models\Company::class,'company_id','_id');
+        return $this->belongsTo(\App\Models\Company::class,'company_id','company_id');
     }
 }
