@@ -20,6 +20,8 @@
 @endsection
 
 @section('div_principal')
+    <div style="background-image: url('{{ asset('img/banners/b2.jpg') }}'); height: 70px;margin-top: -16px;margin-bottom: 10px">
+    </div>
     <div id="mapid">
         <button id="locate-position" class="colordefault" style="display: none"><i class="eye fas fa-globe-americas fa-lg"></i></button>
     </div>

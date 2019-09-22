@@ -5,13 +5,14 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use App\Models\Company;
 use App\Models\Company_Plan;
-use MongoDB\BSON\ObjectID; 
-use Illuminate\Support\Facades\Auth; 
+use MongoDB\BSON\ObjectID;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Http\Requests\UserStoreRequest;
 
 class RegisterController extends Controller
@@ -40,7 +41,7 @@ class RegisterController extends Controller
      * Create a new controller instance.
      *
      * @return void
-     
+
     public function __construct()
     {
         $this->middleware('guest');
@@ -49,7 +50,7 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data 
+     * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -147,13 +148,13 @@ class RegisterController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->user_img= null;
-            if ($user->role_id==1) { 
+            if ($user->role_id==1) {
                 //normal 5d607fa9b2d1b72ef0ec1367
                 $user->role_id =new ObjectID('5d607fa9b2d1b72ef0ec1367');
                 $user->save();
                 Auth::login($user); //esta linea siempre debe ir 1 antes del return
                 return redirect()->route('home');
-             }elseif ($user->role_id==2) { 
+             }elseif ($user->role_id==2) {
                 //empresa 5d607fb2b2d1b72ef0ec1368
                 $company=new Company();
                 $user->role_id =new ObjectID('5d607fb2b2d1b72ef0ec1368');
@@ -167,8 +168,8 @@ class RegisterController extends Controller
                 $companyplan=new Company_Plan();
                 $companyplan->company_id=new ObjectID($company->id);
                 $companyplan->plan_id=new ObjectID('5d64b7df3e3d5527794f4b9c');
-                $companyplan->start_date= now()->format('Y-m-d');
-                $companyplan->end_date=null;
+                $companyplan->start_date= Carbon::now()->toDateTimeString();
+                $companyplan->end_date= Carbon::now()->addDay(7)->toDateTimeString();
                 $companyplan->save();
                 Auth::login($user); //esta linea siempre debe ir 1 antes del return
                 return redirect()->route('home');
@@ -177,4 +178,3 @@ class RegisterController extends Controller
              }
     }
 }
- 

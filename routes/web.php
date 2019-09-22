@@ -79,7 +79,7 @@ Route::view('/user/opciones', 'user/options')->name('user options');
 Route::group(['middleware'=>['check.company.role']], function(){
 //RUTAS COMPANY
 //Route::get('/company/plan', 'Company\PlanController@index')->name('company plan');
-    Route::get('/company/plan', 'Company\PlanController@index')->name('company plan');
+    Route::get('/company/plan/', 'Company\PlanController@index')->name('company plan');
     Route::get ('/company/plan/buy/{id}', 'Company\PlanController@buyPlan')->name('company plan buy');
 
     Route::view('/company/location', 'company/location')->name('company location');

@@ -30,6 +30,11 @@
     </li>
 @endsection
 
+@section('div_principal')
+<div style="background-image: url('{{ asset('img/banners/b2.jpg') }}'); height: 60px;margin-top: -16px;margin-bottom: 10px">
+</div>
+@endsection
+
 @section('cards')
     <div class="card card-accent-primary col-lg-8 margen">
         <div class="card-header">

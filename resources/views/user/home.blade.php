@@ -2,15 +2,20 @@
 
 @section('route')
     <li class="breadcrumb-item">User</li>
+    @if(isset($route))
+        <li class="breadcrumb-item active">
+            <a href="{{URL::previous()}}">Rutas</a>
+        </li>
+    @endif
     <li class="breadcrumb-item active">
         <a href="#">Home</a>
     </li>
 @endsection
 
 
-@section('div_principal')   
-<div style="background-image: url('{{ asset('img/banners/b2.jpg') }}'); height: 80px; margin-top: -24px">
-</div> 
+@section('div_principal')
+<div style="background-image: url('{{ asset('img/banners/b2.jpg') }}'); height: 60px; margin-top: -16px">
+</div>
 <div id="mapid">
 	<button id="locate-position" class="colordefault" style="display: none"><i class="eye fas fa-globe-americas fa-lg"></i></button>
 	<button id="route-save" class="colordefault" style="display: none"><i class="eye fas fa-save fa-lg"></i></button>
@@ -49,7 +54,7 @@
                         </span>
                     @enderror
                 <div class="modal-body row">
-                    
+
                     <span>Tipo ruta</span>
                     <select name="slc_tipo" id="slc_tipo" class="form-control @error('slc_tipo') is-invalid @enderror">
                             <option value="0">Seleccione tipo de ruta</option>
@@ -62,7 +67,7 @@
                             <strong>{{ $errors->first('slc_tipo') }}</strong>
                         </span>
                     @enderror
-                    <span>Descripción</span> 
+                    <span>Descripción</span>
                     <textarea class="form-control @error('descripcion') is-invalid @enderror" name="descripcion" id="descripcion" placeholder="Descripción..." aria-label="With textarea">{{old('descripcion')}}</textarea>
                     @error('descripcion')
                         <span class="invalid-feedback" role="alert">
@@ -95,7 +100,7 @@
             <div class="modal-body">
         <form class="well form-horizontal" id="editar_ruta" method="post" action="{{route('user update route',$routeedit->id)}}">
         @csrf
-        @method('PUT') 
+        @method('PUT')
                     <span>Nombre</span>
                     <input type="text" name="nombre" value="{{$routeedit->name}}" id="nombre" class="form-control @error('nombre') is-invalid @enderror">
                     @error('nombre')
@@ -148,26 +153,26 @@
     <!-- permite crear una ruta, solo se usa cuando se presiona el boton add en la vista rutas-->
     @if(isset($_GET["nr"]))
         <script type="text/javascript">
-           
+
             @if($errors->count() > 0)
                 RedibujarRuta({{old("waypoints")}});
             @else
                  mymap.on('click', onMapClick);
             @endif
         </script>
-       
+
     @endif
-    
+
     <script type="text/javascript">
         //consigue los waypoints y luego manda los datos del formulario guardar para crear una nueva ruta
         function enviar_form() {
             document.getElementById("waypoints").value = getpoints(route);
-                $("#nueva_ruta").submit();    
+                $("#nueva_ruta").submit();
         }
         //consigue los waypoints y luego manda los datos del formulario editar para editar una ruta
         function enviar_form2() {
             document.getElementById("waypointsedit").value = getpoints(route_edit);
-                $("#editar_ruta").submit();    
+                $("#editar_ruta").submit();
         }
         //verifica si se quiere visualizar una ruta
         //si es asi la dibuja
@@ -178,7 +183,7 @@
                 $("#route-save").show();
                 $("#guardar").modal("show");
             @endif
-        @endif 
+        @endif
 
         //verifica si se quiere dibujar una ruta para luego ser editada
         @if(isset($routeedit))
@@ -196,7 +201,7 @@
         $(document).ready(function (){
             // habilita el icono de geolocalizacion
             $("#locate-position").show();
-            
+
             //  abre la modal guardar ruta
             $("#route-save").on("click",function(){
                 $("#guardar").modal("show");
