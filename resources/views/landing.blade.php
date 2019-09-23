@@ -38,7 +38,6 @@
 
         <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
-        <script type="text/javascript" src="{{asset('assets/js/fifty-one.js')}}"></script>
         <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
@@ -112,7 +111,7 @@
                 <div class="container">
                     <p class="tagline">Conocer el transporte público nunca fue tan fácil</p>
                 </div>
-                <div class="img-holder mt-3 ml-auto mr-auto"><img src="img/logo-reducido.png" alt="phone" class="img-fluid"></div>
+                <div class="img-holder mt-3 ml-auto mr-auto"><img src="{{asset('img/logo-reducido.png')}}" alt="phone" class="img-fluid"></div>
                 <h1>
                     <span class="p_color" style="font-family: Pacifico, cursive; color: #038827;display: inline-flex;">Oocarpa
                     <span  class="p_color" style="font-family: Pacifico, cursive; color:#7f4600;display: inline-flex;">Routes</span>
@@ -123,7 +122,7 @@
                 <div class="container">
                     <div class="section-title">
                         <small></small>
-                        <h3>Características Impresindibles</h3>
+                        <h3>Características Imprescindibles</h3>
                     </div>
                     <div class="row">
                         <div class="col-12 col-lg-4">
@@ -410,13 +409,12 @@
         <!--<script src="{{--asset('assets/js/owl-carousel/owl.carousel.js')--}}"></script>
         <script src="{{--asset('assets/js/owl-carousel/owl.carousel.js')--}}"></script>-->
 
-        <script src="{{asset('assets/js/jquery-3.2.1.min.js')}}"></script>
+        
         <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
         <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
         <script src="{{asset('assets/js/script.js')}}"></script>
 
         <script src="{{asset('assets/js/countdown/jquery.countdown.js')}}"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
         <script src="{{asset('assets/js/counterup/jquery.counterup.min.js')}}"></script>
         <script type="text/javascript" src="{{asset('assets/js/smoothscroll.min.js')}}"></script>
         <script src="{{asset('assets/js/jquery.inview.min.js')}}"></script>
