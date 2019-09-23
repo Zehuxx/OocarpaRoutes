@@ -10,11 +10,11 @@
     <li class="breadcrumb-item active">
         <a href="#">Home</a>
     </li>
-@endsection 
+@endsection
 
 
 @section('div_principal')
-<div style="background-image: url('{{ asset('img/banners/b2.jpg') }}'); height: 60px; margin-top: -16px">
+<div style="background-image: url('{{ asset('img/banners/'.$banner) }}'); height: 60px; margin-top: -16px">
 </div>
 <div id="mapid">
 	<button id="locate-position" class="colordefault" style="display: none"><i class="eye fas fa-globe-americas fa-lg"></i></button>

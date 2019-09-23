@@ -9,16 +9,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
+use App\Models\Banner;
 
 class PlanController extends Controller
 {
     public function index()
     {
-
+        $banner = Banner::getBanner();
         $planes = Plan::all();
         $planBuyed = CompanyPlan::all()->where('company_id', Auth::user()->id)->sortByDesc('created_at')->first();
 
-        return view('company.planes', compact('planes', "planBuyed"));
+        return view('company.planes', compact('planes', "planBuyed", 'banner'));
     }
 
     public function buyPlan($id) {

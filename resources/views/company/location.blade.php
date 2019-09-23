@@ -8,7 +8,7 @@
 @endsection
 
 @section('div_principal')
-    <div style="background-image: url('{{ asset('img/banners/b2.jpg') }}'); height: 70px;margin-top: -16px;margin-bottom: 10px">
+    <div style="background-image: url('{{ asset('img/banners/'.$banner) }}'); height: 70px;margin-top: -16px;margin-bottom: 10px">
     </div>
     <!-- usada para visualizar rutas-->
     @if(isset($marker))
@@ -39,7 +39,7 @@
             <div class="modal-body">
                 <form id="form-location" name="form-location"  method="POST" role="form" enctype="multipart/form-data"  action="{{ route('company store location') }}">
                     @csrf
- 
+
                     <div class="form-group">
                             <label for="name">Nombre Ubicación o Sucursal</label>
                             <input class="form-control" id="name" type="text" name="name" placeholder="nombre">
@@ -71,7 +71,7 @@
     </div>
     <!--FIN Modal-->
 
-@endsection 
+@endsection
 
 @section('js_mapa')
     <!-- Mapa -->
@@ -81,7 +81,7 @@
     <script src="{{ asset('js/company/mapa.js') }}"></script>
 
     <script type="text/javascript">
-        //consigue los waypoints y luego manda los datos del formulario guardar 
+        //consigue los waypoints y luego manda los datos del formulario guardar
         function enviar_form() {
             document.getElementById("waypoints").value = getpoints();
             $("#form-location").submit();
@@ -89,9 +89,9 @@
 
         @if(isset($locations))
             var locations='<?php echo $locations;?>';
-            var empresa='<?php 
+            var empresa='<?php
             $empresa=array();
-                for ($i=0; $i < count($locations); $i++) { 
+                for ($i=0; $i < count($locations); $i++) {
                     $empresa[]=$locations[$i]->Company;
                 }
                 echo implode('#|#',$empresa);

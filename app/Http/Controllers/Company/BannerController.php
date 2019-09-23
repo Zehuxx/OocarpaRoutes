@@ -14,13 +14,15 @@ class BannerController extends Controller
 {
     public function index()
     {
+        $banner = Banner::getBanner();
         $banners = Banner::all()->where('company_id', Auth::user()->id);
-        return view('company/banner', compact('banners'));
+        return view('company/banner', compact('banners', 'banner'));
     }
 
     public function create()
     {
-        return view('company/banner_create');
+        $banner = Banner::getBanner();
+        return view('company/banner_create', compact('banner'));
     }
 
     public function store(BannerStoreRequest $request)

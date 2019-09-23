@@ -9,7 +9,7 @@
 
 
 @section('div_principal')
-<div style="background-image: url('{{ asset('img/banners/b2.jpg') }}'); height: 60px;margin-top: -16px;margin-bottom: 10px">
+<div style="background-image: url('{{ asset('img/banners/'.$banner) }}'); height: 60px;margin-top: -16px;margin-bottom: 10px">
 </div>
 @endsection
 

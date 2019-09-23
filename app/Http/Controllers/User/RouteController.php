@@ -6,7 +6,7 @@ namespace App\Http\Controllers\User;
 use App\Models\Route;
 use App\Models\RouteType;
 use App\Models\User;
-use MongoDB\BSON\ObjectID; 
+use MongoDB\BSON\ObjectID;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\RouteStoreRequest;
@@ -14,15 +14,17 @@ use App\Http\Requests\RouteUpdateRequest;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 use App\Http\Controllers\Controller;
 use App\Support\Collection;
+use App\Models\Banner;
 
 
 class RouteController extends Controller
-{  
+{
 
     public function index(Request $request)
     {
         $search = $request->input('search');
-        
+        $banner = Banner::getBanner();
+
         $routes=Route::raw((function($collection) {
               return $collection->aggregate([
                 [
@@ -56,7 +58,7 @@ class RouteController extends Controller
                     if(!empty($search) && (strpos(strtolower($item->tiporuta[0]->name), strtolower($search)) !== false)){//match tiporuta
                        return $item;
                     }
-                    
+
                 }
 
                 if ($search=='') {
@@ -65,7 +67,8 @@ class RouteController extends Controller
                     }
                 }
             })->paginate(10);
-        return view('user.routes',compact('routes'));
+
+        return view('user.routes',compact('routes', 'banner'));
     }
 
     public function create()
@@ -74,11 +77,11 @@ class RouteController extends Controller
     }
 
     public function show($id)
-    { 
+    {
         $routesType=RouteType::all();
         $route = Route::find($id);
         return view('user.home',compact('route','routesType'));
-    } 
+    }
 
     public function store(RouteStoreRequest $request)
     {
@@ -88,25 +91,25 @@ class RouteController extends Controller
         $routes->name = $request->input('nombre');
         $routes->is_public=false;
         $routes->description = $request->input('descripcion');
-        $routes->coordinates = json_decode($request->get('waypoints'));         
+        $routes->coordinates = json_decode($request->get('waypoints'));
         $routes->save();
         return redirect()->route('user routes')->with('success', 'Ruta has been successfully added');
     }
-    
+
     public function edit($id)
     {
         $routesType=RouteType::all();
         $routeedit = Route::find($id);
         return view('user.home',compact('routeedit','routesType'));
     }
-    
+
     public function update(RouteUpdateRequest $request, $id)
     {
         $routes= Route::find($id);
         $routes->route_type_id = new ObjectID($request->input('slc_tipo'));
         $routes->name = $request->input('nombre');
-        $routes->description = $request->input('descripcion'); 
-        $routes->coordinates = json_decode($request->get('waypointsedit'));       
+        $routes->description = $request->input('descripcion');
+        $routes->coordinates = json_decode($request->get('waypointsedit'));
         $routes->save();
         return redirect()->route('user routes')->with('success', 'Ruta has been successfully update');
     }
