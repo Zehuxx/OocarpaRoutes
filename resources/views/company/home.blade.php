@@ -56,13 +56,7 @@
                 <td>{{$location->name}}</td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <a class="btn btn-sm btn-outline-primary mr-2" href="#{{$location->id }}">
-                            <i class="fa fa-eye"></i>
-                        </a>
-                        <a class="btn btn-sm btn-outline-success mr-2" href="#{{$location->id  }}">
-                                <i class="fa fa-pencil-square-o"></i>
-                        </a>
-                        <form method="post" style="display: contents;" action="#{{$location->id }}">
+                        <form method="post" style="display: contents;" action="{{route('company delete location',$location->id)}}">
                             @csrf
                             @method('DELETE')
                             <button type="submit"   class="btn btn-sm btn-outline-danger">
@@ -76,6 +70,9 @@
             </tbody>
         </table>
         {{ $locations->links() }}
+        
+        
+
     </div>
 </div>
     <div class="card card-accent-primary col-lg-8 margen">

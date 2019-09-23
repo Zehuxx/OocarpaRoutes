@@ -153,5 +153,21 @@ if ($('#mapid').length) {
       return null;
     } 
   
+    function DibujarMarcador(marker,empresa) {
+        if (marker) {
+          var icon = new L.icon({iconUrl:base_url+'/markers/'+marker.img,iconSize:[38, 55], color: 'red' });
+          mymap.setView(marker.coordinates,15);
+          L.marker(marker.coordinates, { icon: icon, draggable: false }).addTo(mymap).bindPopup('<strong>Empresa: '+empresa.name+'</strong><br>'+'<strong>Sucursal: '+marker.name+'</strong>');    
+        }
+    }
 
+    function DibujarMarcadores(locations,empresa) {
+        if (locations) {
+          for (var i = 0; i<locations.length; i++) {
+            var icon = new L.icon({iconUrl:base_url+'/markers/'+locations[i].img,iconSize:[38, 55], color: 'red' });
+            L.marker(locations[i].coordinates, { icon: icon, draggable: false }).addTo(mymap).bindPopup('<strong>Empresa: '+JSON.parse(empresa[i]).name+'</strong><br>'+'<strong>Sucursal: '+locations[i].name+'</strong>');
+          }
+          mymap.setView(locations[0].coordinates,14);
+        }
+    }
 

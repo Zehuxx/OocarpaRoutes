@@ -10,6 +10,10 @@
 @section('div_principal')
     <div style="background-image: url('{{ asset('img/banners/b2.jpg') }}'); height: 70px;margin-top: -16px;margin-bottom: 10px">
     </div>
+    <!-- usada para visualizar rutas-->
+    @if(isset($marker))
+        <input type="text" style="display: none" value="{{json_encode($marker->coordinates)}}" id="marcador">
+    @endif
     <div id="mapid">
         <button id="locate-position" class="colordefault" style="display: none"><i class="eye fas fa-globe-americas fa-lg"></i></button>
         <button id="route-save" class="colordefault" style="display: none"><i class="eye fas fa-save fa-lg"></i></button>
@@ -35,7 +39,7 @@
             <div class="modal-body">
                 <form id="form-location" name="form-location"  method="POST" role="form" enctype="multipart/form-data"  action="{{ route('company store location') }}">
                     @csrf
-
+ 
                     <div class="form-group">
                             <label for="name">Nombre Ubicación o Sucursal</label>
                             <input class="form-control" id="name" type="text" name="name" placeholder="nombre">
@@ -66,6 +70,7 @@
         </div>
     </div>
     <!--FIN Modal-->
+
 @endsection 
 
 @section('js_mapa')
@@ -74,11 +79,30 @@
     <script> var base_url = "{{asset('img')}}"; </script> <!-- variable para iconos del mapa juan* -->
     <script src="{{asset('js/leaflet-number-icon.js')}}"></script>
     <script src="{{ asset('js/company/mapa.js') }}"></script>
+
     <script type="text/javascript">
         //consigue los waypoints y luego manda los datos del formulario guardar 
         function enviar_form() {
             document.getElementById("waypoints").value = getpoints();
             $("#form-location").submit();
         }
+
+        @if(isset($locations))
+            var locations='<?php echo $locations;?>';
+            var empresa='<?php 
+            $empresa=array();
+                for ($i=0; $i < count($locations); $i++) { 
+                    $empresa[]=$locations[$i]->Company;
+                }
+                echo implode('#|#',$empresa);
+            ?>';
+            locations=JSON.parse(locations);
+            empresa=empresa.split('#|#');
+            DibujarMarcadores(locations,empresa);
+        @endif
+
+        @if($errors->count() > 0)
+            alert("{{$errors->first('Plan')}}");
+        @endif
     </script>
 @endsection

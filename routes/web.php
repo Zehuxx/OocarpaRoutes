@@ -63,8 +63,8 @@ Route::delete('/admin/borrar/ruta/{id}','Admin\RouteController@destroy')->name('
 // --------------------------- FIN ADMIN ----------------------------------------
 });
 
-Route::group(['middleware'=>['check.user.role']], function(){
 //RUTAS USER
+Route::group(['middleware'=>['check.user.role']], function(){
 Route::get('/user/rutas', 'User\RouteController@index')->name('user routes');
 Route::get('/user/ruta/{id}', 'User\RouteController@show')->name('user show route');
 Route::get('/user/editar/ruta/{id}','User\RouteController@edit')->name('user edit route');
@@ -76,14 +76,17 @@ Route::view('/user/opciones', 'user/options')->name('user options');
 
 
 });
-Route::group(['middleware'=>['check.company.role']], function(){
+
 //RUTAS COMPANY
+Route::group(['middleware'=>['check.company.role']], function(){
+
 //Route::get('/company/plan', 'Company\PlanController@index')->name('company plan');
     Route::get('/company/plan/', 'Company\PlanController@index')->name('company plan');
     Route::get ('/company/plan/buy/{id}', 'Company\PlanController@buyPlan')->name('company plan buy');
 
-    Route::view('/company/location', 'company/location')->name('company location');
-    Route::post('/company/location/store', 'Company\LocationController@store')->name('company store location');
+    Route::get('/company/locales', 'Company\LocationController@index')->name('company location');
+    Route::post('/company/local/store', 'Company\LocationController@store')->name('company store location');
+    Route::delete('/company/local/delete/{id}', 'Company\LocationController@destroy')->name('company delete location');
 
     Route::get('/company/banner', 'Company\BannerController@index')->name('company banner');
     Route::get('/company/banner/add', 'Company\BannerController@create')->name('company banner add');
