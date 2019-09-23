@@ -31,7 +31,7 @@ class LocationStoreRequest extends FormRequest
 
     public function messages(){
         return [ 
-            'name.required' => 'El nombres de la ubicación o sucursal es obligatorio',
+            'name.required' => 'El nombre de la sucursal es obligatorio',
             'marker.image' => 'El archivo debe ser una imagen',
             'marker.mimes' => 'El archivo debe ser extensión png y sin color de fondo',
             'marker.max' => 'El tamaño máximo del archivo es 4 mb',

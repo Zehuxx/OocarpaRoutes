@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\RouteType;
 use App\Models\Company;
 use App\Models\Location;
+use App\Models\Company_Plan;
 use App\Models\User;
+use Carbon\Carbon;
 use MongoDB\BSON\ObjectID;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 use App\Http\Controllers\Controller;
@@ -34,12 +36,29 @@ class HomeController extends Controller
     {
         if (Auth::user()!=null) {
             if(Auth::user()->role_id == "5d607f9db2d1b72ef0ec1366"){
+
                 $routesType=RouteType::all();
                 return view('admin.home')->with('routesType', $routesType);
             }elseif(Auth::user()->role_id == "5d607fa9b2d1b72ef0ec1367"){
+
+                $empresas=Company_Plan::where('deleted_at', 'exists', false)
+                                ->get();
+                $id_empresas=array();
+                foreach ($empresas as $key => $value) { 
+                // filtra las empresas que tiene activo su plan         
+                        if((new Carbon($value->end_date)) < Carbon::now()){
+                            $empresas->pull($key);
+                         }else{
+                            $id_empresas[]=$value->company_id;
+                         }        
+                }
+                $locations=Location::whereIn('company_id',$id_empresas)
+                                    ->where('deleted_at', 'exists', false)
+                                    ->get();
                 $routesType=RouteType::all();
-                return view('user.home')->with('routesType', $routesType);
+                return view('user.home',compact('routesType','locations'));
             }elseif(Auth::user()->role_id == "5d607fb2b2d1b72ef0ec1368"){
+
                $company=Company::where("company_id",new ObjectID(Auth::user()->id))->first();
                $locations=Location::where("company_id",new ObjectID(Auth::user()->id))->paginate(10);
                //return dd($locations);

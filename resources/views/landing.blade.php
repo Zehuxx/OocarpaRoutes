@@ -197,6 +197,20 @@
             var ruta = $("#ruta").val();
             DibujarRuta(jQuery.parseJSON(ruta));
         @endif 
+        
+        @if(isset($locations))
+            var locations='<?php echo $locations;?>';
+            var empresa='<?php 
+            $empresa=array();
+                for ($i=0; $i < count($locations); $i++) { 
+                    $empresa[]=$locations[$i]->Company;
+                }
+                echo implode('#|#',$empresa);
+            ?>';
+            locations=JSON.parse(locations);
+            empresa=empresa.split('#|#');
+            DibujarMarcadores(locations,empresa);
+        @endif
         </script>
     </body>
 </html>

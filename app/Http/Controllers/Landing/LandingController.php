@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Landing;
 
 use App\Models\Route;
 use App\Models\User;
+use App\Models\Location;
+use App\Models\Company_Plan;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use MongoDB\BSON\ObjectID; 
 use Illuminate\Support\Facades\Auth;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
@@ -101,7 +104,21 @@ class LandingController extends Controller
             })->paginate(10);
         }
         //dd($routes);
-        return view('landing',compact('routes','ruta'));
+        $empresas=Company_Plan::where('deleted_at', 'exists', false)
+                                ->get();
+        $id_empresas=array();
+        foreach ($empresas as $key => $value) { 
+        // filtra las empresas que tiene activo su plan         
+                if((new Carbon($value->end_date)) < Carbon::now()){
+                    $empresas->pull($key);
+                 }else{
+                    $id_empresas[]=$value->company_id;
+                 }        
+        }
+        $locations=Location::whereIn('company_id',$id_empresas)
+                            ->where('deleted_at', 'exists', false)
+                            ->get();
+        return view('landing',compact('routes','ruta','locations'));
     }
 
     public function create()
