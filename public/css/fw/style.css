@@ -180,13 +180,15 @@ sup {
 }
 
 a {
-    color: #20a8d8;
+    color: #038827;
+    /*Tambien*/
     text-decoration: none;
     background-color: transparent;
 }
 
 a:hover {
-    color: #167495;
+    color: #005216;
+    /*Tambien*/
     text-decoration: underline;
 }
 
@@ -5068,7 +5070,7 @@ input[type="button"].btn-block {
 .breadcrumb-item+.breadcrumb-item::before {
     display: inline-block;
     padding-right: 0.5rem;
-    color: #73818f;
+    color: #25b34a;
     content: "/";
 }
 
@@ -5081,7 +5083,8 @@ input[type="button"].btn-block {
 }
 
 .breadcrumb-item.active {
-    color: #73818f;
+    color: #038827;
+    /*Tambien*/
 }
 
 .pagination {
@@ -5098,7 +5101,7 @@ input[type="button"].btn-block {
     padding: 0.5rem 0.75rem;
     margin-left: -1px;
     line-height: 1.25;
-    color: #20a8d8;
+    color: #038827;
     background-color: #fff;
     border: 1px solid #c8ced3;
 }
@@ -5131,7 +5134,7 @@ input[type="button"].btn-block {
 .page-item.active .page-link {
     z-index: 1;
     color: #fff;
-    background-color: #20a8d8;
+    background-color: #038827;
     border-color: #20a8d8;
 }
 
@@ -10692,14 +10695,16 @@ a.text-dark:focus {
 
 .breadcrumb-menu .btn {
     padding: 0 0.75rem;
-    color: #73818f;
+    color: #038827;
+    /*Tambien*/
     vertical-align: top;
     border: 0;
 }
 
 .breadcrumb-menu .btn:hover,
 .breadcrumb-menu .btn.active {
-    color: #23282c;
+    color: #01350f;
+    /*Tambien*/
     background: transparent;
 }
 
@@ -13286,7 +13291,8 @@ canvas {
 
 .sidebar .nav-link:hover {
     color: #fff;
-    background: #20a8d8;
+    background: #038827;
+    /*Tambien*/
 }
 
 .sidebar .nav-link:hover .nav-icon {
@@ -13320,7 +13326,8 @@ canvas {
 }
 
 .sidebar .nav-link.nav-link-primary {
-    background: #20a8d8;
+    background: #038827;
+    /*Tambien*/
 }
 
 .sidebar .nav-link.nav-link-primary .nav-icon {
@@ -13656,7 +13663,8 @@ canvas {
         overflow: visible;
     }
     .sidebar-minimized .sidebar .nav-item:hover>.nav-link {
-        background: #20a8d8;
+        background: #016b1e;
+        /*Tambien*/
     }
     .sidebar-minimized .sidebar .nav-item:hover>.nav-link .nav-icon {
         color: #fff;
