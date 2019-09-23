@@ -54,13 +54,13 @@ class HomeController extends Controller
                             $empresas->pull($key);
                          }else{
                             $id_empresas[]=$value->company_id;
-                         }
+                         } 
                 }
                 $locations=Location::whereIn('company_id',$id_empresas)
                                     ->where('deleted_at', 'exists', false)
                                     ->get();
                 $routesType=RouteType::all();
-                return view('user.home', compact('routesType', 'banner'));
+                return view('user.home', compact('routesType', 'banner','locations'));
             }elseif(Auth::user()->role_id == "5d607fb2b2d1b72ef0ec1368"){
                 $company=Company::where("company_id",new ObjectID(Auth::user()->id))->first();
                 $locations=Location::where("company_id",new ObjectID(Auth::user()->id))->paginate(10);
