@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Admin;
 
 use Image;
 use App\Models\User;
@@ -63,7 +63,7 @@ class ProfileImageController extends Controller
             }else{
                 Image::make($image)->save( public_path('img/profiles/'.$user->user_img));
             }
-            return redirect()->route('user options');
+            return redirect()->route('admin options');
         }else{
             return redirect()->back();
         }

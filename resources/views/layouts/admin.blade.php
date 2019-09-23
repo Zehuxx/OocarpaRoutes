@@ -47,7 +47,7 @@
                 <i class="nav-icon icon-user"></i>Roles</a>
         </li>
     <li class="nav-item">
-        <a class="nav-link" href="typography.html">
+        <a class="nav-link" href="{{route('admin options')}}">
             <i class="nav-icon icon-menu"></i> Opciones</a>
     </li>
 @endsection

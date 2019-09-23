@@ -60,6 +60,9 @@ Route::post('/admin/guardar/ruta','Admin\RouteController@store')->name('admin st
 Route::put('/admin/actualizar/ruta/{id}', 'Admin\RouteController@update')->name('admin update route');
 Route::delete('/admin/borrar/ruta/{id}','Admin\RouteController@destroy')->name('admin destroy route');
 
+Route::view('/admin/opciones', 'admin/options')->name('admin options');
+Route::put('/admin/opciones/actualizar/imagen','Admin\ProfileImageController@update')->name('admin update image');
+
 // --------------------------- FIN ADMIN ----------------------------------------
 });
 
@@ -73,6 +76,7 @@ Route::put('/user/actualizar/ruta/{id}', 'User\RouteController@update')->name('u
 Route::delete('/user/borrar/ruta/{id}','User\RouteController@destroy')->name('user destroy route');
 Route::view('/user/opciones', 'user/options')->name('user options');
 
+Route::put('/user/opciones/actualizar/imagen','User\ProfileImageController@update')->name('user update image');
 
 
 });
@@ -92,6 +96,9 @@ Route::group(['middleware'=>['check.company.role']], function(){
     Route::get('/company/banner/add', 'Company\BannerController@create')->name('company banner add');
     Route::post('/company/banner/save', 'Company\BannerController@store')->name('company banner store');
     Route::delete('/company/banner/delete/{id}', 'Company\BannerController@destroy')->name('company banner delete');
+
+    
+
 
 });
 

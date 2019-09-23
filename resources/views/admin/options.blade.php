@@ -1,15 +1,10 @@
-@extends('layouts.user')
+@extends('layouts.admin')
 
 @section('route')
-    <li class="breadcrumb-item">User</li>
+    <li class="breadcrumb-item">Admin</li>
     <li class="breadcrumb-item active">
         <a href="#">Opciones</a>
     </li>
-@endsection
-
-@section('div_principal')
-<div style="background-image: url('{{ asset('img/banners/b2.jpg') }}'); height: 60px;margin-top: -16px;margin-bottom: 10px">
-</div>
 @endsection
 
 @section('cards')
@@ -35,7 +30,7 @@
                 </div>
                 {{--</form>--}}
                 <legend style="font-size: 1.1rem;margin-top: 5px;">Foto de perfil</legend>
-                <form class="well form-horizontal" method="POST" role="form" enctype="multipart/form-data"  action="{{route('user update image')}}">
+                <form class="well form-horizontal" method="POST" role="form" enctype="multipart/form-data"  action="{{route('admin update image')}}">
                     @csrf 
                     @method('PUT')
                 <div class="input-group">

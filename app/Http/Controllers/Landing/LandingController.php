@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Landing;
 
 use App\Models\Route;
 use App\Models\User;
+use App\Models\Banner;
 use App\Models\Location;
 use App\Models\Company_Plan;
 use Illuminate\Http\Request;
@@ -118,7 +119,10 @@ class LandingController extends Controller
         $locations=Location::whereIn('company_id',$id_empresas)
                             ->where('deleted_at', 'exists', false)
                             ->get();
-        return view('landing',compact('routes','ruta','locations'));
+
+        $banner = (Banner::all()->random(1)->first())->img;
+        
+        return view('landing',compact('routes','ruta','locations','banner'));
     }
 
     public function create()

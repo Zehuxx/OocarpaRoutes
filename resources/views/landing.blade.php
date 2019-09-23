@@ -320,18 +320,21 @@
                 </div>
            </div>
                 <!-- usada para visualizar rutas-->
-                @if(isset($ruta))
-                    <input type="text" style="display: none" value="{{json_encode($ruta->coordinates)}}" id="ruta">
-                @endif
-                <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="padding: 5rem">
-                    <main class="main">
-                        <div>
-                            <div id="mapid">
-                                <button id="locate-position" class="colordefault" style="display: none"><i class="eye fas fa-globe-americas fa-lg"></i></button>
-                            </div>
-                        </div>
-                    </main>
+            @if(isset($ruta))
+                <input type="text" style="display: none" value="{{json_encode($ruta->coordinates)}}" id="ruta">
+            @endif
+
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="padding: 5rem">
+                <div style="background-image: url('{{ asset('img/banners/'.$banner) }}'); height: 60px;">
                 </div>
+                <main class="main">
+                    <div>
+                        <div id="mapid">
+                            <button id="locate-position" class="colordefault" style="display: none"><i class="eye fas fa-globe-americas fa-lg"></i></button>
+                        </div>
+                    </div>
+                </main>
+            </div>
 
             <!------------------------Uso de app------------------------>
             <div class="section bg-gradient col-md-12 col-lg-12 col-sm-12" id="Descargar">

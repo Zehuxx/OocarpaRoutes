@@ -93,16 +93,16 @@
                 </div>
             </div>
             <div class="row arriba">
-                <strong class="col-lg-2 col-md-3 col-sm-3 col-xs-12">Descripción:</strong>
-                <span class="col-lg-10 col-md-9 col-sm-9 col-xs-12 card-text">{{$company->description}}</span>
+                <strong class="col-lg-4 col-md-4 col-sm-3 col-xs-12">Descripción:</strong>
+                <span class="col-lg-8 col-md-8 col-sm-9 col-xs-12 card-text">{{$company->description}}</span>
             </div>
             <div class="row arriba">
-                <strong class="col-lg-2 col-md-3 col-sm-3 col-xs-12">Encargado:</strong>
-                <span class="col-lg-10 col-md-9 col-sm-9 col-xs-12 card-text">{{Auth::user()->name.' '.Auth::user()->last_name}}</span>
+                <strong class="col-lg-4 col-md-4 col-sm-3 col-xs-12">Encargado:</strong>
+                <span class="col-lg-8 col-md-8 col-sm-9 col-xs-12 card-text">{{Auth::user()->name.' '.Auth::user()->last_name}}</span>
             </div>
             <div class="row arriba">
-                <strong class="col-lg-2 col-md-3 col-sm-3 col-xs-12">Telefono:</strong>
-                <span class="col-lg-10 col-md-9 col-sm-9 col-xs-12 card-text">{{$company->phone}}</span>
+                <strong class="col-lg-4 col-md-4 col-sm-3 col-xs-12">Telefono:</strong>
+                <span class="col-lg-8 col-md-8 col-sm-9 col-xs-12 card-text">{{$company->phone}}</span>
             </div>
             <div class="row arriba">
                 <button class="btn btn-primary ml-auto">Editar</button>
