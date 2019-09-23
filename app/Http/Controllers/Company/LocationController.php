@@ -27,7 +27,32 @@ class LocationController extends Controller
         $locations=Location::where('company_id',new ObjectID(Auth::user()->id))
                                 ->where('deleted_at', 'exists', false)
                                 ->get();
-        //return dd($locations[0]->id);
+        $empresas=Company_Plan::where('deleted_at', 'exists', false)
+                                ->get();
+        $id_empresas=array();
+        foreach ($empresas as $key => $value) {
+        // filtra las empresas que tiene activo su plan
+                if((new Carbon($value->end_date)) < Carbon::now()){
+                    $empresas->pull($key);
+                 }else{
+                    $id_empresas[]=$value->company_id;
+                 }
+
+        }
+
+        $plan=Company_Plan::where('company_id',new ObjectID(Auth::user()->id))
+        ->where('deleted_at', 'exists', false)
+        ->orderby('created_at','desc')
+        ->first();
+        $locations=Location::whereIn('company_id',$id_empresas)
+                            ->where('company_id',new ObjectID(Auth::user()->id))
+                            ->where('deleted_at', 'exists', false)
+                            ->get();
+        if ($plan->plan_id== new ObjectID('5d7305b850142027477a45e2')) { //los que tengn plan gratis
+           $locations=Location::whereIn('company_id',$id_empresas)
+                                ->where('deleted_at', 'exists', false)// miraran las sucursales de
+                                ->get();                               //las otras empresas
+        }
         return view('company.location',compact('locations', 'banner'));
     }
 

@@ -42,10 +42,10 @@ if ($('#mapid').length) {
               text: 'Agregar sucursal',
               callback: addBranch
           },{
-              text: 'Show coordinates', 
+              text: 'Mostrar coordenadas', 
               callback: showCoordinates
           }, {
-              text: 'Center map here',
+              text: 'Centrar mapa aquí',
               callback: centerMap
           }, '-', {
               text: 'Zoom in',
@@ -153,16 +153,16 @@ if ($('#mapid').length) {
       return null;
     } 
   
-    function DibujarMarcador(marker,empresa) {
-        if (marker) {
-          var icon = new L.icon({iconUrl:base_url+'/markers/'+marker.img,iconSize:[38, 55], color: 'red' });
-          mymap.setView(marker.coordinates,15);
-          L.marker(marker.coordinates, { icon: icon, draggable: false }).addTo(mymap).bindPopup('<strong>Empresa: '+empresa.name+'</strong><br>'+'<strong>Sucursal: '+marker.name+'</strong>');    
+    function DibujarMarcador(waypoints) {
+        if (waypoints) {
+          temp.push(waypoints);
+          var icon = new L.icon({iconUrl:base_url+'/markers/marcador-defecto.png',iconSize:[38, 55]});
+          marker1 = L.marker(waypoints, { icon: icon, draggable: true }).addTo(mymap);
         }
     }
 
     function DibujarMarcadores(locations,empresa) {
-        if (locations) {
+        if (locations.length>0){
           for (var i = 0; i<locations.length; i++) {
             var icon = new L.icon({iconUrl:base_url+'/markers/'+locations[i].img,iconSize:[38, 55], color: 'red' });
             L.marker(locations[i].coordinates, { icon: icon, draggable: false }).addTo(mymap).bindPopup('<strong>Empresa: '+JSON.parse(empresa[i]).name+'</strong><br>'+'<strong>Sucursal: '+locations[i].name+'</strong>');

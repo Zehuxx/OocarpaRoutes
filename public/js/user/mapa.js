@@ -35,7 +35,7 @@ if ($('#mapid').length) {
           	  text: 'Centrar mapa',
           	  callback: centerMap
           }, {
-              text: 'Mostar coordenadas', 
+              text: 'Mostrar coordenadas', 
               callback: showCoordinates
           }, '-', {
               text: 'Zoom in',
@@ -248,4 +248,15 @@ if ($('#mapid').length) {
         	}).addTo(mymap);
         }
       
+    }
+
+
+function DibujarMarcadores(locations,empresa) {
+        if (locations.length>0){
+          for (var i = 0; i<locations.length; i++) {
+            var icon = new L.icon({iconUrl:base_url+'/markers/'+locations[i].img,iconSize:[38, 55], color: 'red' });
+            L.marker(locations[i].coordinates, { icon: icon, draggable: false }).addTo(mymap).bindPopup('<strong>Empresa: '+JSON.parse(empresa[i]).name+'</strong><br>'+'<strong>Sucursal: '+locations[i].name+'</strong>');
+          }
+          mymap.setView(locations[0].coordinates,14);
+        }
     }

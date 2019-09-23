@@ -198,6 +198,20 @@
             @endif
         @endif
 
+        @if(isset($locations))
+            var locations='<?php echo $locations;?>';
+            var empresa='<?php 
+            $empresa=array();
+                for ($i=0; $i < count($locations); $i++) { 
+                    $empresa[]=$locations[$i]->Company;
+                }
+                echo implode('#|#',$empresa);
+            ?>';
+            locations=JSON.parse(locations);
+            empresa=empresa.split('#|#');
+            DibujarMarcadores(locations,empresa);
+        @endif
+
         $(document).ready(function (){
             // habilita el icono de geolocalizacion
             $("#locate-position").show();

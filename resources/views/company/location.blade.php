@@ -102,7 +102,14 @@
         @endif
 
         @if($errors->count() > 0)
-            alert("{{$errors->first('Plan')}}");
+            @if($errors->has('Plan'))
+                alert("{{$errors->first('Plan')}}");
+            @else
+                DibujarMarcador({{old("waypoints")}});
+                $("#route-save").show();
+                $("#guardar-sucursal").modal("show");
+            @endif
+
         @endif
     </script>
 @endsection
