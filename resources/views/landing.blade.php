@@ -440,7 +440,6 @@
                     $('html, body').animate({scrollTop: divPosition.top+10}, "slow");
                 }, 100); //100ms for example
             }
-
         @endif
 
         @if(isset($locations))
@@ -455,6 +454,17 @@
             locations=JSON.parse(locations);
             empresa=empresa.split('#|#');
             DibujarMarcadores(locations,empresa);
+        @endif
+
+        @if(isset($_GET['search']))
+            @if($_GET['search']!='')
+                window.onload = function() {
+                    setTimeout (function () {
+                        var divPosition = $('#list_rutas').offset();
+                        $('html, body').animate({scrollTop: divPosition.top-50}, "slow");
+                    }, 100); //100ms for example
+                }
+            @endif
         @endif
         </script>
     </body>

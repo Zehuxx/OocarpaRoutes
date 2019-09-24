@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 //use App\Http\Requests\ValidarStoreRT;
 use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller; 
 use App\Support\Collection;
 
 class CompanyController extends Controller
@@ -23,14 +23,13 @@ class CompanyController extends Controller
               [
                 '$lookup' => [
                   'from' => 'users',
-                  'localField' => 'user_id',
+                  'localField' => 'company_id',
                   'foreignField'=> '_id',
                   'as' => 'usuario'
                 ]
               ]
             ]);
        }))->paginate(10);
-
        return view('admin.companies',compact('companies'));
     }
 
