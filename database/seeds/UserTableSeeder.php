@@ -13,7 +13,6 @@ class UserTableSeeder extends Seeder
         	'last_name' => 'Lopez',
         	'email' => 'admin@gmail.com',
             'password' => bcrypt('secret'), // secret
-            'remember_token' => str_random(10),
             'user_img' => str_random(10),
         ]);
         DB::connection('mongodb')->collection('users')->insert([
@@ -22,7 +21,6 @@ class UserTableSeeder extends Seeder
             'last_name' => 'Lopez',
             'email' => 'user@gmail.com',
             'password' => bcrypt('secret'), // secret
-            'remember_token' => str_random(10),
             'user_img' => str_random(10),
         ]);
         DB::connection('mongodb')->collection('users')->insert([
@@ -31,7 +29,6 @@ class UserTableSeeder extends Seeder
             'last_name' => 'Lopez',
             'email' => 'company@gmail.com',
             'password' => bcrypt('secret'), // secret
-            'remember_token' => str_random(10),
             'user_img' => str_random(10),
         ]);
     }

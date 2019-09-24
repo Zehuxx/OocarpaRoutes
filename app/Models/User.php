@@ -27,7 +27,7 @@ class User extends Eloquent implements AuthenticatableContract, AuthorizableCont
     ];
 
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
     ];
 
     public function Role()

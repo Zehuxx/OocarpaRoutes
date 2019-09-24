@@ -324,10 +324,10 @@
                 <input type="text" style="display: none" value="{{json_encode($ruta->coordinates)}}" id="ruta">
             @endif
 
-            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" style="padding: 5rem">
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" id="mapa"  style="padding: 5rem">
                 <div style="background-image: url('{{ asset('img/banners/'.$banner) }}'); height: 60px;">
                 </div>
-                <main class="main">
+                <main class="main" >
                     <div>
                         <div id="mapid">
                             <button id="locate-position" class="colordefault" style="display: none"><i class="eye fas fa-globe-americas fa-lg"></i></button>
@@ -433,7 +433,14 @@
         @if(isset($ruta))
             var ruta = $("#ruta").val();
             DibujarRuta(jQuery.parseJSON(ruta));
-
+           
+            window.onload = function() {
+                setTimeout (function () {
+                    var divPosition = $('#mapa').offset();
+                    $('html, body').animate({scrollTop: divPosition.top}, "slow");
+                }, 100); //100ms for example
+            }
+            
         @endif 
         
         @if(isset($locations))
