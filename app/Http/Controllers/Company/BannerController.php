@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Company;
 
 use Image;
 use App\Models\Banner;
+use App\Models\Company_Plan as CompanyPlan;
 use MongoDB\BSON\ObjectID;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,16 +28,23 @@ class BannerController extends Controller
 
     public function store(BannerStoreRequest $request)
     {
-        $image=$request->file('banner');
-        $fileName = uniqid("bn_", true).".".$image->getClientOriginalExtension();
-        Image::make($image)->save( public_path('img/banners/'.$fileName));
+        $numBan = count(Banner::all()->where('company_id', Auth::user()->id));
+        $numBanPlan = CompanyPlan::all()->where('company_id', Auth::user()->id)->sortByDesc('created_at')->first()->Plan->nbanners;
 
-        $img = new Banner();
-        $img->company_id = new ObjectID(Auth::user()->id);
-        $img->img = $fileName;
-        $img->save();
+        if ($numBan < $numBanPlan && $numBanPlan != 0) { // comprueba si la cantidad de banners subidos es menor que la cantidad de banners en el plan
+            $image=$request->file('banner');
+            $fileName = uniqid("bn_", true).".".$image->getClientOriginalExtension();
+            Image::make($image)->save( public_path('img/banners/'.$fileName));
 
-        return $this->index();
+            $img = new Banner();
+            $img->company_id = new ObjectID(Auth::user()->id);
+            $img->img = $fileName;
+            $img->save();
+        } else {
+            return redirect()->route('company banner')->with('msg', 'Solo se permiten ' . $numBanPlan . ' banners en tu plan actual');
+        }
+
+        return redirect()->route('company banner');
     }
 
     public function show()

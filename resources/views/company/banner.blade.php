@@ -15,7 +15,7 @@
 @endsection
 
 @section('div_principal')
-<div style="background-image: url('{{ asset('img/banners/'.$banner) }}'); height: 60px;margin-top: -16px;margin-bottom: 10px">
+<div style="background-image: url('{{ asset('img/banners/'.$banner) }}');background-repeat: no-repeat;background-size: 100% 60px; height: 60px;margin-top: -16px;margin-bottom: 10px">
 </div>
 @endsection
 
@@ -47,5 +47,17 @@
     </div>
 
     @endforeach
+
+    @if (session('msg'))
+        <div class="card">
+            <div class="card-header">Mensaje
+            </div>
+            <div class="card-body">
+                <strong class="form-text text-success">
+                    <span>{{ '* ' . session('msg') }}</span>
+                </strong>
+            </div>
+        </div>
+    @endif
 </div>
 @endsection

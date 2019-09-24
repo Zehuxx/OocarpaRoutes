@@ -325,7 +325,7 @@
             @endif
 
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12"   style="display: contents;">
-                <div style="background-image: url('{{ asset('img/banners/'.$banner) }}'); height: 60px;" id="mapa">
+                <div style="background-image: url('{{ asset('img/banners/'.$banner) }}');background-repeat: no-repeat;background-size: 100% 60px; height: 60px;margin-top: -16px;margin-bottom: 10px">
                 </div>
                 <main class="main" >
                     <div >
@@ -412,7 +412,7 @@
         <!--<script src="{{--asset('assets/js/owl-carousel/owl.carousel.js')--}}"></script>
         <script src="{{--asset('assets/js/owl-carousel/owl.carousel.js')--}}"></script>-->
 
-        
+
         <script src="{{asset('assets/js/bootstrap.bundle.min.js')}}"></script>
         <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
         <script src="{{asset('assets/js/script.js')}}"></script>
@@ -433,21 +433,21 @@
         @if(isset($ruta))
             var ruta = $("#ruta").val();
             DibujarRuta(jQuery.parseJSON(ruta));
-           
+
             window.onload = function() {
                 setTimeout (function () {
                     var divPosition = $('#mapa').offset();
                     $('html, body').animate({scrollTop: divPosition.top+10}, "slow");
                 }, 100); //100ms for example
             }
-            
-        @endif 
-        
+
+        @endif
+
         @if(isset($locations))
             var locations='<?php echo $locations;?>';
-            var empresa='<?php 
+            var empresa='<?php
             $empresa=array();
-                for ($i=0; $i < count($locations); $i++) { 
+                for ($i=0; $i < count($locations); $i++) {
                     $empresa[]=$locations[$i]->Company;
                 }
                 echo implode('#|#',$empresa);

@@ -8,7 +8,7 @@
 @endsection
 
 @section('div_principal')
-<div style="background-image: url('{{ asset('img/banners/b2.jpg') }}'); height: 60px;margin-top: -16px;margin-bottom: 10px">
+<div style="background-image: url('{{ asset('img/banners/'.$banner) }}');background-repeat: no-repeat;background-size: 100% 60px; height: 60px;margin-top: -16px;margin-bottom: 10px">
 </div>
 @endsection
 
@@ -36,7 +36,7 @@
                 {{--</form>--}}
                 <legend style="font-size: 1.1rem;margin-top: 5px;">Foto de perfil</legend>
                 <form class="well form-horizontal" method="POST" role="form" enctype="multipart/form-data"  action="{{route('user update image')}}">
-                    @csrf 
+                    @csrf
                     @method('PUT')
                 <div class="input-group">
                     <input name="image" class="form-control @error('image') is-invalid @enderror"  type="file" >

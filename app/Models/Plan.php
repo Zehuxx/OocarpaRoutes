@@ -8,14 +8,14 @@ use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 
 class Plan extends Eloquent
 {
-	use SoftDeletes; 
+	use SoftDeletes;
 
     protected $connection = 'mongodb';
     protected $collection = 'plans';
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
-        'name', 'description','price','duration'
+        'name', 'description','price','duration', 'days', 'nbanners'
     ];
 
     public function Company_Plan()

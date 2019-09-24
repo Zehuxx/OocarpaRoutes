@@ -19,7 +19,7 @@
 @endsection
 
 @section('div_principal')
-<div style="background-image: url('{{ asset('img/banners/'.$banner) }}'); height: 60px;margin-top: -16px;margin-bottom: 10px">
+<div style="background-image: url('{{ asset('img/banners/'.$banner) }}');background-repeat: no-repeat;background-size: 100% 60px; height: 60px;margin-top: -16px;margin-bottom: 10px">
 </div>
 @endsection
 
@@ -54,6 +54,11 @@
             <strong class="text-right col-lg-3 col-md-4 col-sm-4 col-xs-12">Fecha Fin:</strong>
             <span class="col-lg-9 col-md-8 col-sm-8 col-xs-12 card-text">{{$planBuyed->end_date}}</span>
         </div>
+        @if (session('msg'))
+            <small class="form-text text-success">
+                <span>{{ '* ' . session('msg') }}</span>
+            </small>
+        @endif
         <hr>
 
         <!-----------------------Cards inferiores Planes--------------------------->

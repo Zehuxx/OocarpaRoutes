@@ -8,8 +8,8 @@
 @endsection
 
 @section('div_principal')
-    <div style="background-image: url('{{ asset('img/banners/'.$banner) }}'); height: 70px;margin-top: -16px;margin-bottom: 10px">
-    </div>
+<div style="background-image: url('{{ asset('img/banners/'.$banner) }}');background-repeat: no-repeat;background-size: 100% 60px; height: 60px;margin-top: -16px;margin-bottom: 10px">
+</div>
     <!-- usada para visualizar rutas-->
     @if(isset($marker))
         <input type="text" style="display: none" value="{{json_encode($marker->coordinates)}}" id="marcador">

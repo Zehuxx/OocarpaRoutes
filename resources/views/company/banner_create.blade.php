@@ -7,17 +7,10 @@
         <a href="#">Banner</a>
     </li>
     <li class="breadcrumb-item">Nuevo</li>
-    <li class="breadcrumb-menu d-md-down-none">
-        <div class="btn-group" role="group" aria-label="Button group">
-            <a class="btn" href="#">
-                <i class="icon-plus"></i>
-            </a>
-        </div>
-    </li>
 @endsection
 
 @section('div_principal')
-<div style="background-image: url('{{ asset('img/banners/'.$banner) }}'); height: 60px;margin-top: -16px;margin-bottom: 10px">
+<div style="background-image: url('{{ asset('img/banners/'.$banner) }}');background-repeat: no-repeat;background-size: 100% 60px; height: 60px;margin-top: -16px;margin-bottom: 10px">
 </div>
 @endsection
 
