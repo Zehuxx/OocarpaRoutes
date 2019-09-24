@@ -325,7 +325,7 @@
             @endif
 
             <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12"   style="display: contents;">
-                <div style="background-image: url('{{ asset('img/banners/'.$banner) }}');background-repeat: no-repeat;background-size: 100% 60px; height: 60px;margin-top: -16px;margin-bottom: 10px">
+                <div style="background-image: url('{{ asset('img/banners/'.$banner) }}');background-repeat: no-repeat;background-size: 100% 60px; height: 60px;margin-top: -16px;margin-bottom: 10px" id="mapa">
                 </div>
                 <main class="main" >
                     <div >
@@ -437,7 +437,7 @@
             window.onload = function() {
                 setTimeout (function () {
                     var divPosition = $('#mapa').offset();
-                    $('html, body').animate({scrollTop: divPosition.top+10}, "slow");
+                    $('html, body').animate({scrollTop: divPosition.top+20}, "slow");
                 }, 100); //100ms for example
             }
         @endif

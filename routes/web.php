@@ -74,7 +74,7 @@ Route::get('/user/editar/ruta/{id}','User\RouteController@edit')->name('user edi
 Route::post('/user/guardar/ruta','User\RouteController@store')->name('user store routes');
 Route::put('/user/actualizar/ruta/{id}', 'User\RouteController@update')->name('user update route');
 Route::delete('/user/borrar/ruta/{id}','User\RouteController@destroy')->name('user destroy route');
-Route::view('/user/opciones', 'user/options')->name('user options');
+Route::get('/user/opciones', 'User\BannerController@index')->name('user options');
 
 Route::put('/user/opciones/actualizar/imagen','User\ProfileImageController@update')->name('user update image');
 

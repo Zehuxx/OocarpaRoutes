@@ -51,11 +51,13 @@ class ProfileImageController extends Controller
         ]; 
 
         $this->validate($request, $rules, $messages);
+
         $user_id=Auth::user()->id;
         $user=User::find($user_id);
         $image= $request->file("image");
         if ($image) {
             $fileName = uniqid("pr_", true).".".$image->getClientOriginalExtension();
+
             if ($user->user_img===null) {
                 Image::make($image)->save( public_path('img/profiles/'.$fileName));
                 $user->user_img=$fileName;
