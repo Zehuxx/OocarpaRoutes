@@ -32,24 +32,19 @@
                 <tr>
                     <th>#</th>
                     <th>Nombre</th>
-                    <th>Correo</th>
+                    <th>Correo encargado</th>
                     <th>Dirección</th>
                     <th>Teléfono</th>
                     <th>Descripción</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody> 
                 @foreach($companies as $company)
                 <tr>
                     <td>{{$loop->iteration}}</td>
                     <td>{{$company->name}}</td>
-                    <td>@if(count($company->usuario) > 0)
-                            {{$company->usuario[0]->email}}
-                        @else
-                            No email
-                        @endif
-                    </td>
+                    <td>{{$company->usuario[0]['email']}}</td>
                     <td>{{str_limit($company->address, 20)}}</td>
                     <td>{{$company->phone}}</td>
                     <td>{{str_limit($company->description, 20)}}</td>
