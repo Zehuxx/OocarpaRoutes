@@ -292,23 +292,32 @@ header {
 
 .img-holder {
     height: 0;
-    padding-bottom: 32%;
+    padding-bottom: 60%;
     overflow: hidden;
     background-size: cover;
 }
 
-@media (max-width:1200px) {
+/*@media (max-width:1200px) {
     .img-holder {
         padding-bottom: 65%;
     }
-}
+}*/
 
 @media (max-width:767px) {
     .tagline {
         font-size: 17px;
     }
-    .img-holder {
+    /*.img-holder {
         padding-bottom: 100%;
+    }*/
+}
+
+@media (min-width:1000px) {
+    .img-emp {
+        width: 65%!important;
+    }
+    .img-holder {
+        padding-bottom: 25%!important;
     }
 }
 

@@ -59,7 +59,7 @@
         <![endif]-->
 
     </head>
-    <body class="play-animations" id="page-top" data-offset="50" data-spy="scroll" data-target=".navbar-fixed-top">
+    <body class="play-animations" id="page-top" data-offset="50" data-spy="scroll" data-target=".navbar-fixed-top" style="overflow-x: hidden;">
         <!-- preloader -->
         <div class="se-pre-con"></div>
         <!-- preloader ends here -->
@@ -111,7 +111,7 @@
                 <div class="container">
                     <p class="tagline">Conocer el transporte público nunca fue tan fácil</p>
                 </div>
-                <div class="img-holder mt-3 ml-auto mr-auto"><img src="{{asset('img/logo-reducido.png')}}" alt="phone" class="img-fluid"></div>
+                <div class="img-holder mt-3 ml-auto mr-auto" style="width: 100vw;margin: 0%"><img src="{{asset('img/logo-reducido.png')}}" alt="phone" style="width:100%" class="img-emp" ></div>
                 <h1>
                     <span class="p_color" style="font-family: Pacifico, cursive; color: #038827;display: inline-flex;">Oocarpa
                     <span  class="p_color" style="font-family: Pacifico, cursive; color:#7f4600;display: inline-flex;">Routes</span>
@@ -324,7 +324,7 @@
                 <input type="text" style="display: none" value="{{json_encode($ruta->coordinates)}}" id="ruta">
             @endif
 
-            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" id="mapa"  style="padding: 5rem">
+            <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12" id="mapa"  style="display: contents;">
                 <div style="background-image: url('{{ asset('img/banners/'.$banner) }}'); height: 60px;">
                 </div>
                 <main class="main" >
@@ -433,14 +433,8 @@
         @if(isset($ruta))
             var ruta = $("#ruta").val();
             DibujarRuta(jQuery.parseJSON(ruta));
-           
-            window.onload = function() {
-                setTimeout (function () {
-                    var divPosition = $('#mapa').offset();
-                    $('html, body').animate({scrollTop: divPosition.top}, "slow");
-                }, 100); //100ms for example
-            }
-            
+            var divPosition = $('#mapa').offset();
+            $('html, body').animate({scrollTop: divPosition.top}, "slow");
         @endif 
         
         @if(isset($locations))
