@@ -13,14 +13,14 @@ if ($('#mapid').length) {
   };
 
   // Mapas disponibles
-    var Calles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/{z}/{x}/{y}?access_token='+info['access_token'], 
+    var Calles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token='+info['access_token'], 
       {
         attribution: info['attribution'], 
         id: 'mapbox/streets-v11', 
         maxZoom: 18,
         accessToken: info['access_token'] 
       }),
-      CallesSatelite  = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/{z}/{x}/{y}?access_token='+info['access_token'], 
+      CallesSatelite  = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token='+info['access_token'], 
       {
         id: 'mapbox/satellite-streets-v11', 
         attribution:info['attribution'],
