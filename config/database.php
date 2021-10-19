@@ -93,7 +93,7 @@ return [
 
         'mongodb' => [
             'driver'   => 'mongodb',
-            'dsn' => 'mongodb://oocarpa_user:oocarpa1234@oocarpadb-shard-00-00-3gli8.mongodb.net:27017,oocarpadb-shard-00-01-3gli8.mongodb.net:27017,oocarpadb-shard-00-02-3gli8.mongodb.net:27017/test?ssl=true&replicaSet=oocarpadb-shard-0&authSource=admin&retryWrites=true&w=majority',
+            'dsn' => 'mongodb://oocarpa_user:Honduras2019@oocarpadb-shard-00-00-3gli8.mongodb.net:27017,oocarpadb-shard-00-01-3gli8.mongodb.net:27017,oocarpadb-shard-00-02-3gli8.mongodb.net:27017/test?ssl=true&replicaSet=oocarpadb-shard-0&authSource=admin&retryWrites=true&w=majority',
             'database' => 'oocarpadb',
         ],
 
